@@ -9,7 +9,7 @@ export const SafetyInfoModal: React.FC = () => {
     {
       hazard: 'Rising Floodwaters',
       icon: Droplets,
-      color: 'text-cream-100 bg-wine-900 border-wine-600',
+      color: 'text-blue-700 bg-blue-50 border-blue-200',
       tips: [
         'Move immediately to the highest floor or elevated ground.',
         'Do not drive into flooded roads—6 inches of moving water can knock down an adult; 12 inches can sweep away small cars.',
@@ -19,7 +19,7 @@ export const SafetyInfoModal: React.FC = () => {
     {
       hazard: 'Building Fire & Smoke',
       icon: Flame,
-      color: 'text-cream-100 bg-wine-800 border-wine-500',
+      color: 'text-red-700 bg-red-50 border-red-200',
       tips: [
         'Stay low beneath smoke—clean air is near the floor.',
         'Feel doors with the back of your hand before opening; if hot, seek secondary exit.',
@@ -29,7 +29,7 @@ export const SafetyInfoModal: React.FC = () => {
     {
       hazard: 'Electrical & Downed Lines',
       icon: Zap,
-      color: 'text-cream-200 bg-wine-900 border-wine-700',
+      color: 'text-amber-700 bg-amber-50 border-amber-200',
       tips: [
         'Assume all downed wires are energized and deadly.',
         'Maintain at least a 35-foot perimeter away from any fallen lines or electrified fences.',
@@ -39,7 +39,7 @@ export const SafetyInfoModal: React.FC = () => {
     {
       hazard: 'Severe Bleeding & Trauma',
       icon: HeartPulse,
-      color: 'text-white bg-wine-700 border-wine-400',
+      color: 'text-red-700 bg-red-100 border-red-300',
       tips: [
         'Apply firm, continuous direct pressure with a clean cloth.',
         'Keep patient warm and calm to prevent traumatic shock.',
@@ -54,22 +54,22 @@ export const SafetyInfoModal: React.FC = () => {
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={() => setCitizenView('home')}
-            className="flex items-center gap-1.5 text-sm text-cream-200 hover:text-white bg-wine-900/80 hover:bg-wine-800 px-3 py-1.5 rounded-lg border border-wine-700/80 transition-colors"
+            className="flex items-center gap-1.5 text-sm text-stone-700 hover:text-stone-900 bg-beige-100 hover:bg-beige-200 px-3 py-1.5 rounded-lg border border-beige-300 transition-colors font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Emergency Home</span>
           </button>
 
-          <span className="text-xs font-mono font-semibold uppercase tracking-wider text-cream-200">
+          <span className="text-xs font-mono font-bold uppercase tracking-wider text-red-700 bg-red-50 border border-red-200 px-2.5 py-1 rounded-full">
             Field Safety Protocol
           </span>
         </div>
 
         <div className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
             EMERGENCY SAFETY GUIDE
           </h1>
-          <p className="text-sm text-cream-200 mt-1">
+          <p className="text-sm text-stone-600 mt-1 font-medium">
             Immediate survival actions while responders mobilize.
           </p>
         </div>
@@ -78,20 +78,20 @@ export const SafetyInfoModal: React.FC = () => {
           {GUIDELINES.map((guide, idx) => {
             const Icon = guide.icon;
             return (
-              <div key={idx} className="p-4 rounded-2xl bg-wine-950 border border-wine-700 space-y-2.5 shadow-lg">
+              <div key={idx} className="p-4 rounded-2xl bg-white border border-beige-300 space-y-2.5 shadow-sm">
                 <div className="flex items-center gap-2.5">
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center border ${guide.color}`}>
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="font-bold text-base text-white">
+                  <h3 className="font-bold text-base text-stone-900">
                     {guide.hazard}
                   </h3>
                 </div>
 
                 <ul className="space-y-1.5 pl-2">
                   {guide.tips.map((tip, tIdx) => (
-                    <li key={tIdx} className="text-xs text-cream-200 flex items-start gap-2">
-                      <span className="text-cream-300 font-bold">•</span>
+                    <li key={tIdx} className="text-xs text-stone-700 flex items-start gap-2 font-medium">
+                      <span className="text-red-600 font-bold">•</span>
                       <span>{tip}</span>
                     </li>
                   ))}
@@ -102,10 +102,10 @@ export const SafetyInfoModal: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-8 pt-4 border-t border-wine-850">
+      <div className="mt-8 pt-4 border-t border-beige-200">
         <button
           onClick={() => setCitizenView('home')}
-          className="w-full py-4 rounded-xl font-bold text-base bg-wine-900 hover:bg-wine-800 text-white border border-wine-700 transition-colors shadow-lg active:scale-[0.99]"
+          className="w-full py-4 rounded-xl font-bold text-base bg-red-600 hover:bg-red-700 text-white transition-colors shadow-md active:scale-[0.99]"
         >
           Return to Emergency Home
         </button>

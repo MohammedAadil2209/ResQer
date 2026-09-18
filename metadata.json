@@ -1,5 +1,5 @@
 {
-  "name": "RESQNET",
+  "name": "RESQER",
   "description": "AI-Powered Emergency Response & Disaster Coordination Platform with dual Citizen Emergency Mode and Responder Command Center.",
   "requestFramePermissions": ["geolocation", "microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

@@ -30,46 +30,48 @@ export const ResourcesManagerView: React.FC = () => {
   const getResourceIcon = (type: string = '') => {
     switch (type) {
       case 'Rescue Boat':
-        return <LifeBuoy className="w-4 h-4 text-cream-200" />;
+        return <LifeBuoy className="w-4 h-4 text-red-600" />;
       case 'Medical Tent':
-        return <Tent className="w-4 h-4 text-cream-100" />;
+        return <Tent className="w-4 h-4 text-red-600" />;
       case 'Shelter':
-        return <Building2 className="w-4 h-4 text-cream-300" />;
+        return <Building2 className="w-4 h-4 text-stone-700" />;
       case 'Mobile Generator':
-        return <Zap className="w-4 h-4 text-cream-200" />;
+        return <Zap className="w-4 h-4 text-amber-600" />;
       default:
-        return <Truck className="w-4 h-4 text-cream-200" />;
+        return <Truck className="w-4 h-4 text-red-600" />;
     }
   };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'On Scene':
-        return 'bg-wine-800 text-cream-100 border-wine-600';
+        return 'bg-emerald-50 text-emerald-700 border-emerald-200';
       case 'En Route':
-        return 'bg-wine-900 text-cream-200 border-wine-700';
+        return 'bg-blue-50 text-blue-700 border-blue-200';
       case 'Standby':
-        return 'bg-wine-900/80 text-cream-300 border-wine-800';
+        return 'bg-beige-100 text-stone-700 border-beige-300';
+      case 'Deployed':
+        return 'bg-red-50 text-red-700 border-red-200';
       default:
-        return 'bg-wine-900 text-cream-200 border-wine-700';
+        return 'bg-beige-100 text-stone-700 border-beige-300';
     }
   };
 
   return (
-    <div className="bg-wine-950 border border-wine-800 rounded-2xl p-4 sm:p-5 flex flex-col justify-between h-full space-y-4">
+    <div className="bg-white border border-beige-300 rounded-2xl p-4 sm:p-5 flex flex-col justify-between h-full space-y-4 shadow-sm">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-wine-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-beige-200">
         <div>
           <div className="flex items-center gap-2">
-            <Truck className="w-4 h-4 text-cream-200" />
-            <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+            <Truck className="w-4 h-4 text-red-600" />
+            <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-stone-900">
               EMERGENCY RESOURCES
             </h2>
-            <span className="text-[10px] font-mono text-cream-100 bg-wine-900 border border-wine-700 px-1.5 py-0.2 rounded font-bold">
+            <span className="text-[10px] font-mono text-red-700 bg-red-50 border border-red-200 px-1.5 py-0.2 rounded font-bold">
               {resources.length} UNITS
             </span>
           </div>
-          <p className="text-[11px] text-cream-300 mt-0.5">
+          <p className="text-[11px] text-stone-500 mt-0.5 font-medium">
             Real-time fleet tracking, shelter occupancy, and life-support equipment.
           </p>
         </div>
@@ -80,7 +82,7 @@ export const ResourcesManagerView: React.FC = () => {
             aria-label="Filter resources by type"
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="bg-wine-900 border border-wine-700 text-cream-200 rounded-lg px-2.5 py-1 text-[11px] outline-none font-mono"
+            className="bg-beige-50 border border-beige-300 text-stone-800 rounded-lg px-2.5 py-1 text-[11px] outline-none font-mono font-medium focus:border-red-500"
           >
             <option value="all">All Types</option>
             <option value="Ambulance">Ambulance</option>
@@ -94,7 +96,7 @@ export const ResourcesManagerView: React.FC = () => {
             aria-label="Filter resources by status"
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="bg-wine-900 border border-wine-700 text-cream-200 rounded-lg px-2.5 py-1 text-[11px] outline-none font-mono"
+            className="bg-beige-50 border border-beige-300 text-stone-800 rounded-lg px-2.5 py-1 text-[11px] outline-none font-mono font-medium focus:border-red-500"
           >
             <option value="all">All Status</option>
             <option value="On Scene">On Scene</option>
@@ -111,19 +113,19 @@ export const ResourcesManagerView: React.FC = () => {
           return (
             <div
               key={res.id}
-              className="p-4 rounded-xl bg-wine-900/60 border border-wine-800 hover:border-wine-700 transition-all flex flex-col justify-between space-y-3"
+              className="p-4 rounded-xl bg-white border border-beige-300 hover:border-beige-400 transition-all flex flex-col justify-between space-y-3 shadow-sm"
             >
               <div>
                 <div className="flex items-start justify-between gap-2 mb-1.5">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-wine-950 border border-wine-800 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-beige-100 border border-beige-200 flex items-center justify-center">
                       {getResourceIcon(res.type || res.category)}
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-white tracking-tight">
+                      <h4 className="text-xs font-bold text-stone-900 tracking-tight">
                         {res.name}
                       </h4>
-                      <span className="text-[10px] text-cream-300 font-medium">
+                      <span className="text-[10px] text-stone-500 font-medium">
                         {res.type || res.category}
                       </span>
                     </div>
@@ -135,25 +137,25 @@ export const ResourcesManagerView: React.FC = () => {
                 </div>
 
                 {/* Location & Details */}
-                <div className="space-y-1 text-xs pt-2 border-t border-wine-800/80">
-                  <div className="flex items-center justify-between text-cream-300">
+                <div className="space-y-1 text-xs pt-2 border-t border-beige-200">
+                  <div className="flex items-center justify-between text-stone-700 font-medium">
                     <span className="flex items-center gap-1 text-[11px]">
-                      <MapPin className="w-3 h-3 text-cream-200" />
+                      <MapPin className="w-3 h-3 text-red-600" />
                       <span>{res.location}</span>
                     </span>
-                    <span className="font-mono text-[11px] text-cream-200">
-                      Cap: <strong className="text-white">{res.capacity}</strong>
+                    <span className="font-mono text-[11px] text-stone-600">
+                      Cap: <strong className="text-stone-900 font-bold">{res.capacity}</strong>
                     </span>
                   </div>
 
                   {res.assignedIncidentId && (
-                    <div className="text-[11px] text-cream-100 font-mono">
+                    <div className="text-[11px] text-stone-800 font-mono font-semibold">
                       Target: #{res.assignedIncidentId}
                     </div>
                   )}
 
                   {res.notes && (
-                    <div className="text-[11px] text-cream-400 italic">
+                    <div className="text-[11px] text-stone-500 italic">
                       {res.notes}
                     </div>
                   )}
@@ -161,11 +163,11 @@ export const ResourcesManagerView: React.FC = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-2 border-t border-wine-800/80 flex items-center gap-2">
+              <div className="pt-2 border-t border-beige-200 flex items-center gap-2">
                 {res.status === 'Standby' ? (
                   <button
                     onClick={() => dispatchResource(res.id)}
-                    className="flex-1 py-1.5 rounded-lg bg-cream-100 hover:bg-white text-wine-950 font-bold text-xs flex items-center justify-center gap-1 transition-colors"
+                    className="flex-1 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs flex items-center justify-center gap-1 transition-colors shadow-sm"
                   >
                     <Send className="w-3 h-3" />
                     <span>DISPATCH</span>
@@ -174,13 +176,13 @@ export const ResourcesManagerView: React.FC = () => {
                   <>
                     <button
                       onClick={() => addToast(`Reassignment queue opened for ${res.name}`, 'info')}
-                      className="flex-1 py-1.5 rounded-lg bg-wine-850 hover:bg-wine-800 text-cream-200 text-xs font-semibold border border-wine-700 transition-colors"
+                      className="flex-1 py-1.5 rounded-lg bg-beige-100 hover:bg-beige-200 text-stone-800 text-xs font-bold border border-beige-300 transition-colors"
                     >
                       REASSIGN
                     </button>
                     <button
                       onClick={() => recallResource(res.id)}
-                      className="px-2.5 py-1.5 rounded-lg bg-wine-900 hover:bg-wine-850 text-cream-100 border border-wine-700 text-xs font-semibold transition-colors"
+                      className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-beige-50 text-stone-800 border border-beige-300 text-xs font-semibold transition-colors"
                     >
                       RECALL
                     </button>

@@ -24,7 +24,6 @@ export const CommandSidebar: React.FC = () => {
     notifications, 
     setIsNotificationDrawerOpen,
     incidents,
-    setAppMode,
     isDemoPlaying
   } = useEmergency();
 
@@ -54,7 +53,7 @@ export const CommandSidebar: React.FC = () => {
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-base font-extrabold tracking-wider text-stone-900">
-                  RESQNET
+                  RESQER
                 </span>
                 <span className="text-[9px] font-bold uppercase tracking-widest text-white bg-red-600 px-1 py-0.2 rounded font-mono">
                   OPS
@@ -65,14 +64,6 @@ export const CommandSidebar: React.FC = () => {
               </span>
             </div>
           </div>
-
-          <button
-            onClick={() => setAppMode('citizen')}
-            title="Switch to Citizen Emergency Mode"
-            className="text-[10px] text-stone-700 hover:text-stone-900 bg-beige-100 hover:bg-beige-200 px-2 py-1 rounded border border-beige-300 transition-colors"
-          >
-            Citizen Mode
-          </button>
         </div>
 
         {/* Demo Mode Indicator if active */}

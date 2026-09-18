@@ -76,26 +76,26 @@ export const CitizenReportWizard: React.FC = () => {
           <button
             id="btn-wizard-back"
             onClick={handleBack}
-            className="flex items-center gap-1.5 text-sm text-cream-200 hover:text-white bg-wine-900/80 hover:bg-wine-800 px-3 py-1.5 rounded-lg border border-wine-700/80 transition-colors"
+            className="flex items-center gap-1.5 text-sm text-stone-700 hover:text-stone-900 bg-beige-100 hover:bg-beige-200 px-3 py-1.5 rounded-lg border border-beige-300 transition-colors font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{currentStep === 1 ? 'Cancel' : 'Back'}</span>
           </button>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono font-semibold text-cream-200 uppercase tracking-wider">
+            <span className="text-xs font-mono font-bold text-stone-700 uppercase tracking-wider">
               Step {currentStep} of 4
             </span>
             <div className="flex gap-1">
               {[1, 2, 3, 4].map((step) => (
                 <div
                   key={step}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     step === currentStep 
-                      ? 'w-6 bg-cream-100' 
+                      ? 'w-6 bg-red-600' 
                       : step < currentStep 
-                      ? 'w-2 bg-wine-500' 
-                      : 'w-2 bg-wine-900'
+                      ? 'w-2 bg-red-300' 
+                      : 'w-2 bg-beige-300'
                   }`}
                 />
               ))}
@@ -107,10 +107,10 @@ export const CitizenReportWizard: React.FC = () => {
         {currentStep === 1 && (
           <div className="space-y-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
                 WHAT IS HAPPENING?
               </h2>
-              <p className="text-sm text-cream-200 mt-1">
+              <p className="text-sm text-stone-600 mt-1 font-medium">
                 Select the primary emergency hazard you are facing.
               </p>
             </div>
@@ -127,19 +127,19 @@ export const CitizenReportWizard: React.FC = () => {
                     }}
                     className={`p-4 rounded-xl text-left border transition-all flex flex-col justify-between min-h-[96px] ${
                       isSelected
-                        ? 'border-cream-200 bg-wine-850 ring-2 ring-cream-300/40 shadow-xl shadow-black/40 text-white'
-                        : 'border-wine-800/80 bg-wine-950/70 hover:bg-wine-900 text-cream-200'
+                        ? 'border-red-600 bg-red-50 ring-2 ring-red-500/30 shadow-md text-stone-900'
+                        : 'border-beige-300 bg-white hover:bg-beige-50 text-stone-800 shadow-sm'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <Icon className={`w-7 h-7 ${isSelected ? 'text-cream-100' : 'text-cream-300'}`} />
+                      <Icon className={`w-7 h-7 ${isSelected ? 'text-red-600' : 'text-stone-600'}`} />
                       {isSelected && (
-                        <div className="w-5 h-5 rounded-full bg-cream-100 text-wine-950 flex items-center justify-center">
+                        <div className="w-5 h-5 rounded-full bg-red-600 text-white flex items-center justify-center">
                           <Check className="w-3.5 h-3.5 stroke-[3]" />
                         </div>
                       )}
                     </div>
-                    <span className="font-bold text-base text-white mt-3">
+                    <span className={`font-bold text-base mt-3 ${isSelected ? 'text-red-900' : 'text-stone-900'}`}>
                       {label}
                     </span>
                   </button>
@@ -153,49 +153,49 @@ export const CitizenReportWizard: React.FC = () => {
         {currentStep === 2 && (
           <div className="space-y-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
                 WHERE IS IT?
               </h2>
-              <p className="text-sm text-cream-200 mt-1">
+              <p className="text-sm text-stone-600 mt-1 font-medium">
                 Location verified via high-precision emergency cell triangulation.
               </p>
             </div>
 
             {/* Simulated Map Visual */}
-            <div className="relative rounded-2xl overflow-hidden border border-wine-700 bg-wine-950 h-56 flex flex-col items-center justify-center p-4">
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#540d1c25_1px,transparent_1px),linear-gradient(to_bottom,#540d1c25_1px,transparent_1px)] bg-[size:24px_24px]" />
+            <div className="relative rounded-2xl overflow-hidden border border-beige-300 bg-beige-50 h-56 flex flex-col items-center justify-center p-4">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#e7e5e4_1px,transparent_1px),linear-gradient(to_bottom,#e7e5e4_1px,transparent_1px)] bg-[size:24px_24px]" />
               
               {/* Topographic water contour simulation */}
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-wine-900/40 border-t border-wine-700/60" />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-red-50/50 border-t border-red-200" />
               
               {/* Radar pulse around marker */}
               <div className="relative z-10 flex flex-col items-center">
                 <div className="relative flex items-center justify-center">
-                  <div className="absolute w-20 h-20 rounded-full bg-wine-500/20 animate-ping" />
-                  <div className="absolute w-12 h-12 rounded-full bg-wine-500/30" />
-                  <div className="w-9 h-9 rounded-full bg-wine-600 border-2 border-white text-white flex items-center justify-center shadow-lg shadow-wine-950/80">
+                  <div className="absolute w-20 h-20 rounded-full bg-red-400/20 animate-ping" />
+                  <div className="absolute w-12 h-12 rounded-full bg-red-400/30" />
+                  <div className="w-10 h-10 rounded-full bg-red-600 border-2 border-white text-white flex items-center justify-center shadow-lg">
                     <MapPin className="w-5 h-5" />
                   </div>
                 </div>
 
-                <div className="mt-3 text-center bg-wine-950/95 border border-wine-700 px-4 py-1.5 rounded-lg shadow-md">
-                  <span className="text-[10px] font-bold text-cream-300 uppercase tracking-wider block font-mono">
+                <div className="mt-3 text-center bg-white border border-beige-300 px-4 py-1.5 rounded-lg shadow-sm">
+                  <span className="text-[10px] font-bold text-stone-500 uppercase tracking-wider block font-mono">
                     YOUR LOCATION
                   </span>
-                  <span className="text-base font-bold text-white">
+                  <span className="text-base font-bold text-stone-900">
                     {citizenDraft.locationSector || 'Sector B2'}
                   </span>
                 </div>
               </div>
 
-              <div className="absolute bottom-2 right-2 text-[10px] text-cream-300 bg-wine-900/90 border border-wine-800 px-2 py-0.5 rounded font-mono">
+              <div className="absolute bottom-2 right-2 text-[10px] text-stone-600 bg-white/90 border border-beige-300 px-2 py-0.5 rounded font-mono font-semibold">
                 GPS Confidence: 98%
               </div>
             </div>
 
             {/* Location selector toggle */}
             <div className="space-y-2 pt-2">
-              <span className="text-xs font-semibold text-cream-300 uppercase tracking-wider block font-mono">
+              <span className="text-xs font-bold text-stone-700 uppercase tracking-wider block font-mono">
                 Choose Specific Sector:
               </span>
               <div className="grid grid-cols-1 gap-2">
@@ -205,16 +205,16 @@ export const CitizenReportWizard: React.FC = () => {
                     onClick={() => setCitizenDraft(prev => ({ ...prev, locationSector: sec.id }))}
                     className={`flex items-center justify-between p-3 rounded-xl border text-sm text-left transition-all ${
                       citizenDraft.locationSector === sec.id
-                        ? 'border-cream-200 bg-wine-850 text-white'
-                        : 'border-wine-800/80 bg-wine-950/60 text-cream-200 hover:border-wine-700'
+                        ? 'border-red-600 bg-red-50 text-stone-900 font-bold shadow-sm'
+                        : 'border-beige-300 bg-white text-stone-800 hover:bg-beige-50'
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <MapPin className="w-4 h-4 text-cream-200" />
-                      <span className="font-medium">{sec.label}</span>
+                      <MapPin className={`w-4 h-4 ${citizenDraft.locationSector === sec.id ? 'text-red-600' : 'text-stone-500'}`} />
+                      <span>{sec.label}</span>
                     </div>
                     {citizenDraft.locationSector === sec.id && (
-                      <Check className="w-4 h-4 text-cream-100" />
+                      <Check className="w-4 h-4 text-red-600 stroke-[3]" />
                     )}
                   </button>
                 ))}
@@ -227,10 +227,10 @@ export const CitizenReportWizard: React.FC = () => {
         {currentStep === 3 && (
           <div className="space-y-5">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
                 WHO NEEDS HELP?
               </h2>
-              <p className="text-sm text-cream-200 mt-1">
+              <p className="text-sm text-stone-600 mt-1 font-medium">
                 Help emergency responders prepare proper medical triage.
               </p>
             </div>
@@ -254,24 +254,24 @@ export const CitizenReportWizard: React.FC = () => {
                     }}
                     className={`p-4 rounded-xl border text-center flex flex-col items-center justify-center gap-2 transition-all ${
                       isSelected
-                        ? 'border-cream-200 bg-wine-850 text-white ring-2 ring-cream-300/40'
-                        : 'border-wine-800 bg-wine-950/70 text-cream-200 hover:bg-wine-900'
+                        ? 'border-red-600 bg-red-50 text-stone-900 ring-2 ring-red-500/30 shadow-sm'
+                        : 'border-beige-300 bg-white text-stone-700 hover:bg-beige-50'
                     }`}
                   >
-                    <Icon className={`w-6 h-6 ${isSelected ? 'text-cream-100' : 'text-cream-300'}`} />
-                    <span className="text-xs sm:text-sm font-semibold">{label}</span>
+                    <Icon className={`w-6 h-6 ${isSelected ? 'text-red-600' : 'text-stone-600'}`} />
+                    <span className="text-xs sm:text-sm font-bold">{label}</span>
                   </button>
                 );
               })}
             </div>
 
             {/* Approximate count counter */}
-            <div className="p-5 rounded-2xl bg-wine-950/80 border border-wine-800 flex items-center justify-between shadow-md">
+            <div className="p-5 rounded-2xl bg-white border border-beige-300 flex items-center justify-between shadow-sm">
               <div>
-                <span className="text-sm font-bold text-white block">
+                <span className="text-sm font-bold text-stone-900 block">
                   Approximate Number of People
                 </span>
-                <span className="text-xs text-cream-300">
+                <span className="text-xs text-stone-600 font-medium">
                   Responders will scale vehicle allocation accordingly.
                 </span>
               </div>
@@ -279,17 +279,17 @@ export const CitizenReportWizard: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setCitizenDraft(prev => ({ ...prev, peopleCount: Math.max(1, prev.peopleCount - 1) }))}
-                  className="w-10 h-10 rounded-xl bg-wine-900 border border-wine-700 hover:bg-wine-800 text-white flex items-center justify-center active:scale-95 transition-all"
+                  className="w-10 h-10 rounded-xl bg-beige-100 border border-beige-300 hover:bg-beige-200 text-stone-900 flex items-center justify-center active:scale-95 transition-all"
                   aria-label="Decrease people count"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="w-8 text-center text-xl font-extrabold text-cream-100">
+                <span className="w-8 text-center text-xl font-extrabold text-stone-900">
                   {citizenDraft.peopleCount}
                 </span>
                 <button
                   onClick={() => setCitizenDraft(prev => ({ ...prev, peopleCount: prev.peopleCount + 1 }))}
-                  className="w-10 h-10 rounded-xl bg-wine-900 border border-wine-700 hover:bg-wine-800 text-white flex items-center justify-center active:scale-95 transition-all"
+                  className="w-10 h-10 rounded-xl bg-beige-100 border border-beige-300 hover:bg-beige-200 text-stone-900 flex items-center justify-center active:scale-95 transition-all"
                   aria-label="Increase people count"
                 >
                   <Plus className="w-4 h-4" />
@@ -303,10 +303,10 @@ export const CitizenReportWizard: React.FC = () => {
         {currentStep === 4 && (
           <div className="space-y-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight">
                 ANYTHING IMPORTANT?
               </h2>
-              <p className="text-sm text-cream-200 mt-1">
+              <p className="text-sm text-stone-600 mt-1 font-medium">
                 Optional: mention trapped people, medical conditions, or hazards.
               </p>
             </div>
@@ -318,7 +318,7 @@ export const CitizenReportWizard: React.FC = () => {
                 value={citizenDraft.details}
                 onChange={(e) => setCitizenDraft(prev => ({ ...prev, details: e.target.value }))}
                 placeholder="Example: elderly people are inside, water rising fast..."
-                className="w-full bg-wine-950 border border-wine-700 focus:border-cream-300 focus:ring-2 focus:ring-cream-200/20 text-white placeholder-cream-400/50 p-4 rounded-xl text-base outline-none resize-none"
+                className="w-full bg-white border border-beige-300 focus:border-red-600 focus:ring-2 focus:ring-red-500/20 text-stone-900 placeholder-stone-400 p-4 rounded-xl text-base outline-none resize-none shadow-sm"
               />
 
               <div className="flex flex-wrap gap-2 text-xs">
@@ -332,7 +332,7 @@ export const CitizenReportWizard: React.FC = () => {
                         details: prev.details ? `${prev.details}. ${quickTag}.` : `${quickTag}.`
                       }));
                     }}
-                    className="px-2.5 py-1 rounded-lg bg-wine-900 hover:bg-wine-800 border border-wine-700 text-cream-200 transition-colors"
+                    className="px-2.5 py-1 rounded-lg bg-beige-100 hover:bg-beige-200 border border-beige-300 text-stone-800 font-medium transition-colors"
                   >
                     + {quickTag}
                   </button>
@@ -341,18 +341,18 @@ export const CitizenReportWizard: React.FC = () => {
             </div>
 
             {/* Summary Review Card */}
-            <div className="p-4 rounded-xl bg-wine-950/90 border border-wine-800 space-y-2 text-xs">
-              <div className="flex justify-between text-cream-300">
+            <div className="p-4 rounded-xl bg-beige-50 border border-beige-300 space-y-2 text-xs">
+              <div className="flex justify-between text-stone-600">
                 <span>Hazard:</span>
-                <span className="font-bold text-white">{citizenDraft.hazard || 'Not specified'}</span>
+                <span className="font-bold text-stone-900">{citizenDraft.hazard || 'Not specified'}</span>
               </div>
-              <div className="flex justify-between text-cream-300">
+              <div className="flex justify-between text-stone-600">
                 <span>Location:</span>
-                <span className="font-bold text-cream-100">{citizenDraft.locationSector}</span>
+                <span className="font-bold text-stone-900">{citizenDraft.locationSector}</span>
               </div>
-              <div className="flex justify-between text-cream-300">
+              <div className="flex justify-between text-stone-600">
                 <span>Affected:</span>
-                <span className="font-bold text-white">{citizenDraft.peopleCount} {citizenDraft.peopleCount > 1 ? 'people' : 'person'}</span>
+                <span className="font-bold text-stone-900">{citizenDraft.peopleCount} {citizenDraft.peopleCount > 1 ? 'people' : 'person'}</span>
               </div>
             </div>
           </div>
@@ -360,16 +360,16 @@ export const CitizenReportWizard: React.FC = () => {
       </div>
 
       {/* Navigation Buttons at Bottom */}
-      <div className="mt-8 pt-4 border-t border-wine-850">
+      <div className="mt-8 pt-4 border-t border-beige-200">
         {currentStep < 4 ? (
           <button
             id="btn-wizard-next"
             onClick={handleNext}
             disabled={currentStep === 1 && !citizenDraft.hazard}
-            className={`w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-lg ${
+            className={`w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-md ${
               currentStep === 1 && !citizenDraft.hazard
-                ? 'bg-wine-950 text-cream-500 cursor-not-allowed border border-wine-900'
-                : 'bg-cream-100 hover:bg-white text-wine-950 border border-cream-200 shadow-cream-950/30 active:scale-[0.99]'
+                ? 'bg-beige-200 text-stone-400 cursor-not-allowed border border-beige-300'
+                : 'bg-red-600 hover:bg-red-700 text-white border border-red-700 active:scale-[0.99]'
             }`}
           >
             <span>Continue</span>
@@ -379,7 +379,7 @@ export const CitizenReportWizard: React.FC = () => {
             id="btn-send-emergency-final"
             onClick={handleFinalSubmit}
             disabled={isSubmitting}
-            className="w-full py-5 rounded-2xl font-black text-xl bg-gradient-to-r from-wine-700 via-wine-600 to-wine-700 hover:from-wine-600 hover:to-wine-500 text-white shadow-2xl shadow-wine-950/80 border border-wine-400/40 active:scale-[0.99] flex items-center justify-center gap-3 transition-all"
+            className="w-full py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl bg-red-600 hover:bg-red-700 text-white shadow-xl shadow-red-600/20 border border-red-700 active:scale-[0.99] flex items-center justify-center gap-3 transition-all"
           >
             {isSubmitting ? (
               <div className="flex items-center gap-2">
@@ -388,7 +388,7 @@ export const CitizenReportWizard: React.FC = () => {
               </div>
             ) : (
               <>
-                <ShieldAlert className="w-6 h-6 text-cream-100" />
+                <ShieldAlert className="w-6 h-6 text-white" />
                 <span>SEND EMERGENCY</span>
               </>
             )}

@@ -48,7 +48,7 @@ export const LandingPage: React.FC = () => {
             </div>
             <div>
               <span className="font-extrabold text-lg tracking-wider text-stone-900">
-                RESQNET
+                RESQER
               </span>
               <span className="text-[10px] font-mono text-stone-500 uppercase tracking-widest block -mt-1">
                 EMERGENCY INTELLIGENCE
@@ -89,7 +89,7 @@ export const LandingPage: React.FC = () => {
           </h1>
 
           <p className="text-base sm:text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
-            RESQNET transforms raw citizen distress signals, voice transcripts, and telemetry into synchronized digital twin intelligence for first responders.
+            RESQER transforms raw citizen distress signals, voice transcripts, and telemetry into synchronized digital twin intelligence for first responders.
           </p>
 
           {/* Primary CTA Cluster */}
@@ -191,7 +191,7 @@ export const LandingPage: React.FC = () => {
 
       {/* Footer */}
       <footer className="border-t border-beige-200 bg-beige-50 py-6 px-6 text-center text-xs text-stone-500 font-mono">
-        <p>RESQNET Operational Emergency System • Simulated Prototype Environment • Red, White &amp; Beige Edition</p>
+        <p>RESQER Operational Emergency System • Simulated Prototype Environment • Red, White &amp; Beige Edition</p>
       </footer>
     </div>
   );

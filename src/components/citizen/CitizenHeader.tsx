@@ -19,7 +19,7 @@ export const CitizenHeader: React.FC = () => {
           <div>
             <div className="flex items-center gap-1.5">
               <span className="font-extrabold text-sm tracking-wider text-stone-900">
-                RESQNET
+                RESQER
               </span>
               <span className="text-[9px] font-mono text-white bg-red-600 px-1.5 py-0.2 rounded font-bold">
                 SOS

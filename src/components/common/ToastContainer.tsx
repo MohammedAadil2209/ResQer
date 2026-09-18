@@ -13,24 +13,24 @@ export const ToastContainer: React.FC = () => {
         return (
           <div
             key={toast.id}
-            className={`pointer-events-auto p-3.5 rounded-xl border text-xs shadow-2xl flex items-start justify-between gap-3 animate-in slide-in-from-top-2 duration-300 ${
+            className={`pointer-events-auto p-3.5 rounded-xl border text-xs shadow-xl flex items-start justify-between gap-3 animate-in slide-in-from-top-2 duration-300 ${
               toast.type === 'success'
-                ? 'bg-wine-900 border-wine-600 text-cream-100'
+                ? 'bg-white border-emerald-300 text-stone-900'
                 : toast.type === 'error'
-                ? 'bg-wine-950 border-wine-500 text-white'
-                : 'bg-wine-900 border-wine-700 text-cream-200'
+                ? 'bg-white border-red-300 text-stone-900'
+                : 'bg-white border-beige-300 text-stone-900'
             }`}
           >
             <div className="flex items-center gap-2">
-              {toast.type === 'success' && <CheckCircle2 className="w-4 h-4 text-cream-200 shrink-0" />}
-              {toast.type === 'error' && <AlertCircle className="w-4 h-4 text-white shrink-0" />}
-              {toast.type === 'info' && <Info className="w-4 h-4 text-cream-100 shrink-0" />}
-              <span className="font-semibold leading-relaxed">{toast.message}</span>
+              {toast.type === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />}
+              {toast.type === 'error' && <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />}
+              {toast.type === 'info' && <Info className="w-4 h-4 text-red-600 shrink-0" />}
+              <span className="font-semibold leading-relaxed text-stone-900">{toast.message}</span>
             </div>
 
             <button
               onClick={() => removeToast(toast.id)}
-              className="text-cream-300 hover:text-white p-0.5 rounded"
+              className="text-stone-400 hover:text-stone-800 p-0.5 rounded transition-colors"
             >
               <X className="w-3.5 h-3.5" />
             </button>
