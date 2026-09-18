@@ -1,5 +1,16 @@
 import React from 'react';
-import { AlertCircle, Mic, VolumeX, MapPin, ShieldCheck, LifeBuoy, ArrowRight } from 'lucide-react';
+import { 
+  AlertCircle, 
+  Mic, 
+  VolumeX, 
+  MapPin, 
+  ShieldCheck, 
+  LifeBuoy, 
+  ArrowRight,
+  BellRing,
+  HeartHandshake,
+  MessageSquare
+} from 'lucide-react';
 import { useEmergency } from '../../context/EmergencyContext';
 
 export const CitizenHome: React.FC = () => {
@@ -9,10 +20,15 @@ export const CitizenHome: React.FC = () => {
     citizenDraft, 
     setCitizenDraft,
     activeCitizenIncidentId,
-    incidents
+    incidents,
+    locationAlerts,
+    volunteerRequirements,
+    communityMessages
   } = useEmergency();
 
   const activeIncident = incidents.find(i => i.id === activeCitizenIncidentId);
+  const currentSector = citizenDraft.locationSector || 'Sector B2';
+  const sectorAlertsCount = locationAlerts.filter(a => a.sector === currentSector && a.status === 'ACTIVE').length;
 
   return (
     <div className="w-full max-w-xl mx-auto px-4 py-6 sm:py-10 flex flex-col justify-between min-h-[calc(100vh-80px)]">
@@ -191,6 +207,98 @@ export const CitizenHome: React.FC = () => {
             <option value="Sector D1">Sector D1 (Market)</option>
             <option value="Sector B1">Sector B1 (Civic)</option>
           </select>
+        </div>
+
+        {/* System Objectives Quick Hub */}
+        <div className="mt-6 space-y-2.5">
+          <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-stone-500 px-1">
+            Community Safety Services
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            {/* Objective 1: Location Alerts */}
+            <button
+              onClick={() => setCitizenView('alerts')}
+              className="p-3.5 rounded-xl bg-white border border-beige-300 hover:border-red-500 hover:shadow-md transition-all text-left group flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="w-7 h-7 rounded-lg bg-red-100 flex items-center justify-center text-red-600 group-hover:scale-105 transition-transform">
+                    <BellRing className="w-4 h-4" />
+                  </div>
+                  {sectorAlertsCount > 0 && (
+                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-red-600 text-white animate-pulse">
+                      {sectorAlertsCount} ACTIVE
+                    </span>
+                  )}
+                </div>
+                <div className="text-xs font-bold text-stone-900 leading-tight">
+                  Location Alerts
+                </div>
+                <p className="text-[11px] text-stone-500 mt-0.5 line-clamp-2">
+                  Safe evacuation routes &amp; shelters for {currentSector}.
+                </p>
+              </div>
+              <div className="mt-2 text-[10px] font-bold text-red-700 flex items-center gap-1">
+                <span>View Directives</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </button>
+
+            {/* Objective 2: Volunteer Coordination */}
+            <button
+              onClick={() => setCitizenView('volunteers')}
+              className="p-3.5 rounded-xl bg-white border border-beige-300 hover:border-red-500 hover:shadow-md transition-all text-left group flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="w-7 h-7 rounded-lg bg-beige-100 flex items-center justify-center text-stone-800 group-hover:scale-105 transition-transform">
+                    <HeartHandshake className="w-4 h-4" />
+                  </div>
+                  <span className="text-[9px] font-mono text-stone-600 bg-beige-100 px-1.5 py-0.5 rounded">
+                    {volunteerRequirements.length} Tasks
+                  </span>
+                </div>
+                <div className="text-xs font-bold text-stone-900 leading-tight">
+                  Volunteer Hub
+                </div>
+                <p className="text-[11px] text-stone-500 mt-0.5 line-clamp-2">
+                  Connect with emergency response requirements.
+                </p>
+              </div>
+              <div className="mt-2 text-[10px] font-bold text-red-700 flex items-center gap-1">
+                <span>Join Mission</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </button>
+
+            {/* Objective 3: Direct Two-Way Comms & Safety Check-In */}
+            <button
+              onClick={() => setCitizenView('check-in')}
+              className="p-3.5 rounded-xl bg-white border border-beige-300 hover:border-red-500 hover:shadow-md transition-all text-left group flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="w-7 h-7 rounded-lg bg-beige-100 flex items-center justify-center text-stone-800 group-hover:scale-105 transition-transform">
+                    <MessageSquare className="w-4 h-4" />
+                  </div>
+                  <span className="text-[9px] font-mono font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                    ONLINE
+                  </span>
+                </div>
+                <div className="text-xs font-bold text-stone-900 leading-tight">
+                  Check-In &amp; Comms
+                </div>
+                <p className="text-[11px] text-stone-500 mt-0.5 line-clamp-2">
+                  Mark household safe or chat directly with dispatchers.
+                </p>
+              </div>
+              <div className="mt-2 text-[10px] font-bold text-red-700 flex items-center gap-1">
+                <span>Open Messenger</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 

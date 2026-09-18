@@ -1,4 +1,15 @@
-import { Incident, CommunityReport, CollectiveSignal, EmergencyResource, SystemNotification } from '../types';
+import { 
+  Incident, 
+  CommunityReport, 
+  CollectiveSignal, 
+  EmergencyResource, 
+  SystemNotification,
+  LocationAlert,
+  VolunteerRequirement,
+  VolunteerMember,
+  CommunityMessage,
+  SafetyCheckIn
+} from '../types';
 
 export const INITIAL_INCIDENTS: Incident[] = [
   {
@@ -411,3 +422,303 @@ export const MAP_SECTORS = [
   { id: 'Sector C4', name: 'Sector C4 — East Transit Corridor', x: 78, y: 68, risk: 'Moderate', alerts: 1 },
   { id: 'Sector D1', name: 'Sector D1 — Old Market District', x: 38, y: 80, risk: 'Moderate', alerts: 1 },
 ];
+
+export const INITIAL_LOCATION_ALERTS: LocationAlert[] = [
+  {
+    id: 'ALERT-GEO-01',
+    sector: 'Sector B2',
+    title: 'Flash Flood Immediate Evacuation Order — River Basin',
+    hazard: 'Flood',
+    urgency: 'EVACUATION',
+    radiusKm: 3.5,
+    affectedPopulation: 14500,
+    status: 'ACTIVE',
+    issuedAt: '10:45 AM',
+    safeRoute: 'Proceed via Road 3 (Elevated North Ridge Bypass). DO NOT use Road 2 (submerged).',
+    evacuationShelter: 'Shelter C — Valley West Pavilion (Capacity: 275 beds available)',
+    shelterCapacityRemaining: 275,
+    deliveryChannels: ['CELL_BROADCAST', 'MOBILE_APP', 'DIGITAL_SIREN', 'SMS_GEOFENCE'],
+    deliveryReach: 98,
+    instructions: [
+      'Move immediately to higher ground or second-floor elevation if trapped.',
+      'De-energize main electrical breaker if water enters building perimeter.',
+      'Bring vital medications, identification, and flashlights.',
+      'Amphibious Swiftwater rescue units are patrolling the perimeter.'
+    ]
+  },
+  {
+    id: 'ALERT-GEO-02',
+    sector: 'Sector A1',
+    title: 'Substation Electrical Arc Hazard — 500m Safety Perimeter',
+    hazard: 'Electrical',
+    urgency: 'WARNING',
+    radiusKm: 1.8,
+    affectedPopulation: 3800,
+    status: 'ACTIVE',
+    issuedAt: '10:20 AM',
+    safeRoute: 'Eastbound detour around Industrial Depot perimeter via Avenue 4.',
+    evacuationShelter: 'Shelter A — North Community Center',
+    shelterCapacityRemaining: 70,
+    deliveryChannels: ['CELL_BROADCAST', 'MOBILE_APP', 'SMS_GEOFENCE'],
+    deliveryReach: 94,
+    instructions: [
+      'Remain indoors and seal windows against chemical smoke fumes.',
+      'Avoid downed power lines — treat all cables as live.',
+      'Emergency vehicles actively responding on Avenue 2.'
+    ]
+  },
+  {
+    id: 'ALERT-GEO-03',
+    sector: 'Sector C4',
+    title: 'Highway Bypass Impassable — Multi-Vehicle Incident',
+    hazard: 'Accident',
+    urgency: 'ADVISORY',
+    radiusKm: 2.2,
+    affectedPopulation: 6200,
+    status: 'ACTIVE',
+    issuedAt: '10:30 AM',
+    safeRoute: 'Use Southbound Parkway Exit 11.',
+    evacuationShelter: 'Shelter B — East High Gymnasium',
+    shelterCapacityRemaining: 240,
+    deliveryChannels: ['MOBILE_APP', 'SMS_GEOFENCE'],
+    deliveryReach: 91,
+    instructions: [
+      'Expect delays of 45+ minutes; yield right-of-way to EMS ambulances.',
+      'Do not stop on active shoulder lanes.'
+    ]
+  }
+];
+
+export const INITIAL_VOLUNTEER_REQUIREMENTS: VolunteerRequirement[] = [
+  {
+    id: 'REQ-VOL-01',
+    title: 'River Embankment Sandbagging & Flood Barrier Reinforcement',
+    sector: 'Sector B2',
+    urgency: 'Immediate',
+    skillsRequired: ['Physical Labor', 'Sandbagging', 'Logistics Support'],
+    neededCount: 20,
+    assignedCount: 14,
+    status: 'IN_PROGRESS',
+    leadContact: 'Volunteer Lead Marcus (Ch. 5)',
+    locationDetails: 'River Road Staging Point, near North Valley Bridge',
+    description: 'Stacking sandbags to prevent flood breach threatening 85 residential homes along the lower basin.',
+    postedAt: '10:35 AM'
+  },
+  {
+    id: 'REQ-VOL-02',
+    title: 'Shelter A First-Aid Triage & Medical Supply Assisting',
+    sector: 'Sector B1',
+    urgency: 'High',
+    skillsRequired: ['First-Aid / CPR', 'Nursing / EMT', 'Patient Check-In'],
+    neededCount: 8,
+    assignedCount: 6,
+    status: 'IN_PROGRESS',
+    leadContact: 'Dr. Evelyn Ward (Triage Desk)',
+    locationDetails: 'Shelter A Clinic Annex — North Community Center',
+    description: 'Assisting paramedics with intake triage, vitals screening, and medication distribution for displaced elderly residents.',
+    postedAt: '10:40 AM'
+  },
+  {
+    id: 'REQ-VOL-03',
+    title: 'Emergency Food, Clean Water & Blanket Distribution Squad',
+    sector: 'Sector C2',
+    urgency: 'Medium',
+    skillsRequired: ['Food Service', 'Inventory', 'General Help'],
+    neededCount: 12,
+    assignedCount: 8,
+    status: 'OPEN',
+    leadContact: 'Coordinator Sarah Jenkins',
+    locationDetails: 'Shelter B Distribution Hub — East High Gym',
+    description: 'Unloading pallet trucks and packaging hot ration packs and potable water containers for evacuation arrivals.',
+    postedAt: '10:42 AM'
+  },
+  {
+    id: 'REQ-VOL-04',
+    title: 'Elderly & Mobility-Impaired Evacuation Escort Team',
+    sector: 'Sector B2',
+    urgency: 'Immediate',
+    skillsRequired: ['Mobility Care', '4x4 Vehicle Driver', 'Bilingual Support'],
+    neededCount: 10,
+    assignedCount: 5,
+    status: 'OPEN',
+    leadContact: 'Coord. Miller (Command Dispatch)',
+    locationDetails: 'Valley West Crossing & Elmcrest Apartments',
+    description: 'Accompanying vulnerable residents from ground-floor homes to elevated transport shuttles.',
+    postedAt: '10:48 AM'
+  },
+  {
+    id: 'REQ-VOL-05',
+    title: 'Amateur Radio & Backup Mesh Communications Relay',
+    sector: 'Sector A2',
+    urgency: 'High',
+    skillsRequired: ['Ham Radio / Comms', 'Technical Setup'],
+    neededCount: 4,
+    assignedCount: 3,
+    status: 'IN_PROGRESS',
+    leadContact: 'Radio Operator Dave (KD9RES)',
+    locationDetails: 'North Ridge Lookout Relay Post',
+    description: 'Maintaining packet radio relays between isolated Sector B2 civil defense posts and the main command center.',
+    postedAt: '10:25 AM'
+  }
+];
+
+export const INITIAL_VOLUNTEER_MEMBERS: VolunteerMember[] = [
+  {
+    id: 'VOL-101',
+    name: 'David Chen',
+    skills: ['First-Aid / CPR', 'Swiftwater Navigation'],
+    status: 'ASSIGNED',
+    sector: 'Sector B2',
+    contact: '+1 (555) 234-8901',
+    assignedRequirementId: 'REQ-VOL-01',
+    checkInTime: '10:38 AM',
+    badges: ['Certified Rescuer', '50+ Volunteer Hours']
+  },
+  {
+    id: 'VOL-102',
+    name: 'Maria Santos',
+    skills: ['Nursing / EMT', 'First-Aid / CPR', 'Bilingual (ES/EN)'],
+    status: 'ASSIGNED',
+    sector: 'Sector B1',
+    contact: '+1 (555) 345-9012',
+    assignedRequirementId: 'REQ-VOL-02',
+    checkInTime: '10:42 AM',
+    badges: ['Medical Lead', 'Red Cross Certified']
+  },
+  {
+    id: 'VOL-103',
+    name: 'James K. Wilson',
+    skills: ['4x4 Offroad Driver', 'Physical Labor', 'Sandbagging'],
+    status: 'ON_SCENE',
+    sector: 'Sector B2',
+    contact: '+1 (555) 456-0123',
+    assignedRequirementId: 'REQ-VOL-01',
+    checkInTime: '10:40 AM',
+    badges: ['Heavy Equipment Driver']
+  },
+  {
+    id: 'VOL-104',
+    name: 'Amina Al-Mansoor',
+    skills: ['Logistics Support', 'Food Service', 'Inventory'],
+    status: 'READY',
+    sector: 'Sector C2',
+    contact: '+1 (555) 567-1234',
+    badges: ['Shelter Coordinator']
+  },
+  {
+    id: 'VOL-105',
+    name: 'Robert Taylor',
+    skills: ['Ham Radio / Comms', 'Technical Setup'],
+    status: 'ASSIGNED',
+    sector: 'Sector A2',
+    contact: '+1 (555) 678-2345',
+    assignedRequirementId: 'REQ-VOL-05',
+    checkInTime: '10:30 AM',
+    badges: ['FCC Radio License']
+  },
+  {
+    id: 'VOL-106',
+    name: 'Chloe Bennett',
+    skills: ['Mobility Care', 'First-Aid / CPR'],
+    status: 'READY',
+    sector: 'Sector B2',
+    contact: '+1 (555) 789-3456',
+    badges: ['Youth Corps Volunteer']
+  }
+];
+
+export const INITIAL_COMMUNITY_MESSAGES: CommunityMessage[] = [
+  {
+    id: 'MSG-01',
+    incidentId: 'INC-0241',
+    sector: 'Sector B2',
+    senderType: 'Citizen',
+    senderName: 'Sarah Jenkins (Civic Resident)',
+    text: 'Water is now covering our front porch on Elm Street. We have 2 elderly family members on the 2nd floor.',
+    timestamp: '10:43 AM',
+    status: 'Read',
+    isUrgent: true
+  },
+  {
+    id: 'MSG-02',
+    incidentId: 'INC-0241',
+    sector: 'Sector B2',
+    senderType: 'Dispatcher',
+    senderName: 'Coord. Miller (RESQER Dispatch)',
+    text: 'Rescue Team 04 has your coordinates. High-clearance boat is en route via Road 3. Stay calm on the upper floor.',
+    timestamp: '10:45 AM',
+    status: 'Delivered'
+  },
+  {
+    id: 'MSG-03',
+    incidentId: 'INC-0241',
+    sector: 'Sector B2',
+    senderType: 'Responder',
+    senderName: 'Rescue Lead Larson (Team 04)',
+    text: 'Approaching Elm Street junction now. Please wave a bright cloth or phone flashlight from the window if possible.',
+    timestamp: '10:48 AM',
+    status: 'Sent'
+  },
+  {
+    id: 'MSG-04',
+    sector: 'Sector B2',
+    senderType: 'Dispatcher',
+    senderName: 'Emergency Broadcast Net',
+    text: 'COMMUNITY ADVISORY: Power to Sector B2 low-lying grid will be isolated in 15 min to prevent arcing. Turn off gas main.',
+    timestamp: '10:49 AM',
+    status: 'Delivered'
+  },
+  {
+    id: 'MSG-05',
+    sector: 'Sector B2',
+    senderType: 'Citizen',
+    senderName: 'Carlos Ramirez',
+    text: 'Neighbors have gathered at the community hall high stairs. Everyone is safe here, waiting for transport shuttle.',
+    timestamp: '10:50 AM',
+    status: 'Read'
+  }
+];
+
+export const INITIAL_SAFETY_CHECKINS: SafetyCheckIn[] = [
+  {
+    id: 'CHK-01',
+    citizenName: 'The Peterson Family',
+    sector: 'Sector B2',
+    status: 'SAFE',
+    peopleCount: 4,
+    notes: 'Evacuated safely to high ground at North Ridge. With family dog.',
+    timestamp: '10:41 AM',
+    contact: '+1 (555) 890-1234'
+  },
+  {
+    id: 'CHK-02',
+    citizenName: 'Arthur Henderson (Age 78)',
+    sector: 'Sector B2',
+    status: 'NEEDS_ASSISTANCE',
+    peopleCount: 1,
+    notes: 'Wheelchair bound. Second floor of 404 Elmcrest. Needs ramp or lift assist.',
+    timestamp: '10:44 AM',
+    contact: '+1 (555) 901-2345'
+  },
+  {
+    id: 'CHK-03',
+    citizenName: 'Maya Lin & Roommates',
+    sector: 'Sector B2',
+    status: 'EVACUATED',
+    peopleCount: 3,
+    notes: 'Arrived at Shelter C West Pavilion. Checked in with reception desk.',
+    timestamp: '10:47 AM',
+    contact: '+1 (555) 012-3456'
+  },
+  {
+    id: 'CHK-04',
+    citizenName: 'St. Mary Daycare Group',
+    sector: 'Sector B2',
+    status: 'SAFE',
+    peopleCount: 16,
+    notes: '14 children and 2 teachers safely transported to Valley Elementary Upper Gymnasium.',
+    timestamp: '10:49 AM',
+    contact: '+1 (555) 123-4567'
+  }
+];
+

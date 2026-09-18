@@ -13,7 +13,10 @@ import {
   ShieldAlert,
   Sliders,
   PhoneCall,
-  UserCheck
+  UserCheck,
+  BellRing,
+  HeartHandshake,
+  MessageSquare
 } from 'lucide-react';
 import { useEmergency, CommandView } from '../../context/EmergencyContext';
 
@@ -24,19 +27,27 @@ export const CommandSidebar: React.FC = () => {
     notifications, 
     setIsNotificationDrawerOpen,
     incidents,
+    locationAlerts,
+    volunteerRequirements,
+    communityMessages,
     isDemoPlaying
   } = useEmergency();
 
   const unreadNotifs = notifications.filter(n => !n.read).length;
   const criticalCount = incidents.filter(i => i.severity === 'Critical').length;
+  const activeAlertsCount = locationAlerts.filter(a => a.status === 'ACTIVE').length;
+  const openReqsCount = volunteerRequirements.filter(r => r.status === 'OPEN' || r.status === 'IN_PROGRESS').length;
 
   const NAV_ITEMS: { id: CommandView; label: string; icon: React.ComponentType<{ className?: string }>; badge?: string | number; badgeColor?: string }[] = [
     { id: 'overview', label: 'Command Center', icon: LayoutDashboard },
-    { id: 'incidents', label: 'Live Incidents', icon: AlertTriangle, badge: criticalCount, badgeColor: 'bg-wine-800 text-cream-100 border-wine-600' },
-    { id: 'digital-twin', label: 'Digital Twin', icon: Globe2, badge: 'Live 3D', badgeColor: 'bg-wine-800 text-cream-200 border-wine-600' },
-    { id: 'signals', label: 'Community Signals', icon: Radio, badge: 'Active', badgeColor: 'bg-wine-800 text-cream-100 border-wine-600' },
-    { id: 'resources', label: 'Resources', icon: Truck },
-    { id: 'simulator', label: 'Scenario Simulator', icon: Sparkles, badge: 'What-If', badgeColor: 'bg-wine-800 text-cream-200 border-wine-600' },
+    { id: 'incidents', label: 'Live Incidents', icon: AlertTriangle, badge: criticalCount, badgeColor: 'bg-red-800 text-white border-red-600' },
+    { id: 'digital-twin', label: 'Digital Twin', icon: Globe2, badge: 'Live 3D', badgeColor: 'bg-red-800 text-white border-red-600' },
+    { id: 'signals', label: 'Community Signals', icon: Radio, badge: 'Active', badgeColor: 'bg-red-800 text-white border-red-600' },
+    { id: 'resources', label: 'Resource Fleet', icon: Truck },
+    { id: 'alerts', label: 'Location Alerts', icon: BellRing, badge: activeAlertsCount, badgeColor: 'bg-red-600 text-white' },
+    { id: 'volunteers', label: 'Volunteer Hub', icon: HeartHandshake, badge: openReqsCount, badgeColor: 'bg-red-600 text-white' },
+    { id: 'comms', label: 'Community Comms', icon: MessageSquare, badge: communityMessages.length, badgeColor: 'bg-stone-700 text-white' },
+    { id: 'simulator', label: 'Scenario Simulator', icon: Sparkles, badge: 'What-If', badgeColor: 'bg-stone-700 text-white' },
     { id: 'plans', label: 'Response Plans', icon: ClipboardList },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
   ];

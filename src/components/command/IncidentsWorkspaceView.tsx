@@ -18,7 +18,8 @@ import {
   Megaphone
 } from 'lucide-react';
 import { useEmergency } from '../../context/EmergencyContext';
-import { Incident, IncidentPriority, IncidentStatus } from '../../types';
+import { Incident, IncidentPriority, IncidentStatus, EmergencyHazard } from '../../types';
+import { BellRing, HeartHandshake, MessageSquare, X } from 'lucide-react';
 
 export const IncidentsWorkspaceView: React.FC = () => {
   const { 
@@ -28,14 +29,51 @@ export const IncidentsWorkspaceView: React.FC = () => {
     updateIncidentStatus, 
     assignResponderToIncident,
     broadcastSectorAlert,
+    createIncident,
+    setCommandView,
     addToast
   } = useEmergency();
 
   const [filterTab, setFilterTab] = useState<'ALL' | 'CRITICAL' | 'FLOOD' | 'MEDICAL' | 'UNASSIGNED'>('ALL');
   const [responderAssignInput, setResponderAssignInput] = useState('');
   const [showAssignModal, setShowAssignModal] = useState(false);
+  const [showCreateIncidentModal, setShowCreateIncidentModal] = useState(false);
+
+  // Real-time Incident Form State
+  const [newIncTitle, setNewIncTitle] = useState('');
+  const [newIncType, setNewIncType] = useState<EmergencyHazard>('Flood');
+  const [newIncSector, setNewIncSector] = useState('Sector B2');
+  const [newIncSeverity, setNewIncSeverity] = useState<Incident['severity']>('Critical');
+  const [newIncPriority, setNewIncPriority] = useState<IncidentPriority>('Critical');
+  const [newIncPeople, setNewIncPeople] = useState(4);
+  const [newIncDesc, setNewIncDesc] = useState('');
 
   const selectedIncident = incidents.find(i => i.id === selectedIncidentId) || incidents[0];
+
+  const handleCreateIncidentSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newIncTitle.trim()) {
+      addToast('Please enter an incident title', 'error');
+      return;
+    }
+
+    createIncident({
+      title: newIncTitle,
+      type: newIncType,
+      sector: newIncSector,
+      severity: newIncSeverity,
+      status: 'Responding',
+      peopleAffected: Number(newIncPeople),
+      roadAccess: 'Restricted',
+      hospitalLoad: 82,
+      shelterLoad: 75,
+      description: newIncDesc || `${newIncTitle} recorded in real-time response operations.`
+    });
+
+    setShowCreateIncidentModal(false);
+    setNewIncTitle('');
+    setNewIncDesc('');
+  };
 
   const filteredIncidents = incidents.filter(inc => {
     if (filterTab === 'CRITICAL') return inc.severity === 'Critical';
@@ -76,9 +114,19 @@ export const IncidentsWorkspaceView: React.FC = () => {
               </p>
             </div>
 
-            <span className="text-[10px] font-mono text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded font-bold">
-              {incidents.filter(i => i.severity === 'Critical').length} CRITICAL
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded font-bold">
+                {incidents.filter(i => i.severity === 'Critical').length} CRITICAL
+              </span>
+
+              <button
+                onClick={() => setShowCreateIncidentModal(true)}
+                className="flex items-center gap-1 text-[11px] font-bold text-white bg-red-600 hover:bg-red-700 px-2.5 py-1 rounded-lg shadow-sm transition-all active:scale-95"
+              >
+                <PlusCircle className="w-3.5 h-3.5" />
+                <span>Log Incident</span>
+              </button>
+            </div>
           </div>
 
           {/* Filter Tabs */}
@@ -294,6 +342,42 @@ export const IncidentsWorkspaceView: React.FC = () => {
                   MARK RESOLVED
                 </button>
               </div>
+
+              {/* System Objectives Quick Linking */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-dashed border-beige-300">
+                <button
+                  onClick={() => setCommandView('alerts')}
+                  className="p-2 rounded-lg bg-red-50 border border-red-200 hover:bg-red-100 text-red-800 text-left text-xs flex items-center gap-2 transition-colors"
+                >
+                  <BellRing className="w-3.5 h-3.5 text-red-600 shrink-0" />
+                  <div className="truncate">
+                    <span className="font-bold block text-[11px]">Location Alerts</span>
+                    <span className="text-[10px] text-red-600">{selectedIncident.sector}</span>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => setCommandView('volunteers')}
+                  className="p-2 rounded-lg bg-beige-50 border border-beige-300 hover:bg-beige-100 text-stone-800 text-left text-xs flex items-center gap-2 transition-colors"
+                >
+                  <HeartHandshake className="w-3.5 h-3.5 text-stone-700 shrink-0" />
+                  <div className="truncate">
+                    <span className="font-bold block text-[11px]">Volunteer Task</span>
+                    <span className="text-[10px] text-stone-500">Coordinate crew</span>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => setCommandView('comms')}
+                  className="p-2 rounded-lg bg-beige-50 border border-beige-300 hover:bg-beige-100 text-stone-800 text-left text-xs flex items-center gap-2 transition-colors"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-stone-700 shrink-0" />
+                  <div className="truncate">
+                    <span className="font-bold block text-[11px]">Two-Way Comms</span>
+                    <span className="text-[10px] text-stone-500">Citizen check-ins</span>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -302,6 +386,145 @@ export const IncidentsWorkspaceView: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Log Real-Time Incident Modal */}
+      {showCreateIncidentModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="w-full max-w-lg rounded-2xl bg-white border border-beige-300 p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-beige-200">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-red-600" />
+                <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wider font-mono">
+                  LOG REAL-TIME EMERGENCY INCIDENT
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowCreateIncidentModal(false)}
+                className="p-1 text-stone-400 hover:text-stone-700 rounded-lg"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleCreateIncidentSubmit} className="space-y-3 text-xs">
+              <div>
+                <label className="block font-bold text-stone-700 mb-1">
+                  Incident Title / Headline *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={newIncTitle}
+                  onChange={(e) => setNewIncTitle(e.target.value)}
+                  placeholder="e.g. Flash Runoff Dam Breach at Spillway 3"
+                  className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2.5 text-stone-900 outline-none focus:border-red-500 font-medium"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <div>
+                  <label className="block font-bold text-stone-700 mb-1">Hazard Type</label>
+                  <select
+                    value={newIncType}
+                    onChange={(e) => setNewIncType(e.target.value as EmergencyHazard)}
+                    className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 font-medium outline-none focus:border-red-500"
+                  >
+                    <option value="Flood">Flood</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Structural">Structural</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-stone-700 mb-1">Target Sector</label>
+                  <select
+                    value={newIncSector}
+                    onChange={(e) => setNewIncSector(e.target.value)}
+                    className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 font-medium outline-none focus:border-red-500"
+                  >
+                    <option value="Sector B2">Sector B2</option>
+                    <option value="Sector A1">Sector A1</option>
+                    <option value="Sector C4">Sector C4</option>
+                    <option value="Sector D1">Sector D1</option>
+                    <option value="Sector B1">Sector B1</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-stone-700 mb-1">Severity</label>
+                  <select
+                    value={newIncSeverity}
+                    onChange={(e) => setNewIncSeverity(e.target.value as Incident['severity'])}
+                    className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 font-medium outline-none focus:border-red-500"
+                  >
+                    <option value="Critical">Critical</option>
+                    <option value="Severe">Severe</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Low">Low</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label className="block font-bold text-stone-700 mb-1">Priority Class</label>
+                  <select
+                    value={newIncPriority}
+                    onChange={(e) => setNewIncPriority(e.target.value as IncidentPriority)}
+                    className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 font-medium outline-none focus:border-red-500"
+                  >
+                    <option value="Critical">Critical (Immediate Response)</option>
+                    <option value="High">High Priority</option>
+                    <option value="Moderate">Moderate Priority</option>
+                    <option value="Low">Low Priority</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-bold text-stone-700 mb-1">Est. Civilians Affected</label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="1000"
+                    value={newIncPeople}
+                    onChange={(e) => setNewIncPeople(Number(e.target.value))}
+                    className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 font-mono outline-none focus:border-red-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-stone-700 mb-1">Operational Notes &amp; Triage</label>
+                <textarea
+                  rows={3}
+                  value={newIncDesc}
+                  onChange={(e) => setNewIncDesc(e.target.value)}
+                  placeholder="Describe situational urgency, structural collapse or water levels..."
+                  className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2.5 text-stone-900 outline-none focus:border-red-500"
+                />
+              </div>
+
+              <div className="flex gap-2 pt-2">
+                <button
+                  type="submit"
+                  className="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-sm transition-all active:scale-95"
+                >
+                  CREATE &amp; DISPATCH INCIDENT
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowCreateIncidentModal(false)}
+                  className="px-4 py-2.5 rounded-xl bg-beige-100 hover:bg-beige-200 text-stone-800 text-xs border border-beige-300 font-medium"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Assign Unit Modal */}
       {showAssignModal && (

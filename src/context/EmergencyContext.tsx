@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { 
   Incident, 
+  EmergencyHazard,
   CommunityReport, 
   CollectiveSignal, 
   EmergencyResource, 
@@ -8,19 +9,29 @@ import {
   ScenarioSimulationParams,
   ScenarioSimulationResult,
   CitizenDraftReport,
-  ResponsePlan
+  ResponsePlan,
+  LocationAlert,
+  VolunteerRequirement,
+  VolunteerMember,
+  CommunityMessage,
+  SafetyCheckIn
 } from '../types';
 import { 
   INITIAL_INCIDENTS, 
   INITIAL_COMMUNITY_REPORTS, 
   INITIAL_COLLECTIVE_SIGNALS, 
   INITIAL_RESOURCES, 
-  INITIAL_NOTIFICATIONS 
+  INITIAL_NOTIFICATIONS,
+  INITIAL_LOCATION_ALERTS,
+  INITIAL_VOLUNTEER_REQUIREMENTS,
+  INITIAL_VOLUNTEER_MEMBERS,
+  INITIAL_COMMUNITY_MESSAGES,
+  INITIAL_SAFETY_CHECKINS
 } from '../data/mockData';
 
 export type AppMode = 'citizen' | 'command' | 'landing';
-export type CitizenView = 'home' | 'report' | 'voice' | 'silent' | 'confirmation' | 'status' | 'safety' | 'safety-info';
-export type CommandView = 'overview' | 'incidents' | 'digital-twin' | 'signals' | 'resources' | 'simulator' | 'plans' | 'analytics';
+export type CitizenView = 'home' | 'report' | 'voice' | 'silent' | 'confirmation' | 'status' | 'safety' | 'safety-info' | 'volunteer-hub' | 'volunteers' | 'alerts' | 'comms' | 'check-in';
+export type CommandView = 'overview' | 'incidents' | 'digital-twin' | 'signals' | 'resources' | 'alerts' | 'volunteers' | 'comms' | 'simulator' | 'plans' | 'analytics';
 
 export interface ToastMessage {
   id: string;
@@ -82,9 +93,29 @@ interface EmergencyContextType {
   selectedIncidentId: string;
   setSelectedIncidentId: (id: string) => void;
   selectedIncident: Incident | undefined;
+  createIncident: (incident: Partial<Incident> & { title: string; type: EmergencyHazard; sector: string }) => string;
   assignResponderToIncident: (incidentId: string, responderName: string) => void;
   updateIncidentStatus: (incidentId: string, status: Incident['status']) => void;
   broadcastSectorAlert: (sector: string, message: string) => void;
+  
+  // Location-Based Alerts (System Objective)
+  locationAlerts: LocationAlert[];
+  createLocationAlert: (alert: Omit<LocationAlert, 'id' | 'issuedAt' | 'status' | 'deliveryReach'>) => string;
+  deactivateLocationAlert: (id: string) => void;
+
+  // Volunteer Coordination (System Objective)
+  volunteerRequirements: VolunteerRequirement[];
+  volunteerMembers: VolunteerMember[];
+  addVolunteerRequirement: (req: Omit<VolunteerRequirement, 'id' | 'postedAt' | 'assignedCount' | 'status'>) => string;
+  registerVolunteer: (vol: Omit<VolunteerMember, 'id' | 'status'>) => string;
+  assignVolunteerToRequirement: (volunteerId: string, requirementId: string) => void;
+  joinVolunteerRequirement: (requirementId: string, volunteerName: string, skills?: string[]) => void;
+
+  // Community <-> Response Teams Communication (System Objective)
+  communityMessages: CommunityMessage[];
+  sendCommunityMessage: (text: string, senderType?: CommunityMessage['senderType'], senderName?: string, sector?: string, incidentId?: string) => void;
+  safetyCheckIns: SafetyCheckIn[];
+  submitSafetyCheckIn: (checkIn: Omit<SafetyCheckIn, 'id' | 'timestamp'>) => string;
   
   // Citizen active emergency tracking
   activeCitizenIncidentId: string;
@@ -191,6 +222,17 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
 
   // Resources
   const [resources, setResources] = useState<EmergencyResource[]>(INITIAL_RESOURCES);
+
+  // Location Alerts (System Objective)
+  const [locationAlerts, setLocationAlerts] = useState<LocationAlert[]>(INITIAL_LOCATION_ALERTS);
+
+  // Volunteer Coordination (System Objective)
+  const [volunteerRequirements, setVolunteerRequirements] = useState<VolunteerRequirement[]>(INITIAL_VOLUNTEER_REQUIREMENTS);
+  const [volunteerMembers, setVolunteerMembers] = useState<VolunteerMember[]>(INITIAL_VOLUNTEER_MEMBERS);
+
+  // Community <-> Response Teams Communication (System Objective)
+  const [communityMessages, setCommunityMessages] = useState<CommunityMessage[]>(INITIAL_COMMUNITY_MESSAGES);
+  const [safetyCheckIns, setSafetyCheckIns] = useState<SafetyCheckIn[]>(INITIAL_SAFETY_CHECKINS);
 
   // Response Plans
   const [responsePlans, setResponsePlans] = useState<ResponsePlan[]>(DEFAULT_RESPONSE_PLANS);
@@ -324,6 +366,181 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       incidentId
     });
     addToast(`${responderName} assigned to ${incidentId}`, 'success');
+  };
+
+  const createIncident = (incidentData: Partial<Incident> & { title: string; type: EmergencyHazard; sector: string }): string => {
+    const newIncId = `INC-${Math.floor(1000 + Math.random() * 9000)}`;
+    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const newInc: Incident = {
+      id: newIncId,
+      title: incidentData.title,
+      type: incidentData.type,
+      sector: incidentData.sector,
+      location: incidentData.location || `${incidentData.sector} Active Zone`,
+      coordinates: incidentData.coordinates || { x: 50, y: 50 },
+      severity: incidentData.severity || 'Critical',
+      status: incidentData.status || 'Responding',
+      peopleAffected: incidentData.peopleAffected ?? 4,
+      vulnerableCount: incidentData.vulnerableCount ?? 1,
+      roadAccess: incidentData.roadAccess || 'Restricted',
+      shelterLoad: incidentData.shelterLoad ?? 70,
+      hospitalLoad: incidentData.hospitalLoad ?? 65,
+      reportsCount: incidentData.reportsCount ?? 1,
+      description: incidentData.description || 'Logged in real-time emergency response operations.',
+      reportedAt: nowTime,
+      assignedResponder: incidentData.assignedResponder,
+      timeline: [
+        { time: nowTime, label: 'Real-time incident logged', description: 'Dispatched directly via Command Center queue.', completed: true }
+      ]
+    };
+    setIncidents(prev => [newInc, ...prev]);
+    setSelectedIncidentId(newIncId);
+    addNotification({
+      type: 'CRITICAL',
+      title: `Real-time Incident: ${newIncId}`,
+      message: `${newInc.title} logged in ${newInc.sector}.`,
+      incidentId: newIncId
+    });
+    addToast(`Incident ${newIncId} successfully created in real-time.`, 'success');
+    return newIncId;
+  };
+
+  const createLocationAlert = (alertData: Omit<LocationAlert, 'id' | 'issuedAt' | 'status' | 'deliveryReach'>): string => {
+    const newId = `ALERT-GEO-${Math.floor(10 + Math.random() * 90)}`;
+    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const newAlert: LocationAlert = {
+      ...alertData,
+      id: newId,
+      issuedAt: nowTime,
+      status: 'ACTIVE',
+      deliveryReach: 96
+    };
+    setLocationAlerts(prev => [newAlert, ...prev]);
+    addNotification({
+      type: 'CRITICAL',
+      title: `Location Alert Broadcast: ${newAlert.sector}`,
+      message: `${newAlert.title}. Safe Route: ${newAlert.safeRoute}`
+    });
+    addToast(`Location alert ${newId} broadcast to ${newAlert.sector}`, 'warning');
+    return newId;
+  };
+
+  const deactivateLocationAlert = (id: string) => {
+    setLocationAlerts(prev => prev.map(a => a.id === id ? { ...a, status: 'CANCELLED' } : a));
+    addToast(`Location alert ${id} deactivated`, 'info');
+  };
+
+  const addVolunteerRequirement = (reqData: Omit<VolunteerRequirement, 'id' | 'postedAt' | 'assignedCount' | 'status'>): string => {
+    const newId = `REQ-VOL-${Math.floor(10 + Math.random() * 90)}`;
+    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const newReq: VolunteerRequirement = {
+      ...reqData,
+      id: newId,
+      postedAt: nowTime,
+      assignedCount: 0,
+      status: 'OPEN'
+    };
+    setVolunteerRequirements(prev => [newReq, ...prev]);
+    addNotification({
+      type: 'INFO',
+      title: 'Volunteer Requirement Posted',
+      message: `${newReq.title} (${newReq.neededCount} needed in ${newReq.sector}).`
+    });
+    addToast(`Volunteer need ${newId} posted for ${newReq.sector}`, 'success');
+    return newId;
+  };
+
+  const registerVolunteer = (volData: Omit<VolunteerMember, 'id' | 'status'>): string => {
+    const newId = `VOL-${Math.floor(100 + Math.random() * 900)}`;
+    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const newVol: VolunteerMember = {
+      ...volData,
+      id: newId,
+      status: 'READY',
+      checkInTime: nowTime
+    };
+    setVolunteerMembers(prev => [newVol, ...prev]);
+    addToast(`Welcome ${newVol.name}! Added to emergency volunteer roster.`, 'success');
+    return newId;
+  };
+
+  const assignVolunteerToRequirement = (volunteerId: string, requirementId: string) => {
+    setVolunteerMembers(prev => prev.map(v => v.id === volunteerId ? {
+      ...v,
+      status: 'ASSIGNED',
+      assignedRequirementId: requirementId
+    } : v));
+    setVolunteerRequirements(prev => prev.map(r => {
+      if (r.id === requirementId) {
+        const newAssigned = r.assignedCount + 1;
+        return {
+          ...r,
+          assignedCount: newAssigned,
+          status: newAssigned >= r.neededCount ? 'FILLED' : 'IN_PROGRESS'
+        };
+      }
+      return r;
+    }));
+    addToast(`Volunteer assigned to task ${requirementId}`, 'success');
+  };
+
+  const joinVolunteerRequirement = (requirementId: string, volunteerName: string, skills: string[] = ['General Assistance']) => {
+    const volId = registerVolunteer({
+      name: volunteerName,
+      skills,
+      sector: 'Sector B2',
+      contact: 'Citizen App Direct',
+      assignedRequirementId: requirementId,
+      badges: ['Community Responder']
+    });
+    assignVolunteerToRequirement(volId, requirementId);
+  };
+
+  const sendCommunityMessage = (
+    text: string, 
+    senderType: CommunityMessage['senderType'] = 'Dispatcher', 
+    senderName: string = 'Command Dispatcher', 
+    sector: string = 'Sector B2', 
+    incidentId?: string
+  ) => {
+    const newMsg: CommunityMessage = {
+      id: `MSG-${Date.now().toString().slice(-4)}`,
+      incidentId,
+      sector,
+      senderType,
+      senderName,
+      text,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      status: 'Sent'
+    };
+    setCommunityMessages(prev => [...prev, newMsg]);
+    if (senderType === 'Citizen') {
+      addNotification({
+        type: 'CRITICAL',
+        title: `Community Dispatch Message from ${senderName}`,
+        message: text,
+        incidentId
+      });
+    }
+    addToast('Message transmitted', 'info');
+  };
+
+  const submitSafetyCheckIn = (checkInData: Omit<SafetyCheckIn, 'id' | 'timestamp'>): string => {
+    const newId = `CHK-${Date.now().toString().slice(-4)}`;
+    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const record: SafetyCheckIn = {
+      ...checkInData,
+      id: newId,
+      timestamp: nowTime
+    };
+    setSafetyCheckIns(prev => [record, ...prev]);
+    addNotification({
+      type: checkInData.status === 'NEEDS_ASSISTANCE' ? 'CRITICAL' : 'INFO',
+      title: `Safety Check-in: ${checkInData.citizenName} (${checkInData.status})`,
+      message: `${checkInData.peopleCount} people in ${checkInData.sector}. Note: ${checkInData.notes}`
+    });
+    addToast(`Safety check-in logged: ${checkInData.status}`, 'success');
+    return newId;
   };
 
   const updateIncidentStatus = (incidentId: string, status: Incident['status']) => {
@@ -796,8 +1013,22 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
         selectedIncidentId,
         setSelectedIncidentId,
         selectedIncident,
+        createIncident,
         assignResponderToIncident,
         updateIncidentStatus,
+        locationAlerts,
+        createLocationAlert,
+        deactivateLocationAlert,
+        volunteerRequirements,
+        volunteerMembers,
+        addVolunteerRequirement,
+        registerVolunteer,
+        assignVolunteerToRequirement,
+        joinVolunteerRequirement,
+        communityMessages,
+        sendCommunityMessage,
+        safetyCheckIns,
+        submitSafetyCheckIn,
         activeCitizenIncidentId,
         setActiveCitizenIncidentId,
         citizenDraft,

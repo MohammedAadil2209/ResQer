@@ -140,3 +140,79 @@ export interface CitizenDraftReport {
   details: string;
   isSilent?: boolean;
 }
+
+export type AlertUrgency = 'EVACUATION' | 'SEVERE' | 'WARNING' | 'ADVISORY' | 'ALL_CLEAR';
+
+export interface LocationAlert {
+  id: string;
+  sector: string;
+  title: string;
+  hazard: EmergencyHazard;
+  urgency: AlertUrgency;
+  radiusKm: number;
+  affectedPopulation: number;
+  status: 'ACTIVE' | 'UPDATING' | 'CANCELLED';
+  issuedAt: string;
+  safeRoute: string;
+  evacuationShelter: string;
+  shelterCapacityRemaining?: number;
+  deliveryChannels: ('CELL_BROADCAST' | 'MOBILE_APP' | 'DIGITAL_SIREN' | 'SMS_GEOFENCE')[];
+  deliveryReach: number; // percentage, e.g. 98
+  instructions: string[];
+}
+
+export type VolunteerUrgency = 'Immediate' | 'High' | 'Medium' | 'Flexible';
+export type VolunteerTaskStatus = 'OPEN' | 'IN_PROGRESS' | 'FILLED' | 'COMPLETED';
+
+export interface VolunteerRequirement {
+  id: string;
+  title: string;
+  sector: string;
+  urgency: VolunteerUrgency;
+  skillsRequired: string[];
+  neededCount: number;
+  assignedCount: number;
+  status: VolunteerTaskStatus;
+  leadContact: string;
+  locationDetails: string;
+  description: string;
+  postedAt: string;
+}
+
+export interface VolunteerMember {
+  id: string;
+  name: string;
+  skills: string[];
+  status: 'READY' | 'ASSIGNED' | 'ON_SCENE' | 'STANDBY';
+  sector: string;
+  contact: string;
+  assignedRequirementId?: string;
+  checkInTime?: string;
+  badges?: string[];
+}
+
+export interface CommunityMessage {
+  id: string;
+  incidentId?: string;
+  sector: string;
+  senderType: 'Citizen' | 'Responder' | 'Dispatcher' | 'System';
+  senderName: string;
+  text: string;
+  timestamp: string;
+  status: 'Sent' | 'Delivered' | 'Read';
+  isUrgent?: boolean;
+}
+
+export type SafetyCheckInStatus = 'SAFE' | 'NEEDS_ASSISTANCE' | 'EVACUATED';
+
+export interface SafetyCheckIn {
+  id: string;
+  citizenName: string;
+  sector: string;
+  status: SafetyCheckInStatus;
+  peopleCount: number;
+  notes: string;
+  timestamp: string;
+  contact?: string;
+}
+

@@ -12,6 +12,9 @@ import { SilentEmergencyView } from './components/citizen/SilentEmergencyView';
 import { EmergencyConfirmation } from './components/citizen/EmergencyConfirmation';
 import { EmergencyStatusView } from './components/citizen/EmergencyStatusView';
 import { SafetyInfoModal } from './components/citizen/SafetyInfoModal';
+import { CitizenAlertsView } from './components/citizen/CitizenAlertsView';
+import { CitizenVolunteerHub } from './components/citizen/CitizenVolunteerHub';
+import { CitizenCheckInCommsView } from './components/citizen/CitizenCheckInCommsView';
 
 // Command Center Components
 import { CommandSidebar } from './components/command/CommandSidebar';
@@ -25,6 +28,9 @@ import { ScenarioSimulatorView } from './components/command/ScenarioSimulatorVie
 import { ResponsePlansView } from './components/command/ResponsePlansView';
 import { AnalyticsDashboardView } from './components/command/AnalyticsDashboardView';
 import { NotificationDrawer } from './components/command/NotificationDrawer';
+import { LocationAlertsView } from './components/command/LocationAlertsView';
+import { VolunteerCoordinationView } from './components/command/VolunteerCoordinationView';
+import { CommunityCommsView } from './components/command/CommunityCommsView';
 
 // Landing / Story Component
 import { LandingPage } from './components/landing/LandingPage';
@@ -55,6 +61,9 @@ const MainRouter: React.FC = () => {
           {citizenView === 'confirmation' && <EmergencyConfirmation />}
           {citizenView === 'status' && <EmergencyStatusView />}
           {citizenView === 'safety-info' && <SafetyInfoModal />}
+          {citizenView === 'alerts' && <CitizenAlertsView />}
+          {citizenView === 'volunteers' && <CitizenVolunteerHub />}
+          {citizenView === 'check-in' && <CitizenCheckInCommsView />}
         </main>
       </div>
     );
@@ -82,6 +91,9 @@ const MainRouter: React.FC = () => {
           {commandView === 'incidents' && <IncidentsWorkspaceView />}
           {commandView === 'signals' && <SignalsFeedView />}
           {commandView === 'resources' && <ResourcesManagerView />}
+          {commandView === 'alerts' && <LocationAlertsView />}
+          {commandView === 'volunteers' && <VolunteerCoordinationView />}
+          {commandView === 'comms' && <CommunityCommsView />}
           {commandView === 'simulator' && <ScenarioSimulatorView />}
           {commandView === 'plans' && <ResponsePlansView />}
           {commandView === 'analytics' && <AnalyticsDashboardView />}
