@@ -12,10 +12,17 @@ import {
   Radio, 
   Truck, 
   User,
-  Heart
+  Heart,
+  Camera,
+  Image as ImageIcon,
+  X,
+  Maximize2,
+  Sparkles
 } from 'lucide-react';
 import { useEmergency } from '../../context/EmergencyContext';
 import { SafetyCheckInStatus } from '../../types';
+import { LiveCameraCaptureModal } from './LiveCameraCaptureModal';
+import { ImageLightboxModal } from '../common/ImageLightboxModal';
 
 export const CitizenCheckInCommsView: React.FC = () => {
   const { 
@@ -37,6 +44,14 @@ export const CitizenCheckInCommsView: React.FC = () => {
 
   // Chat message form
   const [chatMessage, setChatMessage] = useState('');
+  const [attachedImage, setAttachedImage] = useState<string | null>(null);
+  const [isCameraModalOpen, setIsCameraModalOpen] = useState(false);
+
+  // Lightbox view
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [lightboxCaption, setLightboxCaption] = useState<string | null>(null);
+  const [lightboxSender, setLightboxSender] = useState<string | null>(null);
+  const [lightboxTimestamp, setLightboxTimestamp] = useState<string | null>(null);
 
   const currentSector = citizenDraft.locationSector || 'Zone 13 - Velachery';
   const sectorMessages = communityMessages.filter(m => m.sector === currentSector);
@@ -57,16 +72,18 @@ export const CitizenCheckInCommsView: React.FC = () => {
 
   const handleSendChat = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!chatMessage.trim()) return;
+    if (!chatMessage.trim() && !attachedImage) return;
 
     sendCommunityMessage(
-      chatMessage,
+      chatMessage.trim() || 'On-scene field photograph transmitted.',
       'Citizen',
-      citizenName || 'Resident',
-      currentSector
+      citizenName || 'Resident (You)',
+      currentSector,
+      undefined,
+      attachedImage || undefined
     );
     setChatMessage('');
-    addToast('Message sent to emergency responders', 'info');
+    setAttachedImage(null);
   };
 
   return (
@@ -237,16 +254,16 @@ export const CitizenCheckInCommsView: React.FC = () => {
         </div>
 
         {/* Message Feed */}
-        <div className="bg-beige-50 border border-beige-200 rounded-xl p-3 max-h-[300px] overflow-y-auto space-y-2.5">
+        <div className="bg-beige-50 border border-beige-200 rounded-xl p-3 max-h-[340px] overflow-y-auto space-y-2.5">
           {sectorMessages.map((msg) => {
             const isMe = msg.senderType === 'Citizen';
             return (
               <div
                 key={msg.id}
-                className={`p-2.5 rounded-xl text-xs space-y-1 shadow-sm ${
+                className={`p-3 rounded-xl text-xs space-y-2 shadow-sm ${
                   isMe 
-                    ? 'bg-white border-2 border-red-200 ml-6' 
-                    : 'bg-stone-800 text-white mr-6'
+                    ? 'bg-white border-2 border-red-200 ml-4' 
+                    : 'bg-stone-800 text-white mr-4'
                 }`}
               >
                 <div className="flex items-center justify-between text-[10px]">
@@ -259,33 +276,160 @@ export const CitizenCheckInCommsView: React.FC = () => {
                   </span>
                   <span className="font-mono opacity-75">{msg.timestamp}</span>
                 </div>
-                <p className={`text-xs font-medium ${isMe ? 'text-stone-800' : 'text-stone-100'}`}>
+
+                <p className={`text-xs font-medium leading-relaxed ${isMe ? 'text-stone-800' : 'text-stone-100'}`}>
                   {msg.text}
                 </p>
+
+                {/* Transmitted On-Scene Image Attachment */}
+                {msg.imageUrl && (
+                  <div className="space-y-1 pt-1">
+                    <div 
+                      onClick={() => {
+                        setLightboxImage(msg.imageUrl || null);
+                        setLightboxCaption(msg.text);
+                        setLightboxSender(msg.senderName);
+                        setLightboxTimestamp(msg.timestamp);
+                      }}
+                      className="group relative rounded-xl overflow-hidden border border-stone-300 dark:border-stone-700 bg-black/5 cursor-pointer max-w-sm"
+                    >
+                      <img 
+                        src={msg.imageUrl} 
+                        alt="Transmitted incident evidence" 
+                        className="w-full h-36 sm:h-44 object-cover group-hover:scale-105 transition-transform duration-200"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <span className="bg-black/75 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1.5 shadow">
+                          <Maximize2 className="w-3 h-3" />
+                          <span>Tap to view full telemetry</span>
+                        </span>
+                      </div>
+                      <div className="absolute bottom-0 inset-x-0 bg-stone-900/80 backdrop-blur-sm px-2 py-1 flex items-center justify-between text-[10px] text-white">
+                        <span className="flex items-center gap-1">
+                          <Camera className="w-3 h-3 text-red-400" />
+                          <span>Field Photo Evidence</span>
+                        </span>
+                        <span className="font-mono text-emerald-400 font-bold">VERIFIED</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
 
+        {/* Attached Photo Preview Bar (before sending) */}
+        {attachedImage && (
+          <div className="p-2.5 rounded-xl bg-red-50 border-2 border-red-200 flex items-center justify-between gap-3 animate-in fade-in">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <img 
+                src={attachedImage} 
+                alt="Selected preview" 
+                className="w-12 h-12 rounded-lg object-cover border border-red-300 shrink-0 cursor-pointer"
+                onClick={() => {
+                  setLightboxImage(attachedImage);
+                  setLightboxCaption('Draft photograph ready for dispatch');
+                }}
+              />
+              <div className="min-w-0">
+                <span className="text-xs font-bold text-red-950 block truncate flex items-center gap-1">
+                  <Camera className="w-3.5 h-3.5 text-red-600 shrink-0" />
+                  <span>On-Scene Photo Attached</span>
+                </span>
+                <span className="text-[10px] text-red-700 font-medium block truncate">
+                  Ready to transmit directly to NDRF & TNFRS rescue units
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsCameraModalOpen(true)}
+                className="px-2 py-1 rounded-lg bg-white border border-red-200 text-stone-700 hover:text-stone-900 text-[11px] font-bold"
+              >
+                Retake
+              </button>
+              <button
+                type="button"
+                onClick={() => setAttachedImage(null)}
+                className="p-1 rounded-lg bg-white border border-red-200 text-red-600 hover:text-red-700"
+                title="Remove Photo"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Reply Box */}
-        <form onSubmit={handleSendChat} className="flex gap-2">
-          <input
-            type="text"
-            required
-            value={chatMessage}
-            onChange={(e) => setChatMessage(e.target.value)}
-            placeholder="Type a message to on-scene rescue teams..."
-            className="flex-1 bg-beige-50 border border-beige-300 rounded-xl px-3 py-2 text-xs text-stone-900 outline-none focus:border-red-500 focus:bg-white font-medium"
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all active:scale-95"
-          >
-            <Send className="w-3.5 h-3.5" />
-            <span>Send</span>
-          </button>
+        <form onSubmit={handleSendChat} className="space-y-2">
+          <div className="flex gap-2">
+            {/* Capture / Attach Image Button */}
+            <button
+              type="button"
+              onClick={() => setIsCameraModalOpen(true)}
+              className={`px-3 py-2 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm active:scale-95 ${
+                attachedImage 
+                  ? 'bg-red-100 text-red-900 border-red-300' 
+                  : 'bg-stone-100 hover:bg-stone-200 text-stone-800 border-stone-300'
+              }`}
+              title="Capture On-Scene Photo (Camera / Upload)"
+            >
+              <Camera className="w-4 h-4 text-red-600" />
+              <span className="hidden sm:inline font-mono">Photo</span>
+            </button>
+
+            <input
+              type="text"
+              value={chatMessage}
+              onChange={(e) => setChatMessage(e.target.value)}
+              placeholder={attachedImage ? "Add situation note (optional)..." : "Type message or capture on-scene photo..."}
+              className="flex-1 bg-beige-50 border border-beige-300 rounded-xl px-3 py-2 text-xs text-stone-900 outline-none focus:border-red-500 focus:bg-white font-medium"
+            />
+
+            <button
+              type="submit"
+              disabled={!chatMessage.trim() && !attachedImage}
+              className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all active:scale-95 shrink-0"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>Send</span>
+            </button>
+          </div>
+
+          <div className="flex items-center justify-between text-[10px] text-stone-500 px-1 font-mono">
+            <span>Direct link to GCC Disaster Control & NDRF</span>
+            <button 
+              type="button" 
+              onClick={() => setIsCameraModalOpen(true)}
+              className="text-red-600 hover:underline flex items-center gap-1 font-bold"
+            >
+              <Sparkles className="w-3 h-3" />
+              <span>Send On-Scene Photo</span>
+            </button>
+          </div>
         </form>
       </div>
+
+      {/* Camera Capture Modal */}
+      <LiveCameraCaptureModal
+        isOpen={isCameraModalOpen}
+        onClose={() => setIsCameraModalOpen(false)}
+        onPhotoCaptured={(dataUrl) => setAttachedImage(dataUrl)}
+        sectorName={currentSector}
+      />
+
+      {/* Lightbox Modal */}
+      <ImageLightboxModal
+        isOpen={Boolean(lightboxImage)}
+        onClose={() => setLightboxImage(null)}
+        imageUrl={lightboxImage}
+        caption={lightboxCaption || undefined}
+        senderName={lightboxSender || undefined}
+        timestamp={lightboxTimestamp || undefined}
+      />
     </div>
   );
 };

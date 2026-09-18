@@ -10,6 +10,7 @@ import {
   CommunityMessage,
   SafetyCheckIn
 } from '../types';
+import { SAMPLE_DISASTER_IMAGES } from './sampleDisasterImages';
 
 export const INITIAL_INCIDENTS: Incident[] = [
   {
@@ -635,6 +636,7 @@ export const INITIAL_COMMUNITY_MESSAGES: CommunityMessage[] = [
     senderType: 'Citizen',
     senderName: 'S. Meenakshi (Ram Nagar Resident)',
     text: 'Floodwater has now entered our ground-floor verandah on Ram Nagar 3rd Main. We have 2 senior citizens on the 1st floor.',
+    imageUrl: SAMPLE_DISASTER_IMAGES[0].dataUrl,
     timestamp: '10:43 AM',
     status: 'Read',
     isUrgent: true

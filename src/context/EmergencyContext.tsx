@@ -113,9 +113,10 @@ interface EmergencyContextType {
 
   // Community <-> Response Teams Communication (System Objective)
   communityMessages: CommunityMessage[];
-  sendCommunityMessage: (text: string, senderType?: CommunityMessage['senderType'], senderName?: string, sector?: string, incidentId?: string) => void;
+  sendCommunityMessage: (text: string, senderType?: CommunityMessage['senderType'], senderName?: string, sector?: string, incidentId?: string, imageUrl?: string) => void;
   safetyCheckIns: SafetyCheckIn[];
   submitSafetyCheckIn: (checkIn: Omit<SafetyCheckIn, 'id' | 'timestamp'>) => string;
+  addIncidentTimelineEvent: (incidentId: string, label: string, description?: string, imageUrl?: string) => void;
   
   // Citizen active emergency tracking
   activeCitizenIncidentId: string;
@@ -501,7 +502,8 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
     senderType: CommunityMessage['senderType'] = 'Dispatcher', 
     senderName: string = 'Command Dispatcher', 
     sector: string = 'Zone 13 - Velachery', 
-    incidentId?: string
+    incidentId?: string,
+    imageUrl?: string
   ) => {
     const newMsg: CommunityMessage = {
       id: `MSG-${Date.now().toString().slice(-4)}`,
@@ -510,6 +512,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       senderType,
       senderName,
       text,
+      imageUrl,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       status: 'Sent'
     };
@@ -517,12 +520,41 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
     if (senderType === 'Citizen') {
       addNotification({
         type: 'CRITICAL',
-        title: `Community Dispatch Message from ${senderName}`,
-        message: text,
+        title: `Community Dispatch Message from ${senderName}${imageUrl ? ' [Field Photo Attached]' : ''}`,
+        message: text + (imageUrl ? ' (Image included)' : ''),
         incidentId
       });
     }
-    addToast('Message transmitted', 'info');
+    addToast(imageUrl ? 'Image & message transmitted to response team' : 'Message transmitted', 'info');
+  };
+
+  const addIncidentTimelineEvent = (incidentId: string, label: string, description?: string, imageUrl?: string) => {
+    const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    setIncidents(prev => prev.map(inc => {
+      if (inc.id === incidentId) {
+        return {
+          ...inc,
+          timeline: [
+            ...inc.timeline,
+            {
+              time: now,
+              label,
+              description,
+              imageUrl,
+              completed: true
+            }
+          ]
+        };
+      }
+      return inc;
+    }));
+    addNotification({
+      type: 'INFO',
+      title: `Incident ${incidentId}: ${label}`,
+      message: description || 'New field telemetry submitted.',
+      incidentId
+    });
+    addToast('Incident timeline updated', 'success');
   };
 
   const submitSafetyCheckIn = (checkInData: Omit<SafetyCheckIn, 'id' | 'timestamp'>): string => {
@@ -1029,6 +1061,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
         sendCommunityMessage,
         safetyCheckIns,
         submitSafetyCheckIn,
+        addIncidentTimelineEvent,
         activeCitizenIncidentId,
         setActiveCitizenIncidentId,
         citizenDraft,

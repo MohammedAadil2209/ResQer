@@ -9,9 +9,14 @@ import {
   PhoneCall, 
   AlertCircle, 
   RefreshCw,
-  PlusCircle
+  PlusCircle,
+  Camera,
+  Maximize2,
+  X
 } from 'lucide-react';
 import { useEmergency } from '../../context/EmergencyContext';
+import { LiveCameraCaptureModal } from './LiveCameraCaptureModal';
+import { ImageLightboxModal } from '../common/ImageLightboxModal';
 
 export const EmergencyStatusView: React.FC = () => {
   const { 
@@ -19,18 +24,45 @@ export const EmergencyStatusView: React.FC = () => {
     activeCitizenIncidentId, 
     incidents,
     citizenDraft,
-    addToast
+    addToast,
+    addIncidentTimelineEvent,
+    sendCommunityMessage
   } = useEmergency();
 
   const [updateNote, setUpdateNote] = useState('');
+  const [attachedImage, setAttachedImage] = useState<string | null>(null);
   const [showAddUpdate, setShowAddUpdate] = useState(false);
+  const [isCameraModalOpen, setIsCameraModalOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const incident = incidents.find(i => i.id === activeCitizenIncidentId) || incidents[0];
 
   const handleSendUpdate = () => {
-    if (!updateNote.trim()) return;
-    addToast('Update attached to incident ' + incident.id, 'success');
+    if (!updateNote.trim() && !attachedImage) return;
+
+    if (addIncidentTimelineEvent) {
+      addIncidentTimelineEvent(
+        incident.id, 
+        attachedImage ? 'Field Photo Update' : 'Citizen Situation Update',
+        updateNote.trim() || 'Resident submitted on-scene situation photo to dispatch.',
+        attachedImage || undefined
+      );
+    }
+
+    if (sendCommunityMessage) {
+      sendCommunityMessage(
+        updateNote.trim() || 'Updated field photo submitted for incident ' + incident.id,
+        'Citizen',
+        `Resident (Incident #${incident.id})`,
+        incident.sector,
+        incident.id,
+        attachedImage || undefined
+      );
+    }
+
+    addToast('Update & photo attached to incident ' + incident.id, 'success');
     setUpdateNote('');
+    setAttachedImage(null);
     setShowAddUpdate(false);
   };
 
@@ -164,6 +196,28 @@ export const EmergencyStatusView: React.FC = () => {
                       {event.description}
                     </p>
                   )}
+
+                  {event.imageUrl && (
+                    <div className="mt-2">
+                      <div
+                        onClick={() => setLightboxImage(event.imageUrl || null)}
+                        className="group relative rounded-xl overflow-hidden border border-stone-300 max-w-xs cursor-pointer shadow-sm"
+                      >
+                        <img
+                          src={event.imageUrl}
+                          alt="Timeline evidence"
+                          className="w-full h-28 object-cover group-hover:scale-105 transition-transform"
+                        />
+                        <div className="absolute bottom-0 inset-x-0 bg-stone-900/80 px-2 py-0.5 text-[9px] text-white flex items-center justify-between">
+                          <span className="flex items-center gap-1">
+                            <Camera className="w-2.5 h-2.5 text-red-400" />
+                            <span>Photo Telemetry</span>
+                          </span>
+                          <span className="font-mono text-emerald-400">ENLARGE</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -173,9 +227,44 @@ export const EmergencyStatusView: React.FC = () => {
         {/* Optional Report Update Drawer */}
         {showAddUpdate ? (
           <div className="p-4 rounded-xl bg-white border border-beige-300 shadow-md mb-4 space-y-3">
-            <span className="text-xs font-bold uppercase text-stone-900 block">
-              Send Additional Situation Update
-            </span>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase text-stone-900 block">
+                Send Additional Situation Update
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsCameraModalOpen(true)}
+                className="px-2.5 py-1 rounded-lg bg-beige-100 hover:bg-beige-200 border border-beige-300 text-stone-800 text-[11px] font-bold flex items-center gap-1.5 transition-colors"
+              >
+                <Camera className="w-3.5 h-3.5 text-red-600" />
+                <span>{attachedImage ? 'Replace Photo' : 'Capture / Attach Photo'}</span>
+              </button>
+            </div>
+
+            {attachedImage && (
+              <div className="p-2 rounded-lg bg-red-50 border border-red-200 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <img
+                    src={attachedImage}
+                    alt="Draft preview"
+                    className="w-10 h-10 rounded object-cover border border-red-300 cursor-pointer"
+                    onClick={() => setLightboxImage(attachedImage)}
+                  />
+                  <div className="text-[11px]">
+                    <span className="font-bold text-stone-900 block">On-Scene Photo Ready</span>
+                    <span className="text-stone-500">Will attach to live incident timeline</span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setAttachedImage(null)}
+                  className="p-1 text-stone-400 hover:text-red-600"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
+
             <input
               type="text"
               value={updateNote}
@@ -186,12 +275,16 @@ export const EmergencyStatusView: React.FC = () => {
             <div className="flex gap-2">
               <button
                 onClick={handleSendUpdate}
-                className="flex-1 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow transition-colors"
+                disabled={!updateNote.trim() && !attachedImage}
+                className="flex-1 py-2 rounded-lg bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-bold text-xs shadow transition-colors"
               >
-                Send Update
+                Send Update to Responders
               </button>
               <button
-                onClick={() => setShowAddUpdate(false)}
+                onClick={() => {
+                  setShowAddUpdate(false);
+                  setAttachedImage(null);
+                }}
                 className="px-4 py-2 rounded-lg bg-beige-100 hover:bg-beige-200 text-stone-700 text-xs font-semibold"
               >
                 Cancel
@@ -226,6 +319,22 @@ export const EmergencyStatusView: React.FC = () => {
           Return Home
         </button>
       </div>
+
+      {/* Camera Capture Modal */}
+      <LiveCameraCaptureModal
+        isOpen={isCameraModalOpen}
+        onClose={() => setIsCameraModalOpen(false)}
+        onPhotoCaptured={(dataUrl) => setAttachedImage(dataUrl)}
+        sectorName={incident.sector}
+      />
+
+      {/* Lightbox Modal */}
+      <ImageLightboxModal
+        isOpen={Boolean(lightboxImage)}
+        onClose={() => setLightboxImage(null)}
+        imageUrl={lightboxImage}
+        caption={`Incident #${incident.id} Telemetry`}
+      />
     </div>
   );
 };

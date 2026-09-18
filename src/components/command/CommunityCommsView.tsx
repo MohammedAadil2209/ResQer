@@ -13,10 +13,13 @@ import {
   User,
   Truck,
   HeartHandshake,
-  Filter
+  Filter,
+  Camera,
+  Maximize2
 } from 'lucide-react';
 import { useEmergency } from '../../context/EmergencyContext';
 import { CommunityMessage, SafetyCheckIn } from '../../types';
+import { ImageLightboxModal } from '../common/ImageLightboxModal';
 
 export const CommunityCommsView: React.FC = () => {
   const { 
@@ -32,6 +35,12 @@ export const CommunityCommsView: React.FC = () => {
   const [replyText, setReplyText] = useState('');
   const [targetSector, setTargetSector] = useState('Zone 13 - Velachery');
   const [senderRole, setSenderRole] = useState<'Dispatcher' | 'Responder'>('Dispatcher');
+
+  // Lightbox modal state for dispatcher review
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [lightboxCaption, setLightboxCaption] = useState<string | null>(null);
+  const [lightboxSender, setLightboxSender] = useState<string | null>(null);
+  const [lightboxTimestamp, setLightboxTimestamp] = useState<string | null>(null);
 
   const filteredMessages = communityMessages.filter(m => {
     if (filterSector !== 'all' && m.sector !== filterSector) return false;
@@ -217,6 +226,40 @@ export const CommunityCommsView: React.FC = () => {
                       <p className={`text-xs font-medium leading-relaxed ${isDispatcher ? 'text-stone-200' : 'text-stone-800'}`}>
                         {msg.text}
                       </p>
+
+                      {/* Transmitted On-Scene Image Attachment */}
+                      {msg.imageUrl && (
+                        <div className="pt-1">
+                          <div
+                            onClick={() => {
+                              setLightboxImage(msg.imageUrl || null);
+                              setLightboxCaption(msg.text);
+                              setLightboxSender(msg.senderName);
+                              setLightboxTimestamp(msg.timestamp);
+                            }}
+                            className="group relative rounded-xl overflow-hidden border border-stone-300 dark:border-stone-700 cursor-pointer max-w-xs shadow-sm bg-black/5"
+                          >
+                            <img
+                              src={msg.imageUrl}
+                              alt="Transmitted scene assessment"
+                              className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-200"
+                            />
+                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                              <span className="bg-black/80 backdrop-blur-sm text-white px-2 py-0.5 rounded text-[10px] font-mono font-bold flex items-center gap-1">
+                                <Maximize2 className="w-3 h-3" />
+                                <span>Enlarge Telemetry</span>
+                              </span>
+                            </div>
+                            <div className="bg-stone-900/90 backdrop-blur-sm px-2 py-1 text-[10px] text-white flex items-center justify-between">
+                              <span className="flex items-center gap-1">
+                                <Camera className="w-3 h-3 text-red-400" />
+                                <span>On-Scene Photo</span>
+                              </span>
+                              <span className="font-mono text-emerald-400 font-bold">VERIFIED</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
 
                       {msg.incidentId && (
                         <div className="text-[10px] font-mono font-semibold text-red-600">
@@ -411,6 +454,16 @@ export const CommunityCommsView: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Lightbox Modal */}
+      <ImageLightboxModal
+        isOpen={Boolean(lightboxImage)}
+        onClose={() => setLightboxImage(null)}
+        imageUrl={lightboxImage}
+        caption={lightboxCaption || undefined}
+        senderName={lightboxSender || undefined}
+        timestamp={lightboxTimestamp || undefined}
+      />
     </div>
   );
 };

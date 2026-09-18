@@ -18,6 +18,7 @@ export interface TimelineEvent {
   label: string;
   description?: string;
   completed: boolean;
+  imageUrl?: string;
 }
 
 export interface Incident {
@@ -139,6 +140,7 @@ export interface CitizenDraftReport {
   peopleCount: number;
   details: string;
   isSilent?: boolean;
+  imageUrl?: string;
 }
 
 export type AlertUrgency = 'EVACUATION' | 'SEVERE' | 'WARNING' | 'ADVISORY' | 'ALL_CLEAR';
@@ -201,6 +203,7 @@ export interface CommunityMessage {
   timestamp: string;
   status: 'Sent' | 'Delivered' | 'Read';
   isUrgent?: boolean;
+  imageUrl?: string;
 }
 
 export type SafetyCheckInStatus = 'SAFE' | 'NEEDS_ASSISTANCE' | 'EVACUATED';
