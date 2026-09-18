@@ -20,7 +20,7 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     // Scene setup
     const scene = new THREE.Scene();
     // Fog for deep atmospheric falloff
-    scene.fog = new THREE.FogExp2(0x080c14, 0.0018);
+    scene.fog = new THREE.FogExp2(0x1b0206, 0.0018);
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(55, width / height, 1, 1000);
@@ -31,7 +31,7 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setClearColor(0x080c14, 1);
+    renderer.setClearColor(0x1b0206, 1);
     container.appendChild(renderer.domElement);
 
     // 1. Topographic Plane / Terrain Grid
@@ -47,10 +47,10 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     planeGeo.computeVertexNormals();
 
     const gridMaterial = new THREE.MeshBasicMaterial({
-      color: intensity === 'minimal' ? 0x152238 : 0x1a2e4a,
+      color: intensity === 'minimal' ? 0x4d0a12 : 0x6e0f1a,
       wireframe: true,
       transparent: true,
-      opacity: intensity === 'minimal' ? 0.22 : 0.42
+      opacity: intensity === 'minimal' ? 0.25 : 0.45
     });
 
     const terrainMesh = new THREE.Mesh(planeGeo, gridMaterial);
@@ -58,15 +58,15 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     terrainMesh.position.y = -20;
     scene.add(terrainMesh);
 
-    // 2. Floating Atmospheric Signal Nodes / Particles
+    // 2. Floating Atmospheric Signal Nodes / Particles in Red, White, and Beige
     const particleCount = intensity === 'minimal' ? 40 : 110;
     const particleGeo = new THREE.BufferGeometry();
     const particlePositions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
 
-    const cyanColor = new THREE.Color(0x00f0ff);
-    const emergencyRed = new THREE.Color(0xef4444);
-    const mutedBlue = new THREE.Color(0x3b82f6);
+    const redColor = new THREE.Color(0xdc2626);
+    const beigeColor = new THREE.Color(0xede4d3);
+    const whiteColor = new THREE.Color(0xffffff);
 
     for (let i = 0; i < particleCount; i++) {
       const idx = i * 3;
@@ -74,7 +74,7 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
       particlePositions[idx + 1] = Math.random() * 50 - 5;
       particlePositions[idx + 2] = (Math.random() - 0.5) * 200;
 
-      const col = i % 7 === 0 ? emergencyRed : i % 3 === 0 ? cyanColor : mutedBlue;
+      const col = i % 5 === 0 ? whiteColor : i % 2 === 0 ? redColor : beigeColor;
       particleColors[idx] = col.r;
       particleColors[idx + 1] = col.g;
       particleColors[idx + 2] = col.b;
@@ -87,19 +87,19 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
       size: 2.2,
       vertexColors: true,
       transparent: true,
-      opacity: intensity === 'minimal' ? 0.35 : 0.7,
+      opacity: intensity === 'minimal' ? 0.35 : 0.75,
       blending: THREE.AdditiveBlending
     });
 
     const particleSystem = new THREE.Points(particleGeo, particleMaterial);
     scene.add(particleSystem);
 
-    // 3. Subtle Connective Line Segment Web
+    // 3. Subtle Connective Line Segment Web in warm Beige
     const lineCount = intensity === 'minimal' ? 8 : 22;
     const lineMat = new THREE.LineBasicMaterial({
-      color: 0x00f0ff,
+      color: 0xdfceb8,
       transparent: true,
-      opacity: intensity === 'minimal' ? 0.08 : 0.18
+      opacity: intensity === 'minimal' ? 0.08 : 0.2
     });
     const lineGeo = new THREE.BufferGeometry();
     const linePoints: number[] = [];
@@ -177,7 +177,7 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     return (
       <div 
         aria-hidden="true"
-        className="fixed inset-0 pointer-events-none bg-gradient-to-b from-[#080c14] via-[#0d1424] to-[#080c14] z-0" 
+        className="fixed inset-0 pointer-events-none bg-gradient-to-b from-[#1b0206] via-[#33050c] to-[#1b0206] z-0" 
       />
     );
   }

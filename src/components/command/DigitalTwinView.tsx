@@ -78,26 +78,26 @@ export const DigitalTwinView: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full min-h-[520px] bg-[#070b12] rounded-2xl border border-slate-800 overflow-hidden select-none flex flex-col justify-between">
+    <div className="relative w-full h-full min-h-[520px] bg-wine-950 rounded-2xl border border-wine-800 overflow-hidden select-none flex flex-col justify-between">
       {/* Top Map Control Bar */}
       <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
         {/* Left: Map title & Active Sector Indicator */}
-        <div className="pointer-events-auto flex items-center gap-2 bg-slate-950/85 backdrop-blur-md border border-slate-800 px-3 py-1.5 rounded-xl shadow-lg">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+        <div className="pointer-events-auto flex items-center gap-2 bg-wine-950/90 backdrop-blur-md border border-wine-700 px-3 py-1.5 rounded-xl shadow-lg">
+          <span className="w-2 h-2 rounded-full bg-cream-200 animate-pulse" />
           <span className="text-xs font-bold text-white font-mono uppercase tracking-wider">
             DIGITAL TWIN • SECTOR B2 ACTIVE
           </span>
-          <span className="text-[10px] text-cyan-400 bg-cyan-950 border border-cyan-800 px-1.5 py-0.5 rounded font-mono">
+          <span className="text-[10px] text-cream-100 bg-wine-900 border border-wine-600 px-1.5 py-0.5 rounded font-mono">
             {Math.round(zoomLevel * 100)}%
           </span>
         </div>
 
         {/* Right: Map Action Tools */}
-        <div className="pointer-events-auto flex items-center gap-1.5 bg-slate-950/85 backdrop-blur-md border border-slate-800 p-1 rounded-xl shadow-lg">
+        <div className="pointer-events-auto flex items-center gap-1.5 bg-wine-950/90 backdrop-blur-md border border-wine-700 p-1 rounded-xl shadow-lg">
           <button
             id="btn-zoom-in"
             onClick={() => setZoomLevel(prev => Math.min(prev + 0.25, 2.5))}
-            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-cream-200 hover:text-white hover:bg-wine-900 transition-colors"
             title="Zoom In"
             aria-label="Zoom in on digital twin"
           >
@@ -106,7 +106,7 @@ export const DigitalTwinView: React.FC = () => {
           <button
             id="btn-zoom-out"
             onClick={() => setZoomLevel(prev => Math.max(prev - 0.25, 0.75))}
-            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-cream-200 hover:text-white hover:bg-wine-900 transition-colors"
             title="Zoom Out"
             aria-label="Zoom out on digital twin"
           >
@@ -115,7 +115,7 @@ export const DigitalTwinView: React.FC = () => {
           <button
             id="btn-fit-incidents"
             onClick={handleFitIncidents}
-            className="p-1.5 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800 transition-colors text-xs font-semibold flex items-center gap-1"
+            className="p-1.5 rounded-lg text-cream-200 hover:text-white hover:bg-wine-900 transition-colors text-xs font-semibold flex items-center gap-1"
             title="Fit to Incident Cluster"
           >
             <Crosshair className="w-4 h-4" />
@@ -123,7 +123,7 @@ export const DigitalTwinView: React.FC = () => {
           <button
             id="btn-reset-map"
             onClick={handleResetView}
-            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-cream-200 hover:text-white hover:bg-wine-900 transition-colors"
             title="Reset Map View"
             aria-label="Reset digital twin map view"
           >
@@ -136,7 +136,7 @@ export const DigitalTwinView: React.FC = () => {
               id="btn-toggle-layers"
               onClick={() => setShowLayerMenu(!showLayerMenu)}
               className={`p-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition-colors ${
-                showLayerMenu ? 'bg-cyan-500 text-slate-950' : 'text-slate-300 hover:bg-slate-800'
+                showLayerMenu ? 'bg-cream-100 text-wine-950 font-bold' : 'text-cream-200 hover:bg-wine-900'
               }`}
               title="Map Layers"
             >
@@ -145,18 +145,18 @@ export const DigitalTwinView: React.FC = () => {
             </button>
 
             {showLayerMenu && (
-              <div className="absolute right-0 top-10 w-52 bg-slate-900 border border-slate-700 rounded-xl p-3 shadow-2xl space-y-2 z-30 text-xs">
-                <span className="font-bold text-white block pb-1 border-b border-slate-800">
+              <div className="absolute right-0 top-10 w-52 bg-wine-950 border border-wine-700 rounded-xl p-3 shadow-2xl space-y-2 z-30 text-xs">
+                <span className="font-bold text-white block pb-1 border-b border-wine-800 font-mono uppercase">
                   Visible Map Layers
                 </span>
                 {Object.entries(layers).map(([key, val]) => (
-                  <label key={key} className="flex items-center justify-between text-slate-300 cursor-pointer hover:text-white">
+                  <label key={key} className="flex items-center justify-between text-cream-200 cursor-pointer hover:text-white py-0.5">
                     <span className="capitalize">{key.replace(/([A-Z])/g, ' $1')}</span>
                     <input
                       type="checkbox"
                       checked={val}
                       onChange={() => setLayers(prev => ({ ...prev, [key]: !val }))}
-                      className="rounded bg-slate-800 border-slate-700 text-cyan-400 focus:ring-cyan-500/20"
+                      className="rounded bg-wine-900 border-wine-700 text-cream-100 focus:ring-cream-200/20"
                     />
                   </label>
                 ))}
@@ -190,31 +190,31 @@ export const DigitalTwinView: React.FC = () => {
             <defs>
               {/* Background grid pattern */}
               <pattern id="twinGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#172338" strokeWidth="0.8" opacity="0.6" />
-                <circle cx="0" cy="0" r="1" fill="#1e3a5f" />
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4a1525" strokeWidth="0.8" opacity="0.6" />
+                <circle cx="0" cy="0" r="1" fill="#6d1e34" />
               </pattern>
 
-              {/* Flood water animated radial gradient */}
+              {/* Flood water animated radial gradient in rich wine tone */}
               <radialGradient id="floodGlow" cx="58%" cy="45%" r="35%">
-                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.45" />
-                <stop offset="50%" stopColor="#0891b2" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#0891b2" stopOpacity="0" />
+                <stop offset="0%" stopColor="#801b33" stopOpacity="0.65" />
+                <stop offset="50%" stopColor="#521020" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="#2a0810" stopOpacity="0" />
               </radialGradient>
 
               {/* Fire glow */}
               <radialGradient id="fireGlow" cx="28%" cy="32%" r="20%">
-                <stop offset="0%" stopColor="#ef4444" stopOpacity="0.38" />
-                <stop offset="60%" stopColor="#f97316" stopOpacity="0.15" />
-                <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
+                <stop offset="0%" stopColor="#991b1b" stopOpacity="0.45" />
+                <stop offset="60%" stopColor="#b91c1c" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#7f1d1d" stopOpacity="0" />
               </radialGradient>
             </defs>
 
             {/* Base Coordinate Grid */}
-            <rect width="1000" height="650" fill="#090e18" />
+            <rect width="1000" height="650" fill="#1c050d" />
             <rect width="1000" height="650" fill="url(#twinGrid)" />
 
             {/* Sector Boundary Dividers */}
-            <g opacity="0.45" stroke="#1e2d48" strokeWidth="1" strokeDasharray="4,4">
+            <g opacity="0.45" stroke="#521020" strokeWidth="1" strokeDasharray="4,4">
               <line x1="333" y1="0" x2="333" y2="650" />
               <line x1="666" y1="0" x2="666" y2="650" />
               <line x1="0" y1="216" x2="1000" y2="216" />
@@ -227,7 +227,7 @@ export const DigitalTwinView: React.FC = () => {
                 key={sec.id}
                 x={sec.x * 10}
                 y={sec.y * 6.5 - 24}
-                fill="#475569"
+                fill="#8f3e54"
                 fontSize="11"
                 fontWeight="700"
                 fontFamily="monospace"
@@ -241,21 +241,21 @@ export const DigitalTwinView: React.FC = () => {
             <path
               d="M 50 120 Q 280 180, 480 280 T 620 340 T 780 490 T 950 560"
               fill="none"
-              stroke="#0e7490"
+              stroke="#6b1d30"
               strokeWidth="28"
-              opacity="0.3"
+              opacity="0.5"
               strokeLinecap="round"
             />
             <path
               d="M 50 120 Q 280 180, 480 280 T 620 340 T 780 490 T 950 560"
               fill="none"
-              stroke="#00f0ff"
-              strokeWidth="4"
-              opacity="0.5"
+              stroke="#fdfbf7"
+              strokeWidth="2"
+              opacity="0.4"
               strokeDasharray="6,4"
             />
 
-            {/* FLOOD INUNDATION ZONE OVERLAY in Sector B2 (#22) */}
+            {/* FLOOD INUNDATION ZONE OVERLAY in Sector B2 */}
             {layers.floodZone && (
               <g>
                 <circle
@@ -272,7 +272,7 @@ export const DigitalTwinView: React.FC = () => {
                   rx={65 + (scenarioParams.waterLevelDelta * 0.6)}
                   ry={48 + (scenarioParams.waterLevelDelta * 0.4)}
                   fill="none"
-                  stroke="#22d3ee"
+                  stroke="#f5ede0"
                   strokeWidth="1.5"
                   strokeDasharray="4,3"
                   opacity="0.75"
@@ -280,7 +280,7 @@ export const DigitalTwinView: React.FC = () => {
                 <text
                   x="520"
                   y="245"
-                  fill="#67e8f9"
+                  fill="#fdfbf7"
                   fontSize="10"
                   fontWeight="bold"
                   fontFamily="sans-serif"
@@ -294,9 +294,9 @@ export const DigitalTwinView: React.FC = () => {
             <circle cx="280" cy="208" r="55" fill="url(#fireGlow)" />
 
             {/* Primary & Secondary Road Network */}
-            <g stroke="#334155" strokeWidth="6" strokeLinecap="round" opacity="0.8">
+            <g stroke="#3d0e19" strokeWidth="6" strokeLinecap="round" opacity="0.8">
               {/* Highway Bypass */}
-              <line x1="120" y1="580" x2="880" y2="580" stroke="#475569" strokeWidth="9" />
+              <line x1="120" y1="580" x2="880" y2="580" stroke="#521020" strokeWidth="9" />
               {/* Road 1 (Civic - North) */}
               <line x1="500" y1="80" x2="500" y2="400" />
               {/* Road 2 (Flood approach - Inundated) */}
@@ -305,27 +305,27 @@ export const DigitalTwinView: React.FC = () => {
                 y1="300" 
                 x2="720" 
                 y2="300" 
-                stroke={scenarioParams.roadAvailability < 80 ? '#ef4444' : '#f59e0b'} 
+                stroke={scenarioParams.roadAvailability < 80 ? '#b91c1c' : '#d97706'} 
                 strokeDasharray="8,6"
               />
               {/* Road 3 (Elevated North Ridge Bypass) */}
-              <line x1="450" y1="180" x2="780" y2="180" stroke="#10b981" strokeWidth="5" />
+              <line x1="450" y1="180" x2="780" y2="180" stroke="#f5ede0" strokeWidth="4" />
             </g>
 
             {/* Road Status Labels */}
-            <text x="410" y="290" fill="#f87171" fontSize="9" fontWeight="bold" fontFamily="monospace">
+            <text x="410" y="290" fill="#fca5a5" fontSize="9" fontWeight="bold" fontFamily="monospace">
               ROAD 2 [RESTRICTED / 2.5FT WATER]
             </text>
-            <text x="470" y="170" fill="#34d399" fontSize="9" fontWeight="bold" fontFamily="monospace">
+            <text x="470" y="170" fill="#fdfbf7" fontSize="9" fontWeight="bold" fontFamily="monospace">
               ROAD 3 [ELEVATED BYPASS — OPEN]
             </text>
 
-            {/* Evacuation Route Visualization (#19) */}
+            {/* Evacuation Route Visualization */}
             {layers.evacRoutes && (
               <path
                 d="M 580 320 L 500 240 L 500 140 L 780 140"
                 fill="none"
-                stroke="#10b981"
+                stroke="#fdfbf7"
                 strokeWidth="3.5"
                 strokeDasharray="8,5"
                 strokeLinecap="round"
@@ -338,40 +338,40 @@ export const DigitalTwinView: React.FC = () => {
               <g>
                 {/* North Valley Elementary School (B2) */}
                 <g transform="translate(560, 270)">
-                  <polygon points="0,15 25,0 50,15 25,30" fill="#1e293b" stroke="#38bdf8" strokeWidth="1.2" />
-                  <polygon points="0,15 25,30 25,48 0,33" fill="#0f172a" stroke="#38bdf8" strokeWidth="1" />
-                  <polygon points="50,15 25,30 25,48 50,33" fill="#1e293b" stroke="#38bdf8" strokeWidth="1" />
-                  <text x="-12" y="60" fill="#e2e8f0" fontSize="10" fontWeight="bold">Valley Elementary (School)</text>
+                  <polygon points="0,15 25,0 50,15 25,30" fill="#3d0e19" stroke="#fdfbf7" strokeWidth="1.2" />
+                  <polygon points="0,15 25,30 25,48 0,33" fill="#2a0810" stroke="#fdfbf7" strokeWidth="1" />
+                  <polygon points="50,15 25,30 25,48 50,33" fill="#3d0e19" stroke="#fdfbf7" strokeWidth="1" />
+                  <text x="-12" y="60" fill="#fdfbf7" fontSize="10" fontWeight="bold">Valley Elementary (School)</text>
                 </g>
 
                 {/* Shelter A (Sector B1) */}
                 <g transform="translate(470, 130)">
-                  <rect x="0" y="0" width="36" height="26" fill="#1e293b" stroke="#f59e0b" strokeWidth="1.5" rx="3" />
-                  <text x="-10" y="38" fill="#fbbf24" fontSize="9" fontWeight="bold">Shelter A (72%)</text>
+                  <rect x="0" y="0" width="36" height="26" fill="#3d0e19" stroke="#e8caa4" strokeWidth="1.5" rx="3" />
+                  <text x="-10" y="38" fill="#e8caa4" fontSize="9" fontWeight="bold">Shelter A (72%)</text>
                 </g>
 
                 {/* Shelter C (Sector B3 Reserve) */}
                 <g transform="translate(480, 480)">
-                  <rect x="0" y="0" width="36" height="26" fill="#1e293b" stroke="#34d399" strokeWidth="1.5" rx="3" />
-                  <text x="-15" y="38" fill="#34d399" fontSize="9" fontWeight="bold">Shelter C (Reserve)</text>
+                  <rect x="0" y="0" width="36" height="26" fill="#3d0e19" stroke="#d5b88f" strokeWidth="1.5" rx="3" />
+                  <text x="-15" y="38" fill="#d5b88f" fontSize="9" fontWeight="bold">Shelter C (Reserve)</text>
                 </g>
 
                 {/* Hospital (St. Jude Central) */}
                 <g transform="translate(490, 80)">
-                  <rect x="0" y="0" width="40" height="28" fill="#1e293b" stroke="#3b82f6" strokeWidth="1.5" rx="3" />
-                  <text x="-18" y="40" fill="#60a5fa" fontSize="9" fontWeight="bold">St. Jude Trauma (68%)</text>
+                  <rect x="0" y="0" width="40" height="28" fill="#3d0e19" stroke="#fdfbf7" strokeWidth="1.5" rx="3" />
+                  <text x="-18" y="40" fill="#fdfbf7" fontSize="9" fontWeight="bold">St. Jude Trauma (68%)</text>
                 </g>
               </g>
             )}
 
-            {/* RESOURCE VEHICLES ON MAP (Ambulances, Rescue Teams) (#19) */}
+            {/* RESOURCE VEHICLES ON MAP (Ambulances, Rescue Teams) */}
             {layers.resources && (
               <g>
                 {/* Tactical Rescue Team 04 (Near School) */}
                 <g transform="translate(615, 290)">
-                  <circle cx="0" cy="0" r="14" fill="#1e3a5f" stroke="#00f0ff" strokeWidth="2" />
-                  <text x="-7" y="4" fill="#00f0ff" fontSize="10" fontWeight="bold">T4</text>
-                  <text x="18" y="4" fill="#7dd3fc" fontSize="9" fontWeight="bold">Rescue Team 04</text>
+                  <circle cx="0" cy="0" r="14" fill="#521020" stroke="#fdfbf7" strokeWidth="2" />
+                  <text x="-7" y="4" fill="#fdfbf7" fontSize="10" fontWeight="bold">T4</text>
+                  <text x="18" y="4" fill="#f5ede0" fontSize="9" fontWeight="bold">Rescue Team 04</text>
                 </g>
 
                 {/* Ambulance 01 en route */}
@@ -383,14 +383,14 @@ export const DigitalTwinView: React.FC = () => {
 
                 {/* Ambulance 02 at Staging */}
                 <g transform="translate(260, 420)">
-                  <circle cx="0" cy="0" r="11" fill="#064e3b" stroke="#10b981" strokeWidth="1.5" />
+                  <circle cx="0" cy="0" r="11" fill="#3d0e19" stroke="#e8caa4" strokeWidth="1.5" />
                   <text x="-7" y="3" fill="#ffffff" fontSize="8" fontWeight="bold">A2</text>
-                  <text x="14" y="3" fill="#6ee7b7" fontSize="8">Amb 02 (Standby)</text>
+                  <text x="14" y="3" fill="#e8caa4" fontSize="8">Amb 02 (Standby)</text>
                 </g>
               </g>
             )}
 
-            {/* INCIDENT MARKERS (#21) */}
+            {/* INCIDENT MARKERS */}
             {layers.incidents && (
               <g>
                 {incidents.map((inc) => {
@@ -416,8 +416,8 @@ export const DigitalTwinView: React.FC = () => {
                           cx="0"
                           cy="0"
                           r={isSelected ? 26 : 20}
-                          fill="#ef4444"
-                          opacity="0.25"
+                          fill="#f43f5e"
+                          opacity="0.3"
                           className="animate-ping"
                         />
                       )}
@@ -427,7 +427,7 @@ export const DigitalTwinView: React.FC = () => {
                         cx="0"
                         cy="0"
                         r={isSelected ? 18 : 14}
-                        fill={isCritical ? '#dc2626' : '#d97706'}
+                        fill={isCritical ? '#991b1b' : '#b45309'}
                         stroke="#ffffff"
                         strokeWidth={isSelected ? 2.5 : 1.5}
                         className="transition-all duration-200 shadow-xl"
@@ -453,8 +453,8 @@ export const DigitalTwinView: React.FC = () => {
                           y="-10"
                           width="84"
                           height="18"
-                          fill="#090e18"
-                          stroke={isSelected ? '#00f0ff' : '#475569'}
+                          fill="#1c050d"
+                          stroke={isSelected ? '#fdfbf7' : '#6d1e34'}
                           strokeWidth="1.2"
                           rx="4"
                         />
@@ -462,7 +462,7 @@ export const DigitalTwinView: React.FC = () => {
                           x="0"
                           y="2"
                           textAnchor="middle"
-                          fill={isSelected ? '#00f0ff' : '#f1f5f9'}
+                          fill={isSelected ? '#fdfbf7' : '#e8caa4'}
                           fontSize="9"
                           fontWeight="bold"
                           fontFamily="monospace"
@@ -479,14 +479,14 @@ export const DigitalTwinView: React.FC = () => {
         </div>
       </div>
 
-      {/* FLOATING INCIDENT INSPECTION POPUP (#21) */}
+      {/* FLOATING INCIDENT INSPECTION POPUP */}
       {(activeMarkerData || selectedIncident) && (
-        <div className="absolute bottom-3 left-3 right-3 sm:right-auto sm:w-96 z-30 bg-slate-950/95 backdrop-blur-md border border-cyan-500/40 p-4 rounded-2xl shadow-2xl space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+        <div className="absolute bottom-3 left-3 right-3 sm:right-auto sm:w-96 z-30 bg-wine-950/95 backdrop-blur-md border border-wine-600 p-4 rounded-2xl shadow-2xl space-y-3">
+          <div className="flex items-center justify-between pb-2 border-b border-wine-800">
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                <span className="font-mono font-bold text-xs text-red-400 uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-cream-100 animate-pulse" />
+                <span className="font-mono font-bold text-xs text-cream-200 uppercase tracking-wider">
                   {(activeMarkerData || selectedIncident).severity} • {(activeMarkerData || selectedIncident).id}
                 </span>
               </div>
@@ -497,41 +497,41 @@ export const DigitalTwinView: React.FC = () => {
 
             <button
               onClick={() => setActiveMarkerData(null)}
-              className="text-xs text-slate-400 hover:text-white"
+              className="text-xs text-cream-300 hover:text-white"
             >
               ✕
             </button>
           </div>
 
-          <p className="text-xs text-slate-300 font-medium line-clamp-2">
+          <p className="text-xs text-cream-200 font-medium line-clamp-2">
             {(activeMarkerData || selectedIncident).title}
           </p>
 
           {/* Quick Metrics Strip */}
           <div className="grid grid-cols-3 gap-2 text-xs">
-            <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
-              <span className="text-[10px] text-slate-400 block uppercase">People Affected</span>
+            <div className="p-2 rounded-lg bg-wine-900 border border-wine-800">
+              <span className="text-[10px] text-cream-400 block uppercase font-mono">People Affected</span>
               <span className="text-sm font-bold text-white font-mono">
                 {(activeMarkerData || selectedIncident).peopleAffected}
               </span>
             </div>
-            <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
-              <span className="text-[10px] text-slate-400 block uppercase">Reports</span>
-              <span className="text-sm font-bold text-cyan-300 font-mono">
+            <div className="p-2 rounded-lg bg-wine-900 border border-wine-800">
+              <span className="text-[10px] text-cream-400 block uppercase font-mono">Reports</span>
+              <span className="text-sm font-bold text-cream-100 font-mono">
                 {(activeMarkerData || selectedIncident).reportsCount}
               </span>
             </div>
-            <div className="p-2 rounded-lg bg-slate-900 border border-slate-800">
-              <span className="text-[10px] text-slate-400 block uppercase">Road Access</span>
-              <span className="text-xs font-bold text-amber-400 font-mono truncate block">
+            <div className="p-2 rounded-lg bg-wine-900 border border-wine-800">
+              <span className="text-[10px] text-cream-400 block uppercase font-mono">Road Access</span>
+              <span className="text-xs font-bold text-cream-200 font-mono truncate block">
                 {(activeMarkerData || selectedIncident).roadAccess}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[11px] text-slate-300 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-            <span>Shelter Load: <strong className="text-amber-400">{(activeMarkerData || selectedIncident).shelterLoad}%</strong></span>
-            <span>Hospital: <strong className="text-cyan-400">{(activeMarkerData || selectedIncident).hospitalLoad}%</strong></span>
+          <div className="flex items-center justify-between text-[11px] text-cream-200 bg-wine-900/60 p-2 rounded-lg border border-wine-800 font-sans">
+            <span>Shelter Load: <strong className="text-cream-100">{(activeMarkerData || selectedIncident).shelterLoad}%</strong></span>
+            <span>Hospital: <strong className="text-cream-100">{(activeMarkerData || selectedIncident).hospitalLoad}%</strong></span>
             <span>Responders: <strong className="text-white">6 units</strong></span>
           </div>
 
@@ -541,16 +541,16 @@ export const DigitalTwinView: React.FC = () => {
               setSelectedIncidentId((activeMarkerData || selectedIncident).id);
               setCommandView('incidents');
             }}
-            className="w-full py-2.5 rounded-xl font-bold text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 flex items-center justify-center gap-1.5 shadow-md shadow-cyan-950/60 transition-all"
+            className="w-full py-2.5 rounded-xl font-bold text-xs bg-cream-100 hover:bg-white text-wine-950 flex items-center justify-center gap-1.5 shadow-md shadow-wine-950/80 transition-all active:scale-[0.99]"
           >
             <span>VIEW INCIDENT WORKSPACE</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight className="w-4 h-4 text-wine-950" />
           </button>
         </div>
       )}
 
       {/* Map Legend on Bottom Right */}
-      <div className="absolute bottom-3 right-3 hidden lg:flex items-center gap-3 bg-slate-950/85 backdrop-blur-sm border border-slate-800 px-3 py-2 rounded-xl text-[11px] text-slate-300 pointer-events-none z-10">
+      <div className="absolute bottom-3 right-3 hidden lg:flex items-center gap-3 bg-wine-950/90 backdrop-blur-sm border border-wine-800 px-3 py-2 rounded-xl text-[11px] text-cream-200 pointer-events-none z-10 font-mono">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
           <span>Critical</span>
@@ -560,11 +560,11 @@ export const DigitalTwinView: React.FC = () => {
           <span>Warning</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+          <span className="w-2.5 h-2.5 rounded-full bg-cream-100" />
           <span>Evac Route</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
+          <span className="w-2.5 h-2.5 rounded-full bg-wine-500" />
           <span>Response Unit</span>
         </div>
       </div>

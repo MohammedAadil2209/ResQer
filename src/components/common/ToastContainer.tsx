@@ -15,22 +15,22 @@ export const ToastContainer: React.FC = () => {
             key={toast.id}
             className={`pointer-events-auto p-3.5 rounded-xl border text-xs shadow-2xl flex items-start justify-between gap-3 animate-in slide-in-from-top-2 duration-300 ${
               toast.type === 'success'
-                ? 'bg-emerald-950/95 border-emerald-500/50 text-emerald-200'
+                ? 'bg-wine-900 border-wine-600 text-cream-100'
                 : toast.type === 'error'
-                ? 'bg-rose-950/95 border-rose-500/50 text-rose-200'
-                : 'bg-slate-900/95 border-cyan-500/50 text-cyan-200'
+                ? 'bg-wine-950 border-wine-500 text-white'
+                : 'bg-wine-900 border-wine-700 text-cream-200'
             }`}
           >
             <div className="flex items-center gap-2">
-              {toast.type === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />}
-              {toast.type === 'error' && <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />}
-              {toast.type === 'info' && <Info className="w-4 h-4 text-cyan-400 shrink-0" />}
+              {toast.type === 'success' && <CheckCircle2 className="w-4 h-4 text-cream-200 shrink-0" />}
+              {toast.type === 'error' && <AlertCircle className="w-4 h-4 text-white shrink-0" />}
+              {toast.type === 'info' && <Info className="w-4 h-4 text-cream-100 shrink-0" />}
               <span className="font-semibold leading-relaxed">{toast.message}</span>
             </div>
 
             <button
               onClick={() => removeToast(toast.id)}
-              className="text-slate-400 hover:text-white p-0.5 rounded"
+              className="text-cream-300 hover:text-white p-0.5 rounded"
             >
               <X className="w-3.5 h-3.5" />
             </button>

@@ -48,20 +48,20 @@ export const SignalsFeedView: React.FC<SignalsFeedViewProps> = ({ compact = fals
   };
 
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 flex flex-col justify-between h-full space-y-4">
+    <div className="bg-wine-950 border border-wine-800 rounded-2xl p-4 sm:p-5 flex flex-col justify-between h-full space-y-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-wine-800">
         <div>
           <div className="flex items-center gap-2">
-            <Radio className="w-4 h-4 text-cyan-400" />
+            <Radio className="w-4 h-4 text-cream-200" />
             <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
               COMMUNITY SIGNALS FEED
             </h2>
-            <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-1.5 py-0.2 rounded">
+            <span className="text-[10px] font-mono text-cream-100 bg-wine-900 border border-wine-700 px-1.5 py-0.2 rounded font-bold">
               LIVE MESH
             </span>
           </div>
-          <p className="text-[11px] text-slate-400 mt-0.5">
+          <p className="text-[11px] text-cream-300 mt-0.5 font-sans">
             Decentralized incoming distress pings, voice notes, and citizen observations.
           </p>
         </div>
@@ -72,7 +72,7 @@ export const SignalsFeedView: React.FC<SignalsFeedViewProps> = ({ compact = fals
             aria-label="Filter signals by channel"
             value={filterChannel}
             onChange={(e) => setFilterChannel(e.target.value)}
-            className="bg-slate-950 border border-slate-800 text-slate-300 rounded-lg px-2.5 py-1 text-[11px] outline-none"
+            className="bg-wine-900 border border-wine-700 text-cream-200 rounded-lg px-2.5 py-1 text-[11px] outline-none font-mono"
           >
             <option value="all">All Channels</option>
             <option value="Citizen App">Citizen App</option>
@@ -84,7 +84,7 @@ export const SignalsFeedView: React.FC<SignalsFeedViewProps> = ({ compact = fals
             aria-label="Filter signals by status"
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="bg-slate-950 border border-slate-800 text-slate-300 rounded-lg px-2.5 py-1 text-[11px] outline-none"
+            className="bg-wine-900 border border-wine-700 text-cream-200 rounded-lg px-2.5 py-1 text-[11px] outline-none font-mono"
           >
             <option value="all">All Status</option>
             <option value="Pending">Pending</option>
@@ -103,35 +103,35 @@ export const SignalsFeedView: React.FC<SignalsFeedViewProps> = ({ compact = fals
               key={report.id}
               className={`p-3.5 rounded-xl border transition-all ${
                 isVerified 
-                  ? 'bg-slate-950/60 border-slate-800' 
-                  : 'bg-cyan-950/20 border-cyan-500/30 shadow-md shadow-cyan-950/20'
+                  ? 'bg-wine-900/50 border-wine-800' 
+                  : 'bg-wine-900/80 border-wine-700/80 shadow-md shadow-wine-950/40'
               }`}
             >
               {/* Card Top Row */}
               <div className="flex items-center justify-between gap-2 mb-1.5">
                 <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1 text-[11px] text-slate-300 font-mono bg-slate-900 border border-slate-800 px-2 py-0.5 rounded">
+                  <div className="flex items-center gap-1 text-[11px] text-cream-200 font-mono bg-wine-950 border border-wine-800 px-2 py-0.5 rounded">
                     {getChannelIcon(report.channel || report.source)}
                     <span>{report.channel || report.source}</span>
                   </div>
 
-                  <span className="text-[11px] font-mono text-cyan-400 font-semibold flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
+                  <span className="text-[11px] font-mono text-cream-100 font-semibold flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-cream-200" />
                     {report.location || report.sector}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-slate-400 flex items-center gap-1">
+                  <span className="text-[10px] font-mono text-cream-400 flex items-center gap-1">
                     <Clock className="w-3 h-3" />
                     {report.timestamp}
                   </span>
                   <span className={`text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded border ${
                     report.status === 'Verified'
-                      ? 'bg-emerald-950/80 text-emerald-300 border-emerald-800'
+                      ? 'bg-wine-800 text-cream-100 border-wine-600'
                       : report.status === 'Combined'
-                      ? 'bg-purple-950/80 text-purple-300 border-purple-800'
-                      : 'bg-amber-950/80 text-amber-300 border-amber-800'
+                      ? 'bg-wine-900 text-cream-200 border-wine-700'
+                      : 'bg-wine-900 text-cream-300 border-wine-700'
                   }`}>
                     {report.status}
                   </span>
@@ -139,18 +139,18 @@ export const SignalsFeedView: React.FC<SignalsFeedViewProps> = ({ compact = fals
               </div>
 
               {/* Text Summary */}
-              <p className="text-xs text-slate-200 leading-relaxed font-medium mb-2.5">
+              <p className="text-xs text-cream-100 leading-relaxed font-medium mb-2.5">
                 "{report.content}"
               </p>
 
-              {/* Tags & Action Buttons (#24) */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80">
+              {/* Tags & Action Buttons */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-wine-800/80">
                 <div className="flex items-center gap-1">
-                  <span className="text-[10px] font-mono font-semibold text-slate-400 uppercase bg-slate-900 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono font-semibold text-cream-300 uppercase bg-wine-950 border border-wine-800 px-2 py-0.5 rounded">
                     {report.category}
                   </span>
                   {report.vulnerabilities?.map((v, idx) => (
-                    <span key={idx} className="text-[10px] text-amber-300 bg-amber-950/50 border border-amber-800/50 px-1.5 py-0.5 rounded">
+                    <span key={idx} className="text-[10px] text-cream-100 bg-wine-850 border border-wine-700 px-1.5 py-0.5 rounded font-mono">
                       {v}
                     </span>
                   ))}
@@ -160,23 +160,23 @@ export const SignalsFeedView: React.FC<SignalsFeedViewProps> = ({ compact = fals
                   {report.status !== 'Verified' && (
                     <button
                       onClick={() => verifyReport(report.id)}
-                      className="px-2.5 py-1 rounded-lg bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 border border-emerald-700 text-[11px] font-semibold flex items-center gap-1 transition-colors"
+                      className="px-2.5 py-1 rounded-lg bg-wine-800 hover:bg-wine-700 text-cream-100 border border-wine-600 text-[11px] font-semibold flex items-center gap-1 transition-colors"
                     >
-                      <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                      <CheckCircle2 className="w-3 h-3 text-cream-100" />
                       <span>VERIFY</span>
                     </button>
                   )}
 
                   <button
                     onClick={() => handleCombine(report)}
-                    className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-medium transition-colors"
+                    className="px-2.5 py-1 rounded-lg bg-wine-900 hover:bg-wine-850 text-cream-200 text-[11px] font-medium border border-wine-800 transition-colors"
                   >
                     COMBINE
                   </button>
 
                   <button
                     onClick={() => createIncidentFromReport(report)}
-                    className="px-2.5 py-1 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-[11px] font-bold transition-colors"
+                    className="px-2.5 py-1 rounded-lg bg-cream-100 hover:bg-white text-wine-950 text-[11px] font-bold transition-colors"
                   >
                     CONVERT TO INCIDENT
                   </button>

@@ -1,1 +1,71 @@
 @import "tailwindcss";
+
+@theme {
+  /* Vibrant Emergency Red Palette */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+  --color-red-950: #450a0a;
+
+  /* Rich Emergency Crimson Red (Wine tokens mapped to vibrant & deep red) */
+  --color-wine-50: #fff1f2;
+  --color-wine-100: #ffe4e6;
+  --color-wine-200: #fecdd3;
+  --color-wine-300: #fda4af;
+  --color-wine-400: #fb7185;
+  --color-wine-500: #dc2626;
+  --color-wine-600: #b91c1c;
+  --color-wine-700: #991b1b;
+  --color-wine-800: #6e0f1a;
+  --color-wine-850: #4d0a12;
+  --color-wine-900: #33050c;
+  --color-wine-950: #1b0206;
+
+  /* Refined Sand / Linen Beige Palette */
+  --color-beige-50: #fbf9f5;
+  --color-beige-100: #f5f0e5;
+  --color-beige-200: #ede4d3;
+  --color-beige-300: #dfceb8;
+  --color-beige-400: #ccb598;
+  --color-beige-500: #b89d79;
+  --color-beige-600: #997f5d;
+  --color-beige-700: #766144;
+  --color-beige-800: #54442f;
+  --color-beige-900: #34291c;
+  --color-beige-950: #1e170e;
+
+  /* Cream maps directly to Beige */
+  --color-cream-50: #fbf9f5;
+  --color-cream-100: #f5f0e5;
+  --color-cream-200: #ede4d3;
+  --color-cream-300: #dfceb8;
+  --color-cream-400: #ccb598;
+  --color-cream-500: #b89d79;
+  --color-cream-600: #997f5d;
+  --color-cream-700: #766144;
+  --color-cream-800: #54442f;
+  --color-cream-900: #34291c;
+}
+
+/* Custom scrollbar matching Red, White & Beige */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1b0206;
+}
+::-webkit-scrollbar-thumb {
+  background: #7f1d1d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #dc2626;
+}

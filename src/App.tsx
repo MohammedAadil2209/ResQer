@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { EmergencyProvider, useEmergency } from './context/EmergencyContext';
 import { ThreeBackground } from './components/common/ThreeBackground';
 import { ToastContainer } from './components/common/ToastContainer';
-import { DemoStepperBar } from './components/common/DemoStepperBar';
 
 // Citizen Components
 import { CitizenHeader } from './components/citizen/CitizenHeader';
@@ -31,7 +30,7 @@ import { NotificationDrawer } from './components/command/NotificationDrawer';
 import { LandingPage } from './components/landing/LandingPage';
 
 const MainRouter: React.FC = () => {
-  const { appMode, citizenView, commandView, isDemoPlaying } = useEmergency();
+  const { appMode, citizenView, commandView } = useEmergency();
   const [searchTerm, setSearchTerm] = useState('');
 
   if (appMode === 'landing') {
@@ -40,7 +39,7 @@ const MainRouter: React.FC = () => {
 
   if (appMode === 'citizen') {
     return (
-      <div className="min-h-screen bg-[#060a14] text-white flex flex-col justify-between relative overflow-x-hidden select-none">
+      <div className="min-h-screen bg-[#1a0205] text-beige-100 flex flex-col justify-between relative overflow-x-hidden select-none">
         {/* Subtle 3D background canvas */}
         <ThreeBackground />
 
@@ -63,7 +62,7 @@ const MainRouter: React.FC = () => {
 
   // AppMode === 'command'
   return (
-    <div className="flex h-screen bg-[#060a14] text-slate-100 overflow-hidden font-sans">
+    <div className="flex h-screen bg-[#1a0205] text-beige-100 overflow-hidden font-sans">
       {/* Left Sidebar */}
       <CommandSidebar />
 
@@ -73,7 +72,7 @@ const MainRouter: React.FC = () => {
         <CommandHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
         {/* Dynamic View Body */}
-        <main className="flex-1 p-4 lg:p-6 bg-[#060913]">
+        <main className="flex-1 p-4 lg:p-6 bg-[#140104]">
           {commandView === 'overview' && <CommandOverview />}
           {commandView === 'digital-twin' && (
             <div className="h-[calc(100vh-140px)] min-h-[500px]">
@@ -98,10 +97,9 @@ const MainRouter: React.FC = () => {
 export default function App() {
   return (
     <EmergencyProvider>
-      <div className="w-full min-h-screen bg-[#060a14] text-slate-100 font-sans antialiased">
+      <div className="w-full min-h-screen bg-[#1a0205] text-beige-100 font-sans antialiased">
         <MainRouter />
         <ToastContainer />
-        <DemoStepperBar />
       </div>
     </EmergencyProvider>
   );

@@ -38,9 +38,9 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
   const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
-    <header className="bg-[#080c14]/90 backdrop-blur-md border-b border-slate-800/90 sticky top-0 z-20">
+    <header className="bg-wine-950/95 backdrop-blur-md border-b border-wine-800 sticky top-0 z-20">
       {/* Top Strip */}
-      <div className="px-4 lg:px-6 py-2.5 flex items-center justify-between gap-4 border-b border-slate-800/60">
+      <div className="px-4 lg:px-6 py-2.5 flex items-center justify-between gap-4 border-b border-wine-850">
         {/* Left: Title & Subtitle */}
         <div className="flex items-center gap-4">
           <div>
@@ -48,7 +48,7 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
               <h1 className="text-sm sm:text-base font-extrabold text-white tracking-wide uppercase font-mono">
                 COMMAND CENTER
               </h1>
-              <span className="text-[10px] font-bold text-cyan-400 bg-cyan-950/70 border border-cyan-800/80 px-2 py-0.5 rounded tracking-wider uppercase">
+              <span className="text-[10px] font-bold text-cream-100 bg-wine-800/80 border border-wine-600 px-2 py-0.5 rounded tracking-wider uppercase font-mono">
                 LIVE OPERATIONAL VIEW
               </span>
             </div>
@@ -57,23 +57,23 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
 
         {/* Center: Search input */}
         <div className="hidden md:flex flex-1 max-w-md relative">
-          <Search className="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-400" />
+          <Search className="w-3.5 h-3.5 absolute left-3 top-2.5 text-cream-300" />
           <input
             id="input-command-search"
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search incidents, locations or resources..."
-            className="w-full bg-slate-900/90 border border-slate-700/80 text-xs text-white placeholder-slate-400 rounded-lg pl-8 pr-3 py-1.5 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-500/20"
+            className="w-full bg-wine-900/90 border border-wine-700 text-xs text-white placeholder-cream-400/60 rounded-lg pl-8 pr-3 py-1.5 focus:border-cream-200 focus:outline-none focus:ring-1 focus:ring-cream-200/20 font-sans"
           />
         </div>
 
         {/* Right: Demo Controller, Status, Mode Switchers */}
         <div className="flex items-center gap-3">
-          {/* Scripted Demo Mode Trigger (#42) */}
-          <div className="flex items-center gap-1.5 bg-slate-900/90 border border-cyan-500/30 rounded-lg p-1">
-            <span className="text-[10px] font-bold font-mono text-cyan-300 px-1.5 flex items-center gap-1">
-              <span className={`w-1.5 h-1.5 rounded-full ${isDemoPlaying ? 'bg-cyan-400 animate-ping' : 'bg-slate-500'}`} />
+          {/* Scripted Demo Mode Trigger */}
+          <div className="flex items-center gap-1.5 bg-wine-900/90 border border-wine-700 rounded-lg p-1">
+            <span className="text-[10px] font-bold font-mono text-cream-200 px-1.5 flex items-center gap-1">
+              <span className={`w-1.5 h-1.5 rounded-full ${isDemoPlaying ? 'bg-cream-100 animate-ping' : 'bg-wine-600'}`} />
               DEMO
             </span>
             {!isDemoPlaying ? (
@@ -81,7 +81,7 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
                 id="btn-header-play-demo"
                 onClick={playDemo}
                 title="Play scripted Sector B2 emergency demo"
-                className="px-2 py-1 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-[10px] flex items-center gap-1 transition-all"
+                className="px-2 py-1 rounded bg-cream-100 hover:bg-white text-wine-950 font-bold text-[10px] flex items-center gap-1 transition-all"
               >
                 <Play className="w-3 h-3 fill-current" />
                 <span>PLAY</span>
@@ -91,7 +91,7 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
                 id="btn-header-pause-demo"
                 onClick={pauseDemo}
                 title="Pause demo sequence"
-                className="px-2 py-1 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[10px] flex items-center gap-1 transition-all"
+                className="px-2 py-1 rounded bg-cream-200 hover:bg-cream-100 text-wine-950 font-bold text-[10px] flex items-center gap-1 transition-all"
               >
                 <Pause className="w-3 h-3 fill-current" />
                 <span>PAUSE</span>
@@ -101,15 +101,15 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
               id="btn-header-reset-demo"
               onClick={resetDemo}
               title="Reset demo data"
-              className="p-1 rounded text-slate-400 hover:text-white transition-colors"
+              className="p-1 rounded text-cream-300 hover:text-white transition-colors"
             >
               <RotateCcw className="w-3 h-3" />
             </button>
           </div>
 
           {/* System Online Badge */}
-          <div className="hidden sm:flex items-center gap-1.5 text-xs text-emerald-400 font-mono bg-emerald-950/40 border border-emerald-800/60 px-2.5 py-1 rounded-md">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="hidden sm:flex items-center gap-1.5 text-xs text-cream-100 font-mono bg-wine-900 border border-wine-700 px-2.5 py-1 rounded-md">
+            <span className="w-2 h-2 rounded-full bg-cream-200 animate-pulse" />
             <span>SYSTEM ONLINE</span>
           </div>
 
@@ -117,7 +117,7 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
           <button
             id="btn-switch-to-citizen"
             onClick={() => setAppMode('citizen')}
-            className="text-xs font-semibold text-white bg-red-600 hover:bg-red-500 px-3 py-1.5 rounded-lg border border-red-400/40 flex items-center gap-1.5 shadow-md shadow-red-950/50 transition-colors"
+            className="text-xs font-semibold text-white bg-wine-700 hover:bg-wine-600 px-3 py-1.5 rounded-lg border border-wine-500 flex items-center gap-1.5 shadow-md shadow-wine-950/60 transition-colors"
           >
             <span>Citizen Mode</span>
           </button>
@@ -126,7 +126,7 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
           <button
             id="btn-view-landing"
             onClick={() => setAppMode('landing')}
-            className="text-xs font-medium text-slate-400 hover:text-slate-200 px-2.5 py-1.5 rounded-lg border border-slate-800 hover:bg-slate-800 transition-colors hidden xl:block"
+            className="text-xs font-medium text-cream-300 hover:text-white px-2.5 py-1.5 rounded-lg border border-wine-700 hover:bg-wine-800 transition-colors hidden xl:block"
           >
             Product Story
           </button>
@@ -136,11 +136,11 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
             id="btn-header-notifications"
             onClick={() => setIsNotificationDrawerOpen(true)}
             aria-label="Open notifications"
-            className="relative p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-300 hover:border-cyan-800 transition-colors"
+            className="relative p-1.5 rounded-lg bg-wine-900 border border-wine-700 text-cream-200 hover:text-white hover:border-cream-300 transition-colors"
           >
             <Bell className="w-4 h-4" />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-rose-500 text-white text-[9px] font-bold flex items-center justify-center font-mono">
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-cream-100 text-wine-950 text-[9px] font-bold flex items-center justify-center font-mono">
                 {unreadCount}
               </span>
             )}
@@ -148,85 +148,85 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
         </div>
       </div>
 
-      {/* Top Metric Strip (#17) */}
-      <div className="px-4 lg:px-6 py-2 grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3 bg-[#0a0f1c]/80 text-xs">
+      {/* Top Metric Strip */}
+      <div className="px-4 lg:px-6 py-2 grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3 bg-wine-900/90 text-xs border-b border-wine-800">
         {/* Metric 1 */}
-        <div className="flex flex-col border-r border-slate-800/80 pr-2">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+        <div className="flex flex-col border-r border-wine-800 pr-2">
+          <span className="text-[10px] uppercase font-bold text-cream-300 tracking-wider font-mono">
             Active Incidents
           </span>
           <div className="flex items-center gap-1.5 mt-0.5">
             <span className="text-base font-extrabold font-mono text-white">
               {incidents.length + 13}
             </span>
-            <span className="text-[10px] text-red-400 font-mono font-semibold">
+            <span className="text-[10px] text-cream-200 font-mono font-semibold">
               (5 Crit)
             </span>
           </div>
         </div>
 
         {/* Metric 2 */}
-        <div className="flex flex-col border-r border-slate-800/80 pr-2">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+        <div className="flex flex-col border-r border-wine-800 pr-2">
+          <span className="text-[10px] uppercase font-bold text-cream-300 tracking-wider font-mono">
             People Affected
           </span>
           <div className="flex items-center gap-1 mt-0.5">
             <span className="text-base font-extrabold font-mono text-white">
               2,481
             </span>
-            <span className="text-[10px] text-amber-400 font-mono">
+            <span className="text-[10px] text-cream-200 font-mono">
               ↑ 12%
             </span>
           </div>
         </div>
 
         {/* Metric 3 */}
-        <div className="flex flex-col border-r border-slate-800/80 pr-2">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+        <div className="flex flex-col border-r border-wine-800 pr-2">
+          <span className="text-[10px] uppercase font-bold text-cream-300 tracking-wider font-mono">
             Responders Active
           </span>
           <div className="flex items-center gap-1 mt-0.5">
-            <span className="text-base font-extrabold font-mono text-cyan-300">
+            <span className="text-base font-extrabold font-mono text-cream-100">
               64
             </span>
-            <span className="text-[10px] text-slate-400">deployed</span>
+            <span className="text-[10px] text-cream-300">deployed</span>
           </div>
         </div>
 
         {/* Metric 4 */}
-        <div className="flex flex-col border-r border-slate-800/80 pr-2">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+        <div className="flex flex-col border-r border-wine-800 pr-2">
+          <span className="text-[10px] uppercase font-bold text-cream-300 tracking-wider font-mono">
             Shelter Capacity
           </span>
           <div className="flex items-center gap-1 mt-0.5">
-            <span className="text-base font-extrabold font-mono text-amber-300">
+            <span className="text-base font-extrabold font-mono text-cream-100">
               72%
             </span>
-            <span className="text-[10px] text-amber-400">near limit</span>
+            <span className="text-[10px] text-cream-300">near limit</span>
           </div>
         </div>
 
         {/* Metric 5 */}
-        <div className="flex flex-col border-r border-slate-800/80 pr-2">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+        <div className="flex flex-col border-r border-wine-800 pr-2">
+          <span className="text-[10px] uppercase font-bold text-cream-300 tracking-wider font-mono">
             Collective Signals
           </span>
           <div className="flex items-center gap-1 mt-0.5">
-            <span className="text-base font-extrabold font-mono text-cyan-400">
+            <span className="text-base font-extrabold font-mono text-cream-100">
               12
             </span>
-            <span className="text-[10px] text-emerald-400">active</span>
+            <span className="text-[10px] text-cream-200">active</span>
           </div>
         </div>
 
         {/* Metric 6 */}
         <div className="flex flex-col">
-          <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+          <span className="text-[10px] uppercase font-bold text-cream-300 tracking-wider font-mono">
             Risk Status
           </span>
           <div className="flex items-center gap-1.5 mt-0.5">
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-            <span className="text-sm font-black tracking-wider uppercase text-amber-400 font-mono">
+            <span className="w-2 h-2 rounded-full bg-cream-200 animate-pulse" />
+            <span className="text-sm font-black tracking-wider uppercase text-cream-100 font-mono">
               ELEVATED
             </span>
           </div>
