@@ -80,7 +80,7 @@ export const EmergencyStatusView: React.FC = () => {
             <div className="text-base font-bold text-stone-900 truncate">
               {incident.sector}
             </div>
-            <span className="text-[11px] text-stone-500 font-medium">North River Valley</span>
+            <span className="text-[11px] text-stone-500 font-medium">Chennai Region, Tamil Nadu</span>
           </div>
 
           {/* Report / Hazard */}
@@ -212,11 +212,11 @@ export const EmergencyStatusView: React.FC = () => {
       {/* Bottom Emergency Controls */}
       <div className="pt-4 border-t border-beige-200 flex items-center gap-3">
         <a
-          href="tel:911"
+          href="tel:112"
           className="flex-1 py-3.5 rounded-xl font-bold text-sm bg-red-600 hover:bg-red-700 text-white flex items-center justify-center gap-2 shadow-lg shadow-red-600/20 border border-red-700"
         >
           <PhoneCall className="w-4 h-4 text-white" />
-          <span>Call 911 / 112</span>
+          <span>Call 112 / 108</span>
         </a>
 
         <button

@@ -98,7 +98,7 @@ export const AIEmergencyIntelligence: React.FC = () => {
             CURRENT SITUATION
           </span>
           <p className="text-xs text-stone-800 leading-relaxed font-medium">
-            "Multiple community reports indicate increasing flood conditions around Sector B2, concentrating access blockage around North Valley Elementary."
+            "Multiple community reports indicate increasing flood conditions around Zone 13 - Velachery, concentrating access blockage around Ram Nagar and Velachery MRTS."
           </p>
         </div>
 

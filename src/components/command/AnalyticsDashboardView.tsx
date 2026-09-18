@@ -67,7 +67,7 @@ export const AnalyticsDashboardView: React.FC = () => {
             <span className="text-2xl font-black font-mono text-stone-900">1,824</span>
             <span className="text-[11px] font-mono text-emerald-700 font-bold">Safe</span>
           </div>
-          <span className="text-[10px] text-stone-500 mt-0.5 block font-mono">Sector B2 &amp; A1</span>
+          <span className="text-[10px] text-stone-500 mt-0.5 block font-mono">Zone 13 &amp; Zone 5</span>
         </div>
 
         <div className="p-4 rounded-xl bg-beige-50/60 border border-beige-200 shadow-sm">
@@ -128,10 +128,10 @@ export const AnalyticsDashboardView: React.FC = () => {
 
           <div className="space-y-2.5 pt-1">
             {[
-              { sector: 'Sector B2 (River Valley)', time: '12.4 min', width: '82%', color: 'bg-red-600', alert: 'Flood restricted' },
-              { sector: 'Sector A1 (Industrial)', time: '7.1 min', width: '48%', color: 'bg-stone-700' },
-              { sector: 'Sector B1 (Civic Center)', time: '4.8 min', width: '32%', color: 'bg-emerald-600' },
-              { sector: 'Sector C4 (Bypass)', time: '9.2 min', width: '60%', color: 'bg-amber-600' },
+              { sector: 'Zone 13 - Velachery (Lake Basin)', time: '12.4 min', width: '82%', color: 'bg-red-600', alert: 'Flood restricted' },
+              { sector: 'Zone 5 - Royapuram (Expressway)', time: '7.1 min', width: '48%', color: 'bg-stone-700' },
+              { sector: 'Zone 9 - Teynampet (Saidapet)', time: '4.8 min', width: '32%', color: 'bg-emerald-600' },
+              { sector: 'Zone 14 - Perungudi (OMR)', time: '9.2 min', width: '60%', color: 'bg-amber-600' },
             ].map((sec, idx) => (
               <div key={idx} className="space-y-1">
                 <div className="flex justify-between text-xs">
@@ -181,7 +181,7 @@ export const AnalyticsDashboardView: React.FC = () => {
           <div className="space-y-3 text-xs">
             <div className="space-y-1">
               <div className="flex justify-between text-[11px]">
-                <span className="text-stone-800 font-medium">Shelter A (Civic High School)</span>
+                <span className="text-stone-800 font-medium">Relief Camp A (Guru Nanak College)</span>
                 <span className="font-mono font-bold text-stone-900">72% (360 / 500)</span>
               </div>
               <div className="h-2.5 w-full bg-beige-100 border border-beige-200 rounded-full overflow-hidden">
@@ -191,7 +191,7 @@ export const AnalyticsDashboardView: React.FC = () => {
 
             <div className="space-y-1">
               <div className="flex justify-between text-[11px]">
-                <span className="text-stone-800 font-medium">Shelter B (St. Jude Annex)</span>
+                <span className="text-stone-800 font-medium">Relief Camp B (Gandhi Road Community Hall)</span>
                 <span className="font-mono font-bold text-stone-900">54% (162 / 300)</span>
               </div>
               <div className="h-2.5 w-full bg-beige-100 border border-beige-200 rounded-full overflow-hidden">
@@ -201,7 +201,7 @@ export const AnalyticsDashboardView: React.FC = () => {
 
             <div className="space-y-1">
               <div className="flex justify-between text-[11px]">
-                <span className="text-stone-800 font-medium">Shelter C (Sector B3 Community Hall)</span>
+                <span className="text-stone-800 font-medium">Relief Camp C (Saidapet Higher Sec School)</span>
                 <span className="font-mono font-bold text-stone-700">12% (30 / 250) - Standby</span>
               </div>
               <div className="h-2.5 w-full bg-beige-100 border border-beige-200 rounded-full overflow-hidden">

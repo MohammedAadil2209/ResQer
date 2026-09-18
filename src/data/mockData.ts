@@ -14,123 +14,123 @@ import {
 export const INITIAL_INCIDENTS: Incident[] = [
   {
     id: 'INC-0241',
-    title: 'Flash Flood & School Access Inundation',
+    title: 'Velachery Lake Overflow & Ram Nagar Inundation',
     type: 'Flood',
-    location: 'Sector B2 — North Valley Elementary & River Rd',
-    sector: 'Sector B2',
+    location: 'Zone 13 — Velachery 100 Feet Bypass & Ram Nagar',
+    sector: 'Zone 13 - Velachery',
     coordinates: { x: 58, y: 44 },
     severity: 'Critical',
     peopleAffected: 180,
     vulnerableCount: 24,
     status: 'Active',
     reportedAt: '10:42 AM',
-    assignedResponder: 'Rescue Team 04',
+    assignedResponder: 'NDRF & TNFRS Rescue Unit 04',
     roadAccess: 'Restricted',
     shelterLoad: 72,
     hospitalLoad: 68,
     reportsCount: 23,
-    description: 'Rapidly rising water entering school grounds and surrounding residential blocks. Multiple elderly citizens and schoolchildren sheltered on second floor. Primary ingress route on Road 2 blocked by 3ft water.',
+    description: 'Rapidly rising water from Velachery Lake overflow and Adyar canal backflow inundating Ram Nagar and AGS Colony residential blocks. Multiple senior citizens sheltered on first floor. Primary ingress via 100 Feet Bypass submerged by 3ft water.',
     timeline: [
-      { time: '10:42', label: 'Emergency received', description: 'Citizen voice signal and 4 concurrent reports logged.', completed: true },
-      { time: '10:43', label: 'Location confirmed', description: 'Sector B2 geo-cluster verified via triangulation.', completed: true },
-      { time: '10:44', label: 'Responder assigned', description: 'Rescue Team 04 dispatched with high-water tactical unit.', completed: true },
-      { time: '10:46', label: 'Response underway', description: 'Team en route via alternate Road 3.', completed: true },
-      { time: '10:55', label: 'Evacuation perimeter setup', description: 'Staging mobile boats at Sector B2 North bridge.', completed: false },
-      { time: '11:15', label: 'Complete stabilization', description: 'Transfer vulnerable groups to Shelter C.', completed: false },
+      { time: '10:42', label: 'Emergency call logged via 112 / 1913', description: 'Citizen voice signal and 4 concurrent reports logged into Chennai ERSS.', completed: true },
+      { time: '10:43', label: 'Location confirmed', description: 'Zone 13 Velachery geo-cluster verified via Greater Chennai Corporation GIS.', completed: true },
+      { time: '10:44', label: 'Responder dispatched', description: 'NDRF 04 Battalion & TNFRS Guindy deployed with high-clearance inflatable boats.', completed: true },
+      { time: '10:46', label: 'Response underway', description: 'Teams en route via elevated Vijaya Nagar Flyover & Velachery Main Road.', completed: true },
+      { time: '10:55', label: 'Evacuation staging setup', description: 'Staging rescue dinghies at Velachery MRTS Station entrance.', completed: false },
+      { time: '11:15', label: 'Shelter stabilization', description: 'Transfer vulnerable residents to Guru Nanak College Relief Camp.', completed: false },
     ]
   },
   {
     id: 'INC-0238',
-    title: 'Industrial Substation Electrical Fire',
+    title: 'Manali Industrial Substation Transformer Fire',
     type: 'Fire',
-    location: 'Sector A1 — Central Power Grid Depot',
-    sector: 'Sector A1',
+    location: 'Zone 5 — North Chennai Power Depot, Ennore Express Rd',
+    sector: 'Zone 5 - Royapuram',
     coordinates: { x: 28, y: 32 },
     severity: 'High',
     peopleAffected: 45,
     vulnerableCount: 4,
     status: 'Responding',
     reportedAt: '10:15 AM',
-    assignedResponder: 'Fire Engine 12',
+    assignedResponder: 'TNFRS Industrial Fire Engine 12',
     roadAccess: 'Normal',
     shelterLoad: 35,
     hospitalLoad: 42,
     reportsCount: 14,
-    description: 'Transformer explosion resulting in contained chemical fire. Perimeter evacuated within 300m.',
+    description: 'TANGEDCO 230kV substation transformer explosion resulting in contained chemical fire. 300m safety cordon enforced along Ennore Expressway.',
     timeline: [
       { time: '10:15', label: 'Sensor alarm triggered', completed: true },
-      { time: '10:18', label: 'Fire Engine 12 arrived on scene', completed: true },
-      { time: '10:30', label: 'Secondary foam containment applied', completed: true },
+      { time: '10:18', label: 'TNFRS Engine 12 arrived on scene', completed: true },
+      { time: '10:30', label: 'Specialized chemical foam barrier applied', completed: true },
     ]
   },
   {
     id: 'INC-0239',
-    title: 'Multi-Vehicle Collision on Highway Bypass',
+    title: 'Multi-Vehicle Pileup on OMR Express Corridor',
     type: 'Accident',
-    location: 'Sector C4 — East Corridor Mile 14',
-    sector: 'Sector C4',
+    location: 'Zone 14 — OMR Toll Plaza & Sholinganallur Junction',
+    sector: 'Zone 14 - OMR',
     coordinates: { x: 76, y: 65 },
     severity: 'Moderate',
     peopleAffected: 12,
     vulnerableCount: 2,
     status: 'Responding',
     reportedAt: '10:28 AM',
-    assignedResponder: 'Ambulance 02 & Highway Patrol',
+    assignedResponder: '108 Ambulance Unit 04 & Chennai Traffic Police',
     roadAccess: 'Restricted',
     shelterLoad: 15,
     hospitalLoad: 52,
     reportsCount: 8,
-    description: 'Two passenger vehicles and light delivery truck obstructed eastbound lane. Paramedics assessing injuries.',
+    description: 'Two cars and delivery van collided under heavy monsoon rain near Sholinganallur junction. 108 paramedics providing on-scene trauma stabilization.',
     timeline: [
-      { time: '10:28', label: 'Reported via highway callbox', completed: true },
-      { time: '10:33', label: 'Ambulance 02 on site', completed: true },
-      { time: '10:45', label: 'Triage complete', completed: true },
+      { time: '10:28', label: 'Reported via 112 ERSS highway alert', completed: true },
+      { time: '10:33', label: '108 Ambulance on site', completed: true },
+      { time: '10:45', label: 'Patient triage completed, transferred to Omandurar Hospital', completed: true },
     ]
   },
   {
     id: 'INC-0240',
-    title: 'Commercial Wall Structural Failure',
+    title: 'Heritage Building Facade Damage in George Town',
     type: 'Building Damage',
-    location: 'Sector D1 — Old Market District Warehouses',
-    sector: 'Sector D1',
+    location: 'Zone 9 — NSC Bose Road, Near Parry’s Corner, George Town',
+    sector: 'Zone 9 - T. Nagar',
     coordinates: { x: 38, y: 78 },
     severity: 'Moderate',
     peopleAffected: 28,
     vulnerableCount: 0,
     status: 'Active',
     reportedAt: '10:35 AM',
-    assignedResponder: 'Civil Defense Inspection Unit',
+    assignedResponder: 'GCC Civil Defense Inspection Unit',
     roadAccess: 'Normal',
     shelterLoad: 40,
     hospitalLoad: 30,
     reportsCount: 6,
-    description: 'Partial facade collapse onto pedestrian walkway following saturated ground conditions.',
+    description: 'Partial brick facade collapse onto pedestrian walkway following 48 hours of continuous rain. GCC cordoned zone.',
     timeline: [
-      { time: '10:35', label: 'Citizen photo report', completed: true },
-      { time: '10:40', label: 'Area cordoned off', completed: true },
+      { time: '10:35', label: 'Citizen photo report received via GCC 1913 App', completed: true },
+      { time: '10:40', label: 'NSC Bose road walkway cordoned with barricades', completed: true },
     ]
   },
   {
     id: 'INC-0242',
-    title: 'Urgent Silent Medical Assistance Request',
+    title: 'Urgent Silent Medical Beacon — AGS Colony, Velachery',
     type: 'Medical',
-    location: 'Sector B2 — 404 Elmcrest Apartments, Apt 3B',
-    sector: 'Sector B2',
+    location: 'Zone 13 — 24 AGS Colony 4th Main Rd, Velachery',
+    sector: 'Zone 13 - Velachery',
     coordinates: { x: 62, y: 48 },
     severity: 'Critical',
     peopleAffected: 2,
     vulnerableCount: 1,
     status: 'Active',
     reportedAt: '10:47 AM',
-    assignedResponder: 'Ambulance 01',
+    assignedResponder: '108 ALS Ambulance Unit 01',
     roadAccess: 'Restricted',
     shelterLoad: 72,
     hospitalLoad: 70,
     reportsCount: 2,
-    description: 'Silent emergency alert received. High confidence distress signal with mobility constraint.',
+    description: 'Silent distress beacon triggered by bedridden senior citizen with oxygen concentrator failure amid localized water cutoff.',
     timeline: [
-      { time: '10:47', label: 'Silent emergency beacon activated', completed: true },
-      { time: '10:48', label: 'Medical dispatch routed via amphibious unit', completed: true },
+      { time: '10:47', label: 'Silent emergency beacon received at GCC Command', completed: true },
+      { time: '10:48', label: '108 ALS Unit paired with SDRF high-water rescue team', completed: true },
     ]
   }
 ];
@@ -140,8 +140,8 @@ export const INITIAL_COMMUNITY_REPORTS: CommunityReport[] = [
     id: 'REP-101',
     timestamp: '10:43:21',
     source: 'Citizen',
-    sector: 'Sector B2',
-    content: 'Water is rapidly rising over the embankment and entering the school grounds!',
+    sector: 'Zone 13 - Velachery',
+    content: 'Velachery Lake water breached the southern bund and is rushing toward Ram Nagar 2nd Street!',
     hazard: 'Flood',
     verified: true,
     coordinates: { x: 57, y: 43 }
@@ -150,8 +150,8 @@ export const INITIAL_COMMUNITY_REPORTS: CommunityReport[] = [
     id: 'REP-102',
     timestamp: '10:43:28',
     source: 'Citizen',
-    sector: 'Sector B2',
-    content: 'Road 2 is submerged under at least 2 feet of swift water. Vehicles cannot pass.',
+    sector: 'Zone 13 - Velachery',
+    content: 'Velachery 100 Feet Road near MRTS station submerged under 2.5 feet water. Two-wheelers and autos stalled.',
     hazard: 'Flood',
     verified: true,
     coordinates: { x: 59, y: 45 }
@@ -160,8 +160,8 @@ export const INITIAL_COMMUNITY_REPORTS: CommunityReport[] = [
     id: 'REP-103',
     timestamp: '10:43:35',
     source: 'Volunteer',
-    sector: 'Sector B2',
-    content: 'Ambulance cannot enter Road 2 entrance. Redirecting through elevated secondary bypass.',
+    sector: 'Zone 13 - Velachery',
+    content: '108 Ambulance cannot enter Ram Nagar main arch. Redirecting through elevated Vijaya Nagar Flyover.',
     hazard: 'People Trapped',
     verified: true,
     coordinates: { x: 60, y: 42 }
@@ -170,8 +170,8 @@ export const INITIAL_COMMUNITY_REPORTS: CommunityReport[] = [
     id: 'REP-104',
     timestamp: '10:44:10',
     source: 'VoxRescue',
-    sector: 'Sector B2',
-    content: 'Elderly residents in ground-floor nursing wing need immediate evacuation support.',
+    sector: 'Zone 13 - Velachery',
+    content: 'Elderly citizens in ground-floor apartment in AGS Colony need immediate boat evacuation assistance.',
     hazard: 'Medical',
     verified: true,
     coordinates: { x: 58, y: 44 }
@@ -180,8 +180,8 @@ export const INITIAL_COMMUNITY_REPORTS: CommunityReport[] = [
     id: 'REP-105',
     timestamp: '10:45:02',
     source: 'Citizen',
-    sector: 'Sector B2',
-    content: 'Power lines sparking near transformer pole by the flooded corner.',
+    sector: 'Zone 13 - Velachery',
+    content: 'TANGEDCO power pillar sparking near Ram Nagar corner. High electrocution risk!',
     hazard: 'Electrical',
     verified: false,
     coordinates: { x: 56, y: 46 }
@@ -190,8 +190,8 @@ export const INITIAL_COMMUNITY_REPORTS: CommunityReport[] = [
     id: 'REP-106',
     timestamp: '10:46:15',
     source: 'Sensor',
-    sector: 'Sector B2',
-    content: 'River gauge #B2-4 peaked at +1.8m above flood stage. Rate of rise 12cm/10min.',
+    sector: 'Zone 13 - Velachery',
+    content: 'Adyar River gauge at Saidapet Maraimalai Adigal Bridge recorded +2.1m above warning level.',
     hazard: 'Flood',
     verified: true,
     coordinates: { x: 61, y: 41 }
@@ -201,21 +201,21 @@ export const INITIAL_COMMUNITY_REPORTS: CommunityReport[] = [
 export const INITIAL_COLLECTIVE_SIGNALS: CollectiveSignal[] = [
   {
     id: 'COL-01',
-    sector: 'Sector B2',
-    title: 'Flood Surge + Access Disruption + Vulnerable Population',
-    description: 'High convergence of 5 direct citizen & sensor reports indicating cascading school isolation and route cutoff.',
-    reportCount: 5,
+    sector: 'Zone 13 - Velachery',
+    title: 'Adyar Basin Overflow + Road Inundation + Stranded Residents',
+    description: 'High convergence of 6 citizen, volunteer and GCC flood sensor reports indicating rapid Ram Nagar waterlogging and route cutoff.',
+    reportCount: 6,
     hazards: ['Flood', 'People Trapped', 'Medical'],
     status: 'ACTIVE',
     detectedAt: '10:44 AM',
-    signalStrength: 82,
+    signalStrength: 86,
     pattern: 'Flooding + Access Disruption'
   },
   {
     id: 'COL-02',
-    sector: 'Sector A1',
-    title: 'Industrial Hazmat Isolation Perimeter',
-    description: '3 synchronized sensor spikes with power fluctuation reports.',
+    sector: 'Zone 5 - Royapuram',
+    title: 'North Chennai Industrial Hazmat Arc Isolation',
+    description: '3 synchronized sensor spikes with power grid fluctuation reported near Manali depot.',
     reportCount: 3,
     hazards: ['Fire', 'Electrical'],
     status: 'INVESTIGATING',
@@ -228,149 +228,149 @@ export const INITIAL_COLLECTIVE_SIGNALS: CollectiveSignal[] = [
 export const INITIAL_RESOURCES: EmergencyResource[] = [
   {
     id: 'RES-AMB-01',
-    name: 'Ambulance 01 (All-Terrain)',
+    name: '108 Ambulance Unit 01 (High-Clearance ALS)',
     category: 'Ambulance',
     status: 'DISPATCHED',
-    location: 'En route Sector B2',
-    sector: 'Sector B2',
+    location: 'En route Velachery Ram Nagar',
+    sector: 'Zone 13 - Velachery',
     capacity: 2,
     occupancy: 0,
     assignedIncidentId: 'INC-0242',
     etaMinutes: 6,
-    contact: 'Ch. 3 (Rescue Net Alpha)'
+    contact: 'Call 108 / Wireless Ch. 3'
   },
   {
     id: 'RES-AMB-02',
-    name: 'Ambulance 02 (Standard EMS)',
+    name: '108 Ambulance Unit 02 (Saidapet Depot)',
     category: 'Ambulance',
     status: 'AVAILABLE',
-    location: 'Staging Depot Sector A3',
-    sector: 'Sector A3',
+    location: 'Saidapet EMS Hub, Zone 10',
+    sector: 'Zone 10 - Central',
     capacity: 2,
     occupancy: 0,
-    contact: 'Ch. 3 (Rescue Net Alpha)'
+    contact: 'Call 108 (Tamil Nadu ERSS)'
   },
   {
     id: 'RES-AMB-03',
-    name: 'Ambulance 03 (Advanced Life Support)',
+    name: '108 Advanced Cardiac Life Support (RGGGH Base)',
     category: 'Ambulance',
     status: 'AVAILABLE',
-    location: 'Central Medical Base Sector B1',
-    sector: 'Sector B1',
+    location: 'Rajiv Gandhi Govt General Hospital (Chennai Central)',
+    sector: 'Zone 10 - Central',
     capacity: 2,
     occupancy: 0,
-    contact: 'Ch. 3'
+    contact: 'Call 108 / RGGGH Triage'
   },
   {
     id: 'RES-AMB-04',
-    name: 'Ambulance 04',
+    name: '108 Ambulance 04 (OMR Sholinganallur)',
     category: 'Ambulance',
     status: 'DISPATCHED',
-    location: 'Sector C4 Collision',
-    sector: 'Sector C4',
+    location: 'OMR Sholinganallur Junction',
+    sector: 'Zone 14 - OMR',
     capacity: 2,
     assignedIncidentId: 'INC-0239',
     etaMinutes: 3,
-    contact: 'Ch. 4'
+    contact: 'Call 108'
   },
   {
     id: 'RES-TEAM-04',
-    name: 'Tactical Rescue Team 04',
+    name: 'NDRF 04 Battalion & SDRF High-Water Rescue Team',
     category: 'Rescue Team',
     status: 'ON_SCENE',
-    location: 'Sector B2 School Perimeter',
-    sector: 'Sector B2',
-    capacity: 8,
+    location: 'Velachery MRTS & 100ft Rd Base',
+    sector: 'Zone 13 - Velachery',
+    capacity: 10,
     occupancy: 0,
     assignedIncidentId: 'INC-0241',
     etaMinutes: 0,
-    contact: 'Rescue Lead Larson (Ext 404)'
+    contact: 'Inspector R. Kumar (NDRF Arakkonam Unit)'
   },
   {
     id: 'RES-TEAM-02',
-    name: 'Amphibious Swiftwater Unit 02',
+    name: 'TNFRS Inflatable Swiftwater Boat Unit 02',
     category: 'Rescue Team',
     status: 'AVAILABLE',
-    location: 'North Dock Staging Station',
-    sector: 'Sector B1',
+    location: 'Guindy Fire & Rescue Station',
+    sector: 'Zone 10 - Central',
     capacity: 12,
-    contact: 'Swiftwater Dispatch'
+    contact: 'TNFRS Station Officer (101 / 112)'
   },
   {
     id: 'RES-TEAM-05',
-    name: 'Heavy Urban Search & Rescue 05',
+    name: 'GCC Rapid Action Civil Defense Unit 05',
     category: 'Rescue Team',
     status: 'AVAILABLE',
-    location: 'Sector C1 Base',
-    sector: 'Sector C1',
+    location: 'Ripon Building Central Command Base',
+    sector: 'Zone 8 - Anna Nagar',
     capacity: 15,
-    contact: 'USAR Cmd'
+    contact: 'GCC Control Room: 1913'
   },
   {
     id: 'RES-VOL-01',
-    name: 'Community Volunteers — Sector B Response Corps',
+    name: 'Chennai Cares & Red Cross Volunteer Force',
     category: 'Volunteer',
     status: 'AVAILABLE',
-    location: 'Civic Community Hall B2',
-    sector: 'Sector B2',
-    capacity: 21,
-    occupancy: 14,
-    contact: 'Volunteer Coordinator Sarah'
+    location: 'Guru Nanak College Auditorium Base, Velachery',
+    sector: 'Zone 13 - Velachery',
+    capacity: 25,
+    occupancy: 16,
+    contact: 'Coord. Senthil Nathan (GCC Ward 177)'
   },
   {
     id: 'RES-SHEL-A',
-    name: 'Shelter A — North Community Center',
+    name: 'GCC Community Hall Relief Camp — Velachery Gandhi Rd',
     category: 'Shelter',
     status: 'AT_CAPACITY',
-    location: 'Sector B1 High Ground',
-    sector: 'Sector B1',
-    capacity: 250,
-    occupancy: 180, // 72%
-    contact: 'Supervisor Vance'
+    location: 'Gandhi Road High Ground, Velachery',
+    sector: 'Zone 13 - Velachery',
+    capacity: 300,
+    occupancy: 220, // 73%
+    contact: 'GCC Zonal Officer (Ward 177)'
   },
   {
     id: 'RES-SHEL-B',
-    name: 'Shelter B — East High Gymnasium',
+    name: 'Guru Nanak College Indoor Stadium Relief Centre',
     category: 'Shelter',
     status: 'AVAILABLE',
-    location: 'Sector C2 Hilltop',
-    sector: 'Sector C2',
-    capacity: 350,
-    occupancy: 110, // 31%
-    contact: 'Supervisor Chang'
+    location: 'Guru Nanak College Campus, Velachery',
+    sector: 'Zone 13 - Velachery',
+    capacity: 500,
+    occupancy: 165, // 33%
+    contact: 'Camp Lead Prof. Swaminathan'
   },
   {
     id: 'RES-SHEL-C',
-    name: 'Shelter C — Valley West Pavilion',
+    name: 'Chennai Girls Higher Secondary School Camp (Saidapet)',
     category: 'Shelter',
     status: 'AVAILABLE',
-    location: 'Sector B3 Ridge',
-    sector: 'Sector B3',
-    capacity: 300,
-    occupancy: 25, // 8% - standby reserve
-    contact: 'Coordinator Miller'
+    location: 'Anna Salai, Saidapet High Ground',
+    sector: 'Zone 10 - Central',
+    capacity: 400,
+    occupancy: 45, // 11% - standby reserve
+    contact: 'Camp Officer S. Murugan'
   },
   {
     id: 'RES-HOSP-01',
-    name: 'St. Jude Regional Trauma Center',
+    name: 'Rajiv Gandhi Govt General Hospital (RGGGH Central Trauma)',
     category: 'Hospital',
     status: 'AVAILABLE',
-    location: 'Sector B1 Central Medical',
-    sector: 'Sector B1',
-    capacity: 120,
-    occupancy: 82, // 68%
-    contact: 'ER Dispatch Line'
+    location: 'EVR Periyar Salai, Chennai Central',
+    sector: 'Zone 10 - Central',
+    capacity: 250,
+    occupancy: 172, // 68%
+    contact: 'RGGGH Casualty: 044-25305000 / 108'
   },
   {
     id: 'RES-HOSP-02',
-    name: 'Valley General Memorial Hospital',
+    name: 'Govt Multi Super Speciality Hospital (Omandurar Estate)',
     category: 'Hospital',
     status: 'AVAILABLE',
-    location: 'Sector C3 East',
-    sector: 'Sector C3',
-    capacity: 90,
-    occupancy: 48, // 53%
-    contact: 'Triage Desk'
+    location: 'Omandurar Government Estate, Anna Salai',
+    sector: 'Zone 10 - Central',
+    capacity: 160,
+    occupancy: 86, // 53%
+    contact: 'Omandurar Trauma: 044-25666000 / 108'
   }
 ];
 
@@ -378,8 +378,8 @@ export const INITIAL_NOTIFICATIONS: SystemNotification[] = [
   {
     id: 'NOTIF-01',
     type: 'CRITICAL',
-    title: 'Collective Crisis Detected',
-    message: 'Sector B2: 5 convergent reports indicate rising flood cutting off school access.',
+    title: 'Adyar River & Velachery Lake Surge',
+    message: 'Zone 13 - Velachery: 6 convergent reports indicate water inundating Ram Nagar and Velachery 100ft road.',
     time: '10:44 AM',
     read: false,
     incidentId: 'INC-0241'
@@ -387,16 +387,16 @@ export const INITIAL_NOTIFICATIONS: SystemNotification[] = [
   {
     id: 'NOTIF-02',
     type: 'WARNING',
-    title: 'Shelter Capacity Threshold Alert',
-    message: 'Shelter A has reached 72% capacity. Recommend pre-activating Shelter C.',
+    title: 'Shelter Capacity Advisory',
+    message: 'Velachery Gandhi Road GCC Hall reached 73% capacity. Redirecting new evacuees to Guru Nanak College Indoor Stadium.',
     time: '10:43 AM',
     read: false
   },
   {
     id: 'NOTIF-03',
     type: 'INFO',
-    title: 'Resource Deployment Confirmed',
-    message: 'Rescue Team 04 has established tactical staging at Sector B2 North.',
+    title: 'NDRF Rescue Boat Deployment',
+    message: 'NDRF 04 Battalion & TNFRS unit established staging at Velachery MRTS station.',
     time: '10:46 AM',
     read: true,
     incidentId: 'INC-0241'
@@ -404,87 +404,87 @@ export const INITIAL_NOTIFICATIONS: SystemNotification[] = [
   {
     id: 'NOTIF-04',
     type: 'SYSTEM',
-    title: 'Digital Twin Synchronized',
-    message: 'Hydrological sensor feeds updated. Elevation contours aligned.',
+    title: 'GCC Integrated Command & Control Center (ICCC) Synced',
+    message: 'Chennai Corporation smart water level telemetry and flood sensor network synchronized.',
     time: '10:40 AM',
     read: true
   }
 ];
 
 export const MAP_SECTORS = [
-  { id: 'Sector A1', name: 'Sector A1 — Industrial Depot', x: 25, y: 30, risk: 'Moderate', alerts: 1 },
-  { id: 'Sector A2', name: 'Sector A2 — Northern Heights', x: 25, y: 65, risk: 'Low', alerts: 0 },
-  { id: 'Sector B1', name: 'Sector B1 — Medical & Civic', x: 50, y: 25, risk: 'Low', alerts: 0 },
-  { id: 'Sector B2', name: 'Sector B2 — River Valley & Schools', x: 58, y: 46, risk: 'Critical', alerts: 2 },
-  { id: 'Sector B3', name: 'Sector B3 — West Ridge Reserve', x: 50, y: 75, risk: 'Low', alerts: 0 },
-  { id: 'Sector C1', name: 'Sector C1 — Commercial Plaza', x: 75, y: 25, risk: 'Low', alerts: 0 },
-  { id: 'Sector C2', name: 'Sector C2 — East Ridge Shelter', x: 80, y: 45, risk: 'Low', alerts: 0 },
-  { id: 'Sector C4', name: 'Sector C4 — East Transit Corridor', x: 78, y: 68, risk: 'Moderate', alerts: 1 },
-  { id: 'Sector D1', name: 'Sector D1 — Old Market District', x: 38, y: 80, risk: 'Moderate', alerts: 1 },
+  { id: 'Zone 13 - Velachery', name: 'Zone 13 — Velachery & Adyar Basin', x: 58, y: 46, risk: 'Critical', alerts: 2 },
+  { id: 'Zone 5 - Royapuram', name: 'Zone 5 — Royapuram & Chennai Port', x: 25, y: 30, risk: 'Moderate', alerts: 1 },
+  { id: 'Zone 9 - T. Nagar', name: 'Zone 9 — T. Nagar & Mambalam', x: 38, y: 80, risk: 'Moderate', alerts: 1 },
+  { id: 'Zone 14 - OMR', name: 'Zone 14 — OMR & Sholinganallur Corridor', x: 78, y: 68, risk: 'Moderate', alerts: 1 },
+  { id: 'Zone 10 - Central', name: 'Zone 10 — Egmore & Chennai Central (RGGGH)', x: 50, y: 25, risk: 'Low', alerts: 0 },
+  { id: 'Zone 8 - Anna Nagar', name: 'Zone 8 — Anna Nagar & Koyambedu', x: 25, y: 65, risk: 'Low', alerts: 0 },
+  { id: 'Zone 12 - Tambaram', name: 'Zone 12 — Tambaram & Mudichur Basin', x: 50, y: 75, risk: 'Low', alerts: 0 },
+  { id: 'Zone 13 - Adyar', name: 'Zone 13 — Adyar & Kotturpuram', x: 75, y: 25, risk: 'Low', alerts: 0 },
+  { id: 'Zone 4 - Ennore', name: 'Zone 4 — Ennore & Manali Coastal', x: 80, y: 45, risk: 'Low', alerts: 0 },
 ];
 
 export const INITIAL_LOCATION_ALERTS: LocationAlert[] = [
   {
     id: 'ALERT-GEO-01',
-    sector: 'Sector B2',
-    title: 'Flash Flood Immediate Evacuation Order — River Basin',
+    sector: 'Zone 13 - Velachery',
+    title: 'Greater Chennai Corporation Immediate Flood Advisory — Velachery Lake Basin',
     hazard: 'Flood',
     urgency: 'EVACUATION',
     radiusKm: 3.5,
-    affectedPopulation: 14500,
+    affectedPopulation: 24500,
     status: 'ACTIVE',
     issuedAt: '10:45 AM',
-    safeRoute: 'Proceed via Road 3 (Elevated North Ridge Bypass). DO NOT use Road 2 (submerged).',
-    evacuationShelter: 'Shelter C — Valley West Pavilion (Capacity: 275 beds available)',
-    shelterCapacityRemaining: 275,
+    safeRoute: 'Use Vijaya Nagar Elevated Flyover toward Guindy / GST Road. AVOID Velachery 100 Feet Road & Ram Nagar Subway (submerged 3ft).',
+    evacuationShelter: 'Guru Nanak College Indoor Stadium Camp (Capacity: 335 beds available)',
+    shelterCapacityRemaining: 335,
     deliveryChannels: ['CELL_BROADCAST', 'MOBILE_APP', 'DIGITAL_SIREN', 'SMS_GEOFENCE'],
-    deliveryReach: 98,
+    deliveryReach: 99,
     instructions: [
-      'Move immediately to higher ground or second-floor elevation if trapped.',
-      'De-energize main electrical breaker if water enters building perimeter.',
-      'Bring vital medications, identification, and flashlights.',
-      'Amphibious Swiftwater rescue units are patrolling the perimeter.'
+      'Move immediately to first-floor elevation or high ground if trapped by localized lake water.',
+      'Switch off main electrical breaker if water enters compound to prevent TANGEDCO arcing.',
+      'Keep mobile phones, identity cards (Aadhaar), and emergency medications sealed in plastic bags.',
+      'NDRF inflatable boats and TNFRS swiftwater units are patrolling Ram Nagar & AGS Colony.'
     ]
   },
   {
     id: 'ALERT-GEO-02',
-    sector: 'Sector A1',
-    title: 'Substation Electrical Arc Hazard — 500m Safety Perimeter',
+    sector: 'Zone 5 - Royapuram',
+    title: 'TANGEDCO Substation Smoke & Electrical Arc Advisory',
     hazard: 'Electrical',
     urgency: 'WARNING',
     radiusKm: 1.8,
-    affectedPopulation: 3800,
+    affectedPopulation: 4200,
     status: 'ACTIVE',
     issuedAt: '10:20 AM',
-    safeRoute: 'Eastbound detour around Industrial Depot perimeter via Avenue 4.',
-    evacuationShelter: 'Shelter A — North Community Center',
-    shelterCapacityRemaining: 70,
+    safeRoute: 'Northbound traffic detour via Manali New Town Expressway towards Madhavaram.',
+    evacuationShelter: 'Royapuram Government Higher Secondary School Camp',
+    shelterCapacityRemaining: 110,
     deliveryChannels: ['CELL_BROADCAST', 'MOBILE_APP', 'SMS_GEOFENCE'],
     deliveryReach: 94,
     instructions: [
-      'Remain indoors and seal windows against chemical smoke fumes.',
-      'Avoid downed power lines — treat all cables as live.',
-      'Emergency vehicles actively responding on Avenue 2.'
+      'Remain indoors and close windows against dense transformer smoke.',
+      'Treat all downed electrical wires and water puddles near power poles as lethal.',
+      'Emergency fire tenders actively operating on Ennore Expressway.'
     ]
   },
   {
     id: 'ALERT-GEO-03',
-    sector: 'Sector C4',
-    title: 'Highway Bypass Impassable — Multi-Vehicle Incident',
+    sector: 'Zone 14 - OMR',
+    title: 'OMR Express Corridor Waterlogging & Pileup Advisory',
     hazard: 'Accident',
     urgency: 'ADVISORY',
-    radiusKm: 2.2,
-    affectedPopulation: 6200,
+    radiusKm: 2.5,
+    affectedPopulation: 8500,
     status: 'ACTIVE',
     issuedAt: '10:30 AM',
-    safeRoute: 'Use Southbound Parkway Exit 11.',
-    evacuationShelter: 'Shelter B — East High Gymnasium',
-    shelterCapacityRemaining: 240,
+    safeRoute: 'Use East Coast Road (ECR) via Akkarai as alternate high-ground corridor.',
+    evacuationShelter: 'Sholinganallur Community Hall Relief Camp',
+    shelterCapacityRemaining: 210,
     deliveryChannels: ['MOBILE_APP', 'SMS_GEOFENCE'],
-    deliveryReach: 91,
+    deliveryReach: 92,
     instructions: [
-      'Expect delays of 45+ minutes; yield right-of-way to EMS ambulances.',
-      'Do not stop on active shoulder lanes.'
+      'Expect severe delays near Sholinganallur junction; maintain clear lane for 108 ambulances.',
+      'Do not attempt crossing waterlogged medians.'
     ]
   }
 ];
@@ -492,72 +492,72 @@ export const INITIAL_LOCATION_ALERTS: LocationAlert[] = [
 export const INITIAL_VOLUNTEER_REQUIREMENTS: VolunteerRequirement[] = [
   {
     id: 'REQ-VOL-01',
-    title: 'River Embankment Sandbagging & Flood Barrier Reinforcement',
-    sector: 'Sector B2',
+    title: 'Velachery Lake Embankment Sandbagging & Water Deflection',
+    sector: 'Zone 13 - Velachery',
     urgency: 'Immediate',
     skillsRequired: ['Physical Labor', 'Sandbagging', 'Logistics Support'],
-    neededCount: 20,
-    assignedCount: 14,
+    neededCount: 25,
+    assignedCount: 18,
     status: 'IN_PROGRESS',
-    leadContact: 'Volunteer Lead Marcus (Ch. 5)',
-    locationDetails: 'River Road Staging Point, near North Valley Bridge',
-    description: 'Stacking sandbags to prevent flood breach threatening 85 residential homes along the lower basin.',
+    leadContact: 'Coord. Senthil Nathan (GCC Ward 177 / +91 98401 23456)',
+    locationDetails: 'Velachery Lake Bund Staging Area, near Ram Nagar Entrance',
+    description: 'Stacking sandbags to deflect overflowing floodwaters threatening residential homes along Ram Nagar and AGS Colony.',
     postedAt: '10:35 AM'
   },
   {
     id: 'REQ-VOL-02',
-    title: 'Shelter A First-Aid Triage & Medical Supply Assisting',
-    sector: 'Sector B1',
+    title: 'Guru Nanak College Relief Camp Medical & Triage Assisting',
+    sector: 'Zone 13 - Velachery',
     urgency: 'High',
     skillsRequired: ['First-Aid / CPR', 'Nursing / EMT', 'Patient Check-In'],
-    neededCount: 8,
-    assignedCount: 6,
+    neededCount: 10,
+    assignedCount: 7,
     status: 'IN_PROGRESS',
-    leadContact: 'Dr. Evelyn Ward (Triage Desk)',
-    locationDetails: 'Shelter A Clinic Annex — North Community Center',
-    description: 'Assisting paramedics with intake triage, vitals screening, and medication distribution for displaced elderly residents.',
+    leadContact: 'Dr. K. Swaminathan (108 EMS Medical Volunteer)',
+    locationDetails: 'Guru Nanak College Indoor Stadium Clinic Desk',
+    description: 'Assisting 108 paramedics and GCC doctors with intake triage, vitals screening, and distributing BP/diabetes medications to displaced seniors.',
     postedAt: '10:40 AM'
   },
   {
     id: 'REQ-VOL-03',
-    title: 'Emergency Food, Clean Water & Blanket Distribution Squad',
-    sector: 'Sector C2',
+    title: 'Chennai Cares Food Packet & Potable Water Distribution Squad',
+    sector: 'Zone 13 - Velachery',
     urgency: 'Medium',
     skillsRequired: ['Food Service', 'Inventory', 'General Help'],
-    neededCount: 12,
-    assignedCount: 8,
+    neededCount: 15,
+    assignedCount: 10,
     status: 'OPEN',
-    leadContact: 'Coordinator Sarah Jenkins',
-    locationDetails: 'Shelter B Distribution Hub — East High Gym',
-    description: 'Unloading pallet trucks and packaging hot ration packs and potable water containers for evacuation arrivals.',
+    leadContact: 'Coordinator Priya Natarajan (+91 94440 88990)',
+    locationDetails: 'Velachery MRTS Station Ground Floor Distribution Point',
+    description: 'Packaging warm sambar rice packs, bread, biscuits, and 20L water cans for rescue boat distribution in waterlogged interior streets.',
     postedAt: '10:42 AM'
   },
   {
     id: 'REQ-VOL-04',
-    title: 'Elderly & Mobility-Impaired Evacuation Escort Team',
-    sector: 'Sector B2',
+    title: 'Elderly & Differently-Abled Boat Escort Team',
+    sector: 'Zone 13 - Velachery',
     urgency: 'Immediate',
-    skillsRequired: ['Mobility Care', '4x4 Vehicle Driver', 'Bilingual Support'],
-    neededCount: 10,
-    assignedCount: 5,
+    skillsRequired: ['Mobility Care', '4x4 / Boat Assistance', 'Tamil / English Support'],
+    neededCount: 12,
+    assignedCount: 6,
     status: 'OPEN',
-    leadContact: 'Coord. Miller (Command Dispatch)',
-    locationDetails: 'Valley West Crossing & Elmcrest Apartments',
-    description: 'Accompanying vulnerable residents from ground-floor homes to elevated transport shuttles.',
+    leadContact: 'Inspector R. Kumar (NDRF Liaison / 112 Dispatch)',
+    locationDetails: 'AGS Colony 3rd Cross Street & Ram Nagar High Gate',
+    description: 'Assisting rescue boats safely transfer bedridden seniors, infants, and people with disabilities from flooded porches to dry shelters.',
     postedAt: '10:48 AM'
   },
   {
     id: 'REQ-VOL-05',
-    title: 'Amateur Radio & Backup Mesh Communications Relay',
-    sector: 'Sector A2',
+    title: 'Amateur Radio & VHF Emergency Relay (Chennai Amateur Radio Society)',
+    sector: 'Zone 8 - Anna Nagar',
     urgency: 'High',
     skillsRequired: ['Ham Radio / Comms', 'Technical Setup'],
-    neededCount: 4,
-    assignedCount: 3,
+    neededCount: 5,
+    assignedCount: 4,
     status: 'IN_PROGRESS',
-    leadContact: 'Radio Operator Dave (KD9RES)',
-    locationDetails: 'North Ridge Lookout Relay Post',
-    description: 'Maintaining packet radio relays between isolated Sector B2 civil defense posts and the main command center.',
+    leadContact: 'Radio Operator Balaji (VU2RES / CARS)',
+    locationDetails: 'Ripon Building Central Disaster Control Relay Post',
+    description: 'Maintaining backup VHF/UHF radio mesh between isolated Velachery flood relief posts and Greater Chennai Corporation central command.',
     postedAt: '10:25 AM'
   }
 ];
@@ -565,65 +565,65 @@ export const INITIAL_VOLUNTEER_REQUIREMENTS: VolunteerRequirement[] = [
 export const INITIAL_VOLUNTEER_MEMBERS: VolunteerMember[] = [
   {
     id: 'VOL-101',
-    name: 'David Chen',
-    skills: ['First-Aid / CPR', 'Swiftwater Navigation'],
+    name: 'K. Karthik',
+    skills: ['First-Aid / CPR', 'Swiftwater Inflatable Boat Navigation'],
     status: 'ASSIGNED',
-    sector: 'Sector B2',
-    contact: '+1 (555) 234-8901',
+    sector: 'Zone 13 - Velachery',
+    contact: '+91 98401 23456',
     assignedRequirementId: 'REQ-VOL-01',
     checkInTime: '10:38 AM',
-    badges: ['Certified Rescuer', '50+ Volunteer Hours']
+    badges: ['Certified Rescuer', 'GCC Volunteer Corps']
   },
   {
     id: 'VOL-102',
-    name: 'Maria Santos',
-    skills: ['Nursing / EMT', 'First-Aid / CPR', 'Bilingual (ES/EN)'],
+    name: 'Dr. Ananya Sundaram',
+    skills: ['Nursing / EMT', 'First-Aid / CPR', 'Tamil / English'],
     status: 'ASSIGNED',
-    sector: 'Sector B1',
-    contact: '+1 (555) 345-9012',
+    sector: 'Zone 13 - Velachery',
+    contact: '+91 94440 34567',
     assignedRequirementId: 'REQ-VOL-02',
     checkInTime: '10:42 AM',
-    badges: ['Medical Lead', 'Red Cross Certified']
+    badges: ['Medical Lead', 'Red Cross Tamil Nadu']
   },
   {
     id: 'VOL-103',
-    name: 'James K. Wilson',
+    name: 'V. Murugan',
     skills: ['4x4 Offroad Driver', 'Physical Labor', 'Sandbagging'],
     status: 'ON_SCENE',
-    sector: 'Sector B2',
-    contact: '+1 (555) 456-0123',
+    sector: 'Zone 13 - Velachery',
+    contact: '+91 98412 45678',
     assignedRequirementId: 'REQ-VOL-01',
     checkInTime: '10:40 AM',
-    badges: ['Heavy Equipment Driver']
+    badges: ['Heavy Tractor Driver']
   },
   {
     id: 'VOL-104',
-    name: 'Amina Al-Mansoor',
-    skills: ['Logistics Support', 'Food Service', 'Inventory'],
+    name: 'Fatima Begum',
+    skills: ['Logistics Support', 'Food Service', 'Community Outreach'],
     status: 'READY',
-    sector: 'Sector C2',
-    contact: '+1 (555) 567-1234',
-    badges: ['Shelter Coordinator']
+    sector: 'Zone 13 - Velachery',
+    contact: '+91 99403 56789',
+    badges: ['GCC Relief Camp Volunteer']
   },
   {
     id: 'VOL-105',
-    name: 'Robert Taylor',
-    skills: ['Ham Radio / Comms', 'Technical Setup'],
+    name: 'T. Balasubramanian',
+    skills: ['Ham Radio / Comms', 'VHF / UHF Emergency Setup'],
     status: 'ASSIGNED',
-    sector: 'Sector A2',
-    contact: '+1 (555) 678-2345',
+    sector: 'Zone 8 - Anna Nagar',
+    contact: '+91 94445 67890',
     assignedRequirementId: 'REQ-VOL-05',
     checkInTime: '10:30 AM',
-    badges: ['FCC Radio License']
+    badges: ['Licensed Amateur Radio Operator VU2']
   },
   {
     id: 'VOL-106',
-    name: 'Chloe Bennett',
+    name: 'R. Divya',
     skills: ['Mobility Care', 'First-Aid / CPR'],
     status: 'READY',
-    sector: 'Sector B2',
-    contact: '+1 (555) 789-3456',
-    badges: ['Youth Corps Volunteer']
+    sector: 'Zone 13 - Velachery',
+    contact: '+91 98844 78901',
+    badges: ['Youth Red Cross Chennai']
   }
 ];
 
@@ -631,10 +631,10 @@ export const INITIAL_COMMUNITY_MESSAGES: CommunityMessage[] = [
   {
     id: 'MSG-01',
     incidentId: 'INC-0241',
-    sector: 'Sector B2',
+    sector: 'Zone 13 - Velachery',
     senderType: 'Citizen',
-    senderName: 'Sarah Jenkins (Civic Resident)',
-    text: 'Water is now covering our front porch on Elm Street. We have 2 elderly family members on the 2nd floor.',
+    senderName: 'S. Meenakshi (Ram Nagar Resident)',
+    text: 'Floodwater has now entered our ground-floor verandah on Ram Nagar 3rd Main. We have 2 senior citizens on the 1st floor.',
     timestamp: '10:43 AM',
     status: 'Read',
     isUrgent: true
@@ -642,38 +642,38 @@ export const INITIAL_COMMUNITY_MESSAGES: CommunityMessage[] = [
   {
     id: 'MSG-02',
     incidentId: 'INC-0241',
-    sector: 'Sector B2',
+    sector: 'Zone 13 - Velachery',
     senderType: 'Dispatcher',
-    senderName: 'Coord. Miller (RESQER Dispatch)',
-    text: 'Rescue Team 04 has your coordinates. High-clearance boat is en route via Road 3. Stay calm on the upper floor.',
+    senderName: 'GCC Disaster Control (1913 / 112 Dispatch)',
+    text: 'NDRF & TNFRS Inflatable Rescue Team 04 has your GPS coordinates. Inflatable boat entering Ram Nagar via Velachery Bypass. Stay safe on the upper floor.',
     timestamp: '10:45 AM',
     status: 'Delivered'
   },
   {
     id: 'MSG-03',
     incidentId: 'INC-0241',
-    sector: 'Sector B2',
+    sector: 'Zone 13 - Velachery',
     senderType: 'Responder',
-    senderName: 'Rescue Lead Larson (Team 04)',
-    text: 'Approaching Elm Street junction now. Please wave a bright cloth or phone flashlight from the window if possible.',
+    senderName: 'Sub-Inspector M. Selvam (NDRF / TNFRS Unit 04)',
+    text: 'Entering Ram Nagar 3rd Main junction now with rescue dinghy. Please wave a bright cloth or phone torchlight from the balcony.',
     timestamp: '10:48 AM',
     status: 'Sent'
   },
   {
     id: 'MSG-04',
-    sector: 'Sector B2',
+    sector: 'Zone 13 - Velachery',
     senderType: 'Dispatcher',
-    senderName: 'Emergency Broadcast Net',
-    text: 'COMMUNITY ADVISORY: Power to Sector B2 low-lying grid will be isolated in 15 min to prevent arcing. Turn off gas main.',
+    senderName: 'GCC Emergency Broadcast (1913)',
+    text: 'COMMUNITY ADVISORY: TANGEDCO is isolating the power feeder in Velachery Ram Nagar & AGS Colony to prevent electrocution. Disconnect ground-level appliances.',
     timestamp: '10:49 AM',
     status: 'Delivered'
   },
   {
     id: 'MSG-05',
-    sector: 'Sector B2',
+    sector: 'Zone 13 - Velachery',
     senderType: 'Citizen',
-    senderName: 'Carlos Ramirez',
-    text: 'Neighbors have gathered at the community hall high stairs. Everyone is safe here, waiting for transport shuttle.',
+    senderName: 'K. Vignesh',
+    text: 'Neighbors have gathered at Guru Nanak College shelter entrance. Relief workers provided warm food packets and dry blankets.',
     timestamp: '10:50 AM',
     status: 'Read'
   }
@@ -682,43 +682,44 @@ export const INITIAL_COMMUNITY_MESSAGES: CommunityMessage[] = [
 export const INITIAL_SAFETY_CHECKINS: SafetyCheckIn[] = [
   {
     id: 'CHK-01',
-    citizenName: 'The Peterson Family',
-    sector: 'Sector B2',
+    citizenName: 'The Sundaram Family',
+    sector: 'Zone 13 - Velachery',
     status: 'SAFE',
     peopleCount: 4,
-    notes: 'Evacuated safely to high ground at North Ridge. With family dog.',
+    notes: 'Safely evacuated via Vijaya Nagar flyover to Guru Nanak College relief camp with family and pet dog.',
     timestamp: '10:41 AM',
-    contact: '+1 (555) 890-1234'
+    contact: '+91 98401 89012'
   },
   {
     id: 'CHK-02',
-    citizenName: 'Arthur Henderson (Age 78)',
-    sector: 'Sector B2',
+    citizenName: 'Ramanathan K. (Age 81)',
+    sector: 'Zone 13 - Velachery',
     status: 'NEEDS_ASSISTANCE',
     peopleCount: 1,
-    notes: 'Wheelchair bound. Second floor of 404 Elmcrest. Needs ramp or lift assist.',
+    notes: 'Wheelchair user at 14 Ram Nagar 2nd Street. Water at door sill. Needs rescue boat ramp assistance.',
     timestamp: '10:44 AM',
-    contact: '+1 (555) 901-2345'
+    contact: '+91 94440 90123'
   },
   {
     id: 'CHK-03',
-    citizenName: 'Maya Lin & Roommates',
-    sector: 'Sector B2',
+    citizenName: 'Priya & Roommates (TCS Siruseri)',
+    sector: 'Zone 14 - OMR',
     status: 'EVACUATED',
     peopleCount: 3,
-    notes: 'Arrived at Shelter C West Pavilion. Checked in with reception desk.',
+    notes: 'Reached Sholinganallur Community Hall shelter safely. Checked in with GCC desk.',
     timestamp: '10:47 AM',
-    contact: '+1 (555) 012-3456'
+    contact: '+91 98840 01234'
   },
   {
     id: 'CHK-04',
-    citizenName: 'St. Mary Daycare Group',
-    sector: 'Sector B2',
+    citizenName: 'Little Angels Creche Group',
+    sector: 'Zone 13 - Velachery',
     status: 'SAFE',
     peopleCount: 16,
-    notes: '14 children and 2 teachers safely transported to Valley Elementary Upper Gymnasium.',
+    notes: '14 children and 2 teachers safely escorted by volunteers to upper auditorium at Gandhi Road.',
     timestamp: '10:49 AM',
-    contact: '+1 (555) 123-4567'
+    contact: '+91 98411 23456'
   }
 ];
+
 

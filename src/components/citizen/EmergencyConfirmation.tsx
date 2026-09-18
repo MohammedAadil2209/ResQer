@@ -8,7 +8,7 @@ export const EmergencyConfirmation: React.FC = () => {
 
   const incident = incidents.find(i => i.id === activeCitizenIncidentId) || {
     id: activeCitizenIncidentId || 'INC-0241',
-    sector: citizenDraft.locationSector || 'Sector B2',
+    sector: citizenDraft.locationSector || 'Zone 13 - Velachery',
     status: 'Coordinating'
   };
 
@@ -59,7 +59,7 @@ export const EmergencyConfirmation: React.FC = () => {
 
           <div className="p-3 rounded-lg bg-beige-100 text-[11px] text-stone-700 flex items-center gap-2 text-left font-medium">
             <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
-            <span>Responders in Sector B2 are reviewing this live operational signal. Keep your device powered on.</span>
+            <span>Responders in {incident.sector} are reviewing this live operational signal. Keep your device powered on.</span>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ export const EmergencyConfirmation: React.FC = () => {
             className="w-full py-3.5 rounded-xl font-semibold text-sm bg-white hover:bg-beige-50 text-stone-800 border-2 border-beige-300 active:scale-[0.99] flex items-center justify-center gap-2 transition-all shadow-sm"
           >
             <PhoneCall className="w-4 h-4 text-red-600" />
-            <span>CALL EMERGENCY SERVICES</span>
+            <span>CALL CHENNAI EMERGENCY HELPLINES</span>
           </button>
 
           <button
@@ -96,7 +96,7 @@ export const EmergencyConfirmation: React.FC = () => {
 
       {/* Safety Notice */}
       <div className="mt-6 text-center text-xs text-stone-500 font-medium">
-        Demo state: No real world sirens are dispatched. Simulated emergency signal.
+        Simulation Active: Geofenced to Chennai Metropolitan Region (GCC & TNFRS dispatch).
       </div>
 
       {/* Direct Call Modal / Simulator */}
@@ -108,24 +108,36 @@ export const EmergencyConfirmation: React.FC = () => {
             </div>
 
             <h2 className="text-xl font-bold text-stone-900">
-              Direct Emergency Dispatch
+              Chennai Emergency Helplines
             </h2>
             <p className="text-xs text-stone-600 leading-relaxed font-medium">
-              If life-threatening conditions escalate immediately, you can connect directly to national emergency lines:
+              If life-threatening conditions escalate immediately, connect directly to official emergency and disaster helplines:
             </p>
 
             <div className="space-y-2 pt-2">
               <a
-                href="tel:911"
-                className="block w-full py-3 rounded-xl font-bold text-base bg-red-600 hover:bg-red-700 text-white shadow-md text-center border border-red-700"
+                href="tel:112"
+                className="block w-full py-2.5 px-3 rounded-xl font-bold text-sm bg-red-600 hover:bg-red-700 text-white shadow-md text-center border border-red-700"
               >
-                Call 911 (US / Canada)
+                Call 112 (National ERSS — Police / Fire)
               </a>
               <a
-                href="tel:112"
-                className="block w-full py-3 rounded-xl font-bold text-base bg-stone-800 hover:bg-stone-900 text-white border border-stone-700 text-center"
+                href="tel:108"
+                className="block w-full py-2.5 px-3 rounded-xl font-bold text-sm bg-emerald-700 hover:bg-emerald-800 text-white text-center shadow-sm"
               >
-                Call 112 (EU / International)
+                Call 108 (Tamil Nadu Ambulance & Trauma)
+              </a>
+              <a
+                href="tel:1913"
+                className="block w-full py-2.5 px-3 rounded-xl font-bold text-sm bg-stone-800 hover:bg-stone-900 text-white border border-stone-700 text-center"
+              >
+                Call 1913 (GCC Chennai Flood & Disaster)
+              </a>
+              <a
+                href="tel:1077"
+                className="block w-full py-2 px-3 rounded-xl font-semibold text-xs bg-beige-100 hover:bg-beige-200 text-stone-800 border border-beige-300 text-center"
+              >
+                Call 1077 (District Disaster Control Room)
               </a>
             </div>
 

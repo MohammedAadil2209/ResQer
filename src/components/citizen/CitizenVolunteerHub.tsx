@@ -20,6 +20,7 @@ export const CitizenVolunteerHub: React.FC = () => {
     joinVolunteerRequirement, 
     registerVolunteer, 
     setCitizenView, 
+    citizenDraft,
     addToast 
   } = useEmergency();
 
@@ -63,7 +64,7 @@ export const CitizenVolunteerHub: React.FC = () => {
 
     registerVolunteer({
       name: volunteerName,
-      sector: 'Sector B2',
+      sector: citizenDraft.locationSector || 'Zone 13 - Velachery',
       skills: selectedSkills,
       contact: volunteerPhone || 'In-App Direct',
       badges: ['Community Responder']

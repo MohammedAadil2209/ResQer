@@ -38,7 +38,7 @@ export const CitizenCheckInCommsView: React.FC = () => {
   // Chat message form
   const [chatMessage, setChatMessage] = useState('');
 
-  const currentSector = citizenDraft.locationSector || 'Sector B2';
+  const currentSector = citizenDraft.locationSector || 'Zone 13 - Velachery';
   const sectorMessages = communityMessages.filter(m => m.sector === currentSector);
 
   const handleSafetySubmit = (e: React.FormEvent) => {

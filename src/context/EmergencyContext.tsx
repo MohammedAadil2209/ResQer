@@ -41,40 +41,40 @@ export interface ToastMessage {
 
 const DEFAULT_RESPONSE_PLANS: ResponsePlan[] = [
   {
-    id: 'PLAN-B2-FLOOD',
-    title: 'Sector B2 Flood Evacuation Playbook',
-    sector: 'Sector B2',
+    id: 'PLAN-VELACHERY-FLOOD',
+    title: 'Zone 13 Velachery & Adyar Basin Flood Playbook',
+    sector: 'Zone 13 - Velachery',
     status: 'Recommended',
-    description: 'Comprehensive hydrological containment and mass civilian redirection avoiding inundated Road 2.',
+    description: 'Greater Chennai Corporation hydrological containment and mass civilian redirection avoiding submerged Velachery 100 Feet Road.',
     keyActions: [
-      'Divert emergency and civilian transit from Road 2 to Road 3 (Elevated North Ridge Bypass)',
-      'Deploy North Valley Elementary school emergency evacuation corridor',
-      'Pre-emptively activate Shelter C to alleviate 91% capacity surge on Shelter A',
-      'Stage Amphibious Swiftwater 02 team at river basin bottleneck'
+      'Divert emergency and civilian transit from submerged 100 Feet Road to elevated Vijaya Nagar Flyover & GST Road',
+      'Deploy Guru Nanak College campus emergency relief corridor and community kitchen',
+      'Pre-emptively activate Guru Nanak Indoor Stadium relief camp to alleviate 73% surge on Gandhi Rd Hall',
+      'Stage NDRF 04 Battalion & TNFRS inflatable boats at Velachery MRTS station'
     ]
   },
   {
-    id: 'PLAN-A1-POWER',
-    title: 'Industrial Power Grid Isolation Protocol',
-    sector: 'Sector A1',
+    id: 'PLAN-MANALI-POWER',
+    title: 'North Chennai TANGEDCO Power Grid Isolation Protocol',
+    sector: 'Zone 5 - Royapuram',
     status: 'Draft',
-    description: 'De-energize high-voltage substation feeds to prevent catastrophic chain arc fires.',
+    description: 'De-energize high-voltage substation feeds to prevent catastrophic chain arc fires near Ennore Highway.',
     keyActions: [
-      'Isolate Substation 4 feeder switches remotely',
-      'Notify Industrial Depot perimeter personnel to clear 35ft buffer zone',
-      'Deploy Mobile Generator 03 to St. Jude Trauma Annex'
+      'Isolate Manali 230kV substation feeder switches remotely via TANGEDCO SCADA',
+      'Enforce 400m perimeter safety buffer zone along Ennore Expressway',
+      'Deploy mobile emergency generator to Royapuram Govt Hospital Trauma Annex'
     ]
   },
   {
-    id: 'PLAN-CITY-MED',
-    title: 'Metropolitan Mass-Casualty Trauma Distribution',
-    sector: 'Metropolitan',
+    id: 'PLAN-CHENNAI-TRAUMA',
+    title: 'Chennai Metropolitan Mass-Casualty Trauma Distribution',
+    sector: 'Metropolitan Chennai',
     status: 'Draft',
-    description: 'Regional balancing of critical trauma admissions between St. Jude and Valley General.',
+    description: 'Regional balancing of critical trauma admissions between Rajiv Gandhi Govt General Hospital (RGGGH) and Omandurar Government Estate Hospital.',
     keyActions: [
-      'Establish triage staging tents at Civic Square',
-      'Authorize mutual-aid emergency airlift vectors',
-      'Re-route non-critical ambulance transports to regional secondary clinics'
+      'Establish 108 triage staging tents at Chennai Central and Saidapet hubs',
+      'Authorize TNFRS amphibious craft for water-locked patient transport',
+      'Re-route non-critical ambulance transports to regional peripheral hospitals (Kilpauk & Royapettah)'
     ]
   }
 ];
@@ -209,10 +209,10 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
   // Citizen Draft
   const [citizenDraft, setCitizenDraft] = useState<CitizenDraftReport>({
     hazard: 'Flood',
-    locationSector: 'Sector B2',
+    locationSector: 'Zone 13 - Velachery',
     targetPerson: 'Multiple people',
     peopleCount: 3,
-    details: 'Elderly neighbors need help on second floor; water in driveway.'
+    details: 'Elderly family members in Ram Nagar need boat evacuation assistance; flood water entering ground floor.'
   });
 
   // Signals
@@ -277,7 +277,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
         priority: 'HIGH',
         title: 'Pre-position Rescue Team 02 Amphibious',
         actionText: 'DEPLOY SWIFTWATER',
-        description: 'Water surge +20% will cut off secondary bridge on Sector B2 Northern Ridge.'
+        description: 'Water surge +20% will cut off secondary bridge on Zone 13 Velachery Lake embankment.'
       },
       {
         priority: 'MEDIUM',
@@ -488,7 +488,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
     const volId = registerVolunteer({
       name: volunteerName,
       skills,
-      sector: 'Sector B2',
+      sector: 'Zone 13 - Velachery',
       contact: 'Citizen App Direct',
       assignedRequirementId: requirementId,
       badges: ['Community Responder']
@@ -500,7 +500,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
     text: string, 
     senderType: CommunityMessage['senderType'] = 'Dispatcher', 
     senderName: string = 'Command Dispatcher', 
-    sector: string = 'Sector B2', 
+    sector: string = 'Zone 13 - Velachery', 
     incidentId?: string
   ) => {
     const newMsg: CommunityMessage = {
@@ -678,14 +678,14 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       title: `${finalDraft.hazard || 'Emergency'} Incident — ${finalDraft.locationSector}`,
       type: (finalDraft.hazard as any) || 'Flood',
       location: `${finalDraft.locationSector} (Reported via Citizen App)`,
-      sector: finalDraft.locationSector || 'Sector B2',
+      sector: finalDraft.locationSector || 'Zone 13 - Velachery',
       coordinates: { x: 57 + (Math.random() * 4 - 2), y: 44 + (Math.random() * 4 - 2) },
       severity: 'Critical',
       peopleAffected: finalDraft.peopleCount || 1,
       vulnerableCount: finalDraft.details.toLowerCase().includes('elder') ? 1 : 0,
       status: 'Active',
       reportedAt: nowTime,
-      assignedResponder: 'Rescue Team assigned',
+      assignedResponder: 'NDRF & TNFRS Rescue Unit 04',
       roadAccess: 'Restricted',
       shelterLoad: 72,
       hospitalLoad: 68,
@@ -694,8 +694,8 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       timeline: [
         { time: nowTime, label: 'Emergency received', description: 'Citizen signal logged via secure channel.', completed: true },
         { time: nowTime, label: 'Location confirmed', description: `${finalDraft.locationSector} geofence verified.`, completed: true },
-        { time: nowTime, label: 'Responder assigned', description: 'Rescue Team allocated.', completed: true },
-        { time: 'In progress', label: 'Response underway', description: 'Coordinated rescue unit en route.', completed: false }
+        { time: nowTime, label: 'Responder assigned', description: 'NDRF & TNFRS rescue unit allocated.', completed: true },
+        { time: 'In progress', label: 'Response underway', description: 'Coordinated rescue boat unit en route.', completed: false }
       ]
     };
 
@@ -744,14 +744,14 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       title: `${aiData.hazard} Emergency — ${aiData.location}`,
       type: (aiData.hazard as any) || 'Flood',
       location: aiData.location,
-      sector: 'Sector B2',
+      sector: 'Zone 13 - Velachery',
       coordinates: { x: 58, y: 44 },
       severity: (aiData.severity as any) || 'Critical',
       peopleAffected: aiData.people || 20,
       vulnerableCount: 15,
       status: 'Active',
       reportedAt: nowTime,
-      assignedResponder: 'Tactical Rescue Team 04',
+      assignedResponder: 'NDRF & TNFRS Rescue Unit 04',
       roadAccess: 'Restricted',
       shelterLoad: 72,
       hospitalLoad: 68,
@@ -760,7 +760,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       timeline: [
         { time: nowTime, label: 'Voice emergency received', description: 'Acoustic waveform ingested.', completed: true },
         { time: nowTime, label: 'AI Structured Understanding', description: `Identified ${aiData.hazard} with high vulnerability (${aiData.vulnerability}).`, completed: true },
-        { time: nowTime, label: 'Responder assigned', description: 'Tactical Rescue Team 04 dispatched.', completed: true },
+        { time: nowTime, label: 'Responder assigned', description: 'NDRF & TNFRS Rescue Unit 04 dispatched.', completed: true },
         { time: 'In progress', label: 'Response underway', description: 'Units mobilizing with watercraft.', completed: false }
       ]
     };
@@ -769,7 +769,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       id: `REP-VOX-${Date.now().toString().slice(-4)}`,
       timestamp: nowTime,
       source: 'VoxRescue',
-      sector: 'Sector B2',
+      sector: 'Zone 13 - Velachery',
       content: `Voice report: ${aiData.notes} (${aiData.hazard}, ~${aiData.people} people)`,
       hazard: (aiData.hazard as any) || 'Flood',
       verified: true
@@ -802,7 +802,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       id: `REP-SILENT-${Date.now().toString().slice(-4)}`,
       timestamp: nowTime,
       source: 'Silent',
-      sector: 'Sector B2',
+      sector: 'Zone 13 - Velachery',
       content: 'Silent 1-click distress alert beacon activated with high telemetry confidence.',
       hazard: 'Medical',
       verified: true
@@ -813,7 +813,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
     addNotification({
       type: 'CRITICAL',
       title: 'Silent Emergency Signal Received',
-      message: 'Silent distress beacon activated in Sector B2. Priority responder notification initiated.',
+      message: 'Silent distress beacon activated in Zone 13 - Velachery. Dispatched to ERSS 112 / 108 and NDRF rescue team.',
       incidentId: newIncidentId
     });
 
@@ -832,9 +832,9 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
 
       let roadStatus = 'Normal';
       if (scenarioParams.waterLevelDelta >= 35 || scenarioParams.roadAvailability <= 50) {
-        roadStatus = 'Severely Restricted (Road 1 & 2 Impassable)';
+        roadStatus = 'Severely Restricted (100 Feet Rd & Inner Ring Rd Impassable)';
       } else if (scenarioParams.waterLevelDelta >= 15 || scenarioParams.roadAvailability <= 80) {
-        roadStatus = 'Restricted (Road 2 Impassable, Road 1 Congested)';
+        roadStatus = 'Restricted (100 Feet Rd Impassable, Vijaya Nagar Flyover Congested)';
       }
 
       const projectedHosp = projectedOccupancy > 85 ? 'Critical (92% surge load)' : projectedOccupancy > 70 ? 'High (80% surge load)' : 'Moderate (64%)';
@@ -843,21 +843,21 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       const recommendations: ScenarioSimulationResult['recommendations'] = [
         {
           priority: 'HIGH',
-          title: projectedOccupancy > 85 ? 'Activate Secondary Shelter C Immediately' : 'Prepare Shelter C Reserve',
-          actionText: 'ACTIVATE SHELTER C',
-          description: `Projected occupancy reaches ${projectedOccupancy}% with incoming displaced residents.`
+          title: projectedOccupancy > 85 ? 'Activate Guru Nanak Indoor Stadium Shelter Pre-Emptively' : 'Prepare Guru Nanak Hall Reserve',
+          actionText: 'ACTIVATE RELIEF SHELTER',
+          description: `Projected occupancy reaches ${projectedOccupancy}% with incoming displaced residents from Velachery Lake perimeter.`
         },
         {
           priority: 'HIGH',
-          title: 'Pre-position Amphibious Rescue Unit 02',
+          title: 'Pre-position NDRF & TNFRS Amphibious Unit 04',
           actionText: 'PRE-POSITION UNIT',
-          description: `Water surge (+${scenarioParams.waterLevelDelta}%) threatens Sector B2 northern embankment.`
+          description: `Water surge (+${scenarioParams.waterLevelDelta}%) threatens Zone 13 Velachery Ram Nagar low-lying pockets.`
         },
         {
           priority: 'MEDIUM',
-          title: 'Designate Alternate High-Ground Evacuation Corridor',
+          title: 'Designate Elevated GST Road & Vijaya Nagar Evacuation Corridor',
           actionText: 'PREPARE ROUTE',
-          description: 'Reroute civilians via Road 3 to avoid rising tributary choke-points.'
+          description: 'Reroute civilians via Vijaya Nagar Flyover to avoid flooded Velachery main junction.'
         }
       ];
 
@@ -886,7 +886,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
   // Scripted Demo Mode runner
   const playDemo = useCallback(() => {
     setIsDemoPlaying(true);
-    addToast('Demo Mode activated: Flood Event — Sector B2', 'info');
+    addToast('Demo Mode activated: Monsoon Flood Event — Zone 13 Velachery, Chennai', 'info');
   }, [addToast]);
 
   const pauseDemo = useCallback(() => {
@@ -957,7 +957,7 @@ export const EmergencyProvider: React.FC<{ children: ReactNode }> = ({ children 
       case 10:
         setAppMode('command');
         setCommandView('overview');
-        assignResponderToIncident('INC-0241', 'Tactical Rescue Team 04');
+        assignResponderToIncident('INC-0241', 'NDRF & TNFRS Rescue Unit 04');
         break;
       case 11:
         setAppMode('command');

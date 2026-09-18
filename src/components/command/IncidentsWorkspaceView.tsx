@@ -42,7 +42,7 @@ export const IncidentsWorkspaceView: React.FC = () => {
   // Real-time Incident Form State
   const [newIncTitle, setNewIncTitle] = useState('');
   const [newIncType, setNewIncType] = useState<EmergencyHazard>('Flood');
-  const [newIncSector, setNewIncSector] = useState('Sector B2');
+  const [newIncSector, setNewIncSector] = useState('Zone 13 - Velachery');
   const [newIncSeverity, setNewIncSeverity] = useState<Incident['severity']>('Critical');
   const [newIncPriority, setNewIncPriority] = useState<IncidentPriority>('Critical');
   const [newIncPeople, setNewIncPeople] = useState(4);
@@ -324,7 +324,7 @@ export const IncidentsWorkspaceView: React.FC = () => {
             <div className="pt-2 border-t border-beige-200 space-y-2">
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
                 <button
-                  onClick={() => addToast('Medical airlift & trauma alert transmitted to St. Jude', 'info')}
+                  onClick={() => addToast('Emergency trauma alert transmitted to 108 & RGGGH Trauma Center', 'info')}
                   className="p-2.5 rounded-xl bg-beige-100 hover:bg-beige-200 text-stone-800 font-bold border border-beige-300 text-center transition-colors"
                 >
                   REQUEST MEDICAL
@@ -444,11 +444,11 @@ export const IncidentsWorkspaceView: React.FC = () => {
                     onChange={(e) => setNewIncSector(e.target.value)}
                     className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 font-medium outline-none focus:border-red-500"
                   >
-                    <option value="Sector B2">Sector B2</option>
-                    <option value="Sector A1">Sector A1</option>
-                    <option value="Sector C4">Sector C4</option>
-                    <option value="Sector D1">Sector D1</option>
-                    <option value="Sector B1">Sector B1</option>
+                    <option value="Zone 13 - Velachery">Zone 13 - Velachery</option>
+                    <option value="Zone 5 - Royapuram">Zone 5 - Royapuram</option>
+                    <option value="Zone 10 - Kodambakkam">Zone 10 - Kodambakkam</option>
+                    <option value="Zone 14 - Perungudi">Zone 14 - Perungudi</option>
+                    <option value="Zone 9 - Teynampet">Zone 9 - Teynampet</option>
                   </select>
                 </div>
 
@@ -538,10 +538,10 @@ export const IncidentsWorkspaceView: React.FC = () => {
             </p>
             <div className="space-y-1.5">
               {[
-                'Tactical Rescue Team 04',
-                'Amphibious Swiftwater 02',
-                'Trauma Ambulance 01',
-                'Mobile Generator Unit 03'
+                'NDRF & TNFRS Rescue Unit 04',
+                'TNFRS Inflatable Swiftwater 02',
+                '108 Advanced Life Support Trauma Unit',
+                'TANGEDCO Mobile Generator Unit 03'
               ].map((unitName) => (
                 <button
                   key={unitName}

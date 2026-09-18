@@ -36,19 +36,19 @@ export const VolunteerCoordinationView: React.FC = () => {
 
   // New requirement form state
   const [newReqTitle, setNewReqTitle] = useState('');
-  const [newReqSector, setNewReqSector] = useState('Sector B2');
+  const [newReqSector, setNewReqSector] = useState('Zone 13 - Velachery');
   const [newReqUrgency, setNewReqUrgency] = useState<VolunteerUrgency>('Immediate');
   const [newReqSkills, setNewReqSkills] = useState('Physical Labor, Sandbagging');
   const [newReqNeeded, setNewReqNeeded] = useState(10);
-  const [newReqLead, setNewReqLead] = useState('Volunteer Coordinator Miller');
-  const [newReqLocation, setNewReqLocation] = useState('River Road Staging Point');
+  const [newReqLead, setNewReqLead] = useState('GCC Volunteer Lead');
+  const [newReqLocation, setNewReqLocation] = useState('Velachery MRTS Staging Point');
   const [newReqDesc, setNewReqDesc] = useState('');
 
   // New volunteer registration state
   const [newVolName, setNewVolName] = useState('');
-  const [newVolSector, setNewVolSector] = useState('Sector B2');
+  const [newVolSector, setNewVolSector] = useState('Zone 13 - Velachery');
   const [newVolSkills, setNewVolSkills] = useState('First-Aid / CPR, Physical Labor');
-  const [newVolContact, setNewVolContact] = useState('+1 (555) 000-0000');
+  const [newVolContact, setNewVolContact] = useState('+91 94440 12345');
 
   const filteredRequirements = volunteerRequirements.filter(r => {
     if (filterSector !== 'all' && r.sector !== filterSector) return false;
@@ -487,11 +487,11 @@ export const VolunteerCoordinationView: React.FC = () => {
                     onChange={(e) => setNewReqSector(e.target.value)}
                     className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 outline-none focus:border-red-500 font-mono"
                   >
-                    <option value="Sector B2">Sector B2 (River Valley)</option>
-                    <option value="Sector B1">Sector B1 (Civic & Medical)</option>
-                    <option value="Sector C2">Sector C2 (East Shelter)</option>
-                    <option value="Sector A1">Sector A1 (Industrial)</option>
-                    <option value="Sector A2">Sector A2 (North Ridge)</option>
+                    <option value="Zone 13 - Velachery">Zone 13 - Velachery (Ram Nagar & Lake Basin)</option>
+                    <option value="Zone 5 - Royapuram">Zone 5 - Royapuram (Expressway & Harbour)</option>
+                    <option value="Zone 10 - Kodambakkam">Zone 10 - Kodambakkam (Jafferkhanpet & Adyar)</option>
+                    <option value="Zone 14 - Perungudi">Zone 14 - Perungudi (OMR IT Corridor)</option>
+                    <option value="Zone 9 - Teynampet">Zone 9 - Teynampet (Saidapet & Anna Salai)</option>
                   </select>
                 </div>
 
@@ -642,11 +642,11 @@ export const VolunteerCoordinationView: React.FC = () => {
                   onChange={(e) => setNewVolSector(e.target.value)}
                   className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 outline-none focus:border-red-500 font-mono"
                 >
-                  <option value="Sector B2">Sector B2 (River Valley)</option>
-                  <option value="Sector B1">Sector B1 (Civic & Medical)</option>
-                  <option value="Sector C2">Sector C2 (East Shelter)</option>
-                  <option value="Sector A1">Sector A1 (Industrial)</option>
-                  <option value="Sector A2">Sector A2 (North Ridge)</option>
+                  <option value="Zone 13 - Velachery">Zone 13 - Velachery (Ram Nagar & Lake Basin)</option>
+                  <option value="Zone 5 - Royapuram">Zone 5 - Royapuram (Expressway & Harbour)</option>
+                  <option value="Zone 10 - Kodambakkam">Zone 10 - Kodambakkam (Jafferkhanpet & Adyar)</option>
+                  <option value="Zone 14 - Perungudi">Zone 14 - Perungudi (OMR IT Corridor)</option>
+                  <option value="Zone 9 - Teynampet">Zone 9 - Teynampet (Saidapet & Anna Salai)</option>
                 </select>
               </div>
 

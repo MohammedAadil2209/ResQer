@@ -80,7 +80,7 @@ export const CommandHeader: React.FC<CommandHeaderProps> = ({ searchTerm, setSea
               <button
                 id="btn-header-play-demo"
                 onClick={playDemo}
-                title="Play scripted Sector B2 emergency demo"
+                title="Play scripted Chennai flood response demo"
                 className="px-2 py-1 rounded bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] flex items-center gap-1 transition-all"
               >
                 <Play className="w-3 h-3 fill-current" />

@@ -14,8 +14,8 @@ interface AIStructuredVoiceData {
 
 const SAMPLE_SPEECHES = [
   "There are elderly people trapped inside the school and the road is flooded.",
-  "Car crash at Sector C4 Mile 14 with smoke coming from the engine.",
-  "Transformer exploded on Industrial Depot Street with sparking lines."
+  "Car crash on OMR Expressway near Perungudi with smoke coming from the engine.",
+  "Transformer exploded near Royapuram harbour with sparking live wires."
 ];
 
 export const VoxRescueModal: React.FC = () => {
@@ -77,7 +77,7 @@ export const VoxRescueModal: React.FC = () => {
       if (spoken.toLowerCase().includes('school') || spoken.toLowerCase().includes('flood')) {
         setAiStructured({
           hazard: 'Flood',
-          location: 'School — Sector B2',
+          location: 'Guru Nanak College — Zone 13 - Velachery',
           people: 20,
           vulnerability: 'Elderly citizens & children',
           severity: 'High',
@@ -87,7 +87,7 @@ export const VoxRescueModal: React.FC = () => {
       } else if (spoken.toLowerCase().includes('crash') || spoken.toLowerCase().includes('car')) {
         setAiStructured({
           hazard: 'Accident',
-          location: 'Sector C4 — Mile 14',
+          location: 'OMR IT Corridor — Zone 14 - Perungudi',
           people: 4,
           vulnerability: 'Trapped passengers',
           severity: 'High',
@@ -97,7 +97,7 @@ export const VoxRescueModal: React.FC = () => {
       } else {
         setAiStructured({
           hazard: 'Emergency Incident',
-          location: 'Sector B2',
+          location: 'Zone 13 - Velachery',
           people: 2,
           vulnerability: 'Vulnerable residents',
           severity: 'High',

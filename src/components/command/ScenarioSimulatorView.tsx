@@ -254,7 +254,7 @@ export const ScenarioSimulatorView: React.FC = () => {
             </h3>
           </div>
           <span className="text-[11px] font-mono text-stone-600 font-medium">
-            Sector B2 Focal Radius
+            Zone 13 Velachery Basin Radius
           </span>
         </div>
 

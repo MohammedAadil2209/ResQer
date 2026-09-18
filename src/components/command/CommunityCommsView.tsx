@@ -30,7 +30,7 @@ export const CommunityCommsView: React.FC = () => {
   const [filterSector, setFilterSector] = useState<string>('all');
   const [activeTab, setActiveTab] = useState<'messages' | 'safety'>('messages');
   const [replyText, setReplyText] = useState('');
-  const [targetSector, setTargetSector] = useState('Sector B2');
+  const [targetSector, setTargetSector] = useState('Zone 13 - Velachery');
   const [senderRole, setSenderRole] = useState<'Dispatcher' | 'Responder'>('Dispatcher');
 
   const filteredMessages = communityMessages.filter(m => {
@@ -235,9 +235,9 @@ export const CommunityCommsView: React.FC = () => {
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {[
-                    'Rescue boat 04 is 3 minutes away. Wave a light from upper floor.',
-                    'Shelter C is open on Road 3 with 275 beds available.',
-                    'Power to Sector B2 isolated. Stay clear of electrical fixtures.'
+                    'TNFRS Rescue boat 04 is 3 minutes away. Signal with mobile flashlight from terrace.',
+                    'Relief Center at Guru Nanak College is open with hot meals and medical care.',
+                    'TANGEDCO power to Velachery Lake basin temporarily cut. Stay clear of submerged meters.'
                   ].map((phrase) => (
                     <button
                       key={phrase}
@@ -286,10 +286,11 @@ export const CommunityCommsView: React.FC = () => {
                         onChange={(e) => setTargetSector(e.target.value)}
                         className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 font-mono outline-none focus:border-red-500"
                       >
-                        <option value="Sector B2">Sector B2 (River Valley)</option>
-                        <option value="Sector B1">Sector B1 (Civic/Medical)</option>
-                        <option value="Sector A1">Sector A1 (Industrial)</option>
-                        <option value="Sector C4">Sector C4 (Transit)</option>
+                        <option value="Zone 13 - Velachery">Zone 13 - Velachery (Lake Basin)</option>
+                        <option value="Zone 5 - Royapuram">Zone 5 - Royapuram (Harbour)</option>
+                        <option value="Zone 10 - Kodambakkam">Zone 10 - Kodambakkam (Adyar)</option>
+                        <option value="Zone 14 - Perungudi">Zone 14 - Perungudi (OMR)</option>
+                        <option value="Zone 9 - Teynampet">Zone 9 - Teynampet (Saidapet)</option>
                       </select>
                     </div>
                   </div>

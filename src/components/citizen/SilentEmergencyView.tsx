@@ -3,7 +3,7 @@ import { VolumeX, MapPin, Clock, Radio, ArrowLeft, ShieldAlert, CheckCircle2 } f
 import { useEmergency } from '../../context/EmergencyContext';
 
 export const SilentEmergencyView: React.FC = () => {
-  const { setCitizenView, submitSilentEmergency } = useEmergency();
+  const { setCitizenView, submitSilentEmergency, citizenDraft } = useEmergency();
   const [isSent, setIsSent] = useState(false);
   const [currentTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
 
@@ -65,7 +65,7 @@ export const SilentEmergencyView: React.FC = () => {
                     Location
                   </span>
                   <span className="text-base font-bold text-stone-900">
-                    Sector B2 — High Accuracy Geofence
+                    {citizenDraft.locationSector || 'Zone 13 - Velachery'} — Chennai Geofence
                   </span>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export const SilentEmergencyView: React.FC = () => {
                 </div>
                 <div className="flex justify-between border-b border-beige-200 pb-1.5">
                   <span className="text-stone-600">Location:</span>
-                  <span className="font-semibold text-stone-900">Sector B2</span>
+                  <span className="font-semibold text-stone-900">{citizenDraft.locationSector || 'Zone 13 - Velachery'}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-stone-600">Status:</span>

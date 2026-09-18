@@ -255,7 +255,7 @@ export const DigitalTwinView: React.FC = () => {
               strokeDasharray="6,4"
             />
 
-            {/* FLOOD INUNDATION ZONE OVERLAY in Sector B2 */}
+            {/* FLOOD INUNDATION ZONE OVERLAY in Zone 13 - Velachery */}
             {layers.floodZone && (
               <g>
                 <circle
@@ -290,7 +290,7 @@ export const DigitalTwinView: React.FC = () => {
               </g>
             )}
 
-            {/* Fire Zone in Sector A1 */}
+            {/* Fire Zone in Zone 5 - Royapuram */}
             <circle cx="280" cy="208" r="55" fill="url(#fireGlow)" />
 
             {/* Primary & Secondary Road Network */}
@@ -313,11 +313,11 @@ export const DigitalTwinView: React.FC = () => {
             </g>
 
             {/* Road Status Labels */}
-            <text x="410" y="290" fill="#fca5a5" fontSize="9" fontWeight="bold" fontFamily="monospace">
-              ROAD 2 [RESTRICTED / 2.5FT WATER]
+            <text x="390" y="290" fill="#fca5a5" fontSize="9" fontWeight="bold" fontFamily="monospace">
+              VELACHERY 100 FT RD [SUBMERGED 2.5FT]
             </text>
             <text x="470" y="170" fill="#fdfbf7" fontSize="9" fontWeight="bold" fontFamily="monospace">
-              ROAD 3 [ELEVATED BYPASS — OPEN]
+              VIJAYA NAGAR FLYOVER [ELEVATED BYPASS — OPEN]
             </text>
 
             {/* Evacuation Route Visualization */}
@@ -336,30 +336,30 @@ export const DigitalTwinView: React.FC = () => {
             {/* 3D Extruded Buildings & Critical Infrastructure */}
             {layers.infrastructure && (
               <g>
-                {/* North Valley Elementary School (B2) */}
+                {/* Guru Nanak College (Velachery) */}
                 <g transform="translate(560, 270)">
                   <polygon points="0,15 25,0 50,15 25,30" fill="#3d0e19" stroke="#fdfbf7" strokeWidth="1.2" />
                   <polygon points="0,15 25,30 25,48 0,33" fill="#2a0810" stroke="#fdfbf7" strokeWidth="1" />
                   <polygon points="50,15 25,30 25,48 50,33" fill="#3d0e19" stroke="#fdfbf7" strokeWidth="1" />
-                  <text x="-12" y="60" fill="#fdfbf7" fontSize="10" fontWeight="bold">Valley Elementary (School)</text>
+                  <text x="-12" y="60" fill="#fdfbf7" fontSize="10" fontWeight="bold">Guru Nanak College (Camp)</text>
                 </g>
 
-                {/* Shelter A (Sector B1) */}
+                {/* Gandhi Road Community Hall */}
                 <g transform="translate(470, 130)">
                   <rect x="0" y="0" width="36" height="26" fill="#3d0e19" stroke="#e8caa4" strokeWidth="1.5" rx="3" />
-                  <text x="-10" y="38" fill="#e8caa4" fontSize="9" fontWeight="bold">Shelter A (72%)</text>
+                  <text x="-10" y="38" fill="#e8caa4" fontSize="9" fontWeight="bold">Gandhi Rd Hall (72%)</text>
                 </g>
 
-                {/* Shelter C (Sector B3 Reserve) */}
+                {/* Guru Nanak Indoor Stadium Reserve */}
                 <g transform="translate(480, 480)">
                   <rect x="0" y="0" width="36" height="26" fill="#3d0e19" stroke="#d5b88f" strokeWidth="1.5" rx="3" />
-                  <text x="-15" y="38" fill="#d5b88f" fontSize="9" fontWeight="bold">Shelter C (Reserve)</text>
+                  <text x="-15" y="38" fill="#d5b88f" fontSize="9" fontWeight="bold">Guru Nanak Stadium (Reserve)</text>
                 </g>
 
-                {/* Hospital (St. Jude Central) */}
+                {/* Hospital (RGGGH Chennai Central) */}
                 <g transform="translate(490, 80)">
                   <rect x="0" y="0" width="40" height="28" fill="#3d0e19" stroke="#fdfbf7" strokeWidth="1.5" rx="3" />
-                  <text x="-18" y="40" fill="#fdfbf7" fontSize="9" fontWeight="bold">St. Jude Trauma (68%)</text>
+                  <text x="-18" y="40" fill="#fdfbf7" fontSize="9" fontWeight="bold">RGGGH Trauma (68%)</text>
                 </g>
               </g>
             )}
@@ -367,18 +367,18 @@ export const DigitalTwinView: React.FC = () => {
             {/* RESOURCE VEHICLES ON MAP (Ambulances, Rescue Teams) */}
             {layers.resources && (
               <g>
-                {/* Tactical Rescue Team 04 (Near School) */}
+                {/* NDRF Rescue Unit 04 (Near School) */}
                 <g transform="translate(615, 290)">
                   <circle cx="0" cy="0" r="14" fill="#521020" stroke="#fdfbf7" strokeWidth="2" />
                   <text x="-7" y="4" fill="#fdfbf7" fontSize="10" fontWeight="bold">T4</text>
-                  <text x="18" y="4" fill="#f5ede0" fontSize="9" fontWeight="bold">Rescue Team 04</text>
+                  <text x="18" y="4" fill="#f5ede0" fontSize="9" fontWeight="bold">NDRF Unit 04</text>
                 </g>
 
-                {/* Ambulance 01 en route */}
+                {/* 108 Ambulance 01 en route */}
                 <g transform="translate(540, 360)">
                   <circle cx="0" cy="0" r="12" fill="#881337" stroke="#f43f5e" strokeWidth="1.8" />
                   <text x="-8" y="3" fill="#ffffff" fontSize="9" fontWeight="bold">A1</text>
-                  <text x="16" y="3" fill="#fda4af" fontSize="9" fontWeight="bold">Ambulance 01</text>
+                  <text x="16" y="3" fill="#fda4af" fontSize="9" fontWeight="bold">108 Ambulance 01</text>
                 </g>
 
                 {/* Ambulance 02 at Staging */}

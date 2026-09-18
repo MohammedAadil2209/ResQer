@@ -27,7 +27,7 @@ export const CitizenHome: React.FC = () => {
   } = useEmergency();
 
   const activeIncident = incidents.find(i => i.id === activeCitizenIncidentId);
-  const currentSector = citizenDraft.locationSector || 'Sector B2';
+  const currentSector = citizenDraft.locationSector || 'Zone 13 - Velachery';
   const sectorAlertsCount = locationAlerts.filter(a => a.sector === currentSector && a.status === 'ACTIVE').length;
 
   return (
@@ -189,7 +189,7 @@ export const CitizenHome: React.FC = () => {
                 Your Location
               </div>
               <div className="text-sm font-semibold text-stone-900">
-                {citizenDraft.locationSector || 'Sector B2'} — GPS Verified
+                {citizenDraft.locationSector || 'Zone 13 - Velachery'} — Chennai Grid
               </div>
             </div>
           </div>
@@ -201,11 +201,11 @@ export const CitizenHome: React.FC = () => {
             onChange={(e) => setCitizenDraft(prev => ({ ...prev, locationSector: e.target.value }))}
             className="text-xs bg-beige-50 border border-beige-300 text-stone-900 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-red-500 font-medium"
           >
-            <option value="Sector B2">Sector B2 (Valley)</option>
-            <option value="Sector A1">Sector A1 (Depot)</option>
-            <option value="Sector C4">Sector C4 (Corridor)</option>
-            <option value="Sector D1">Sector D1 (Market)</option>
-            <option value="Sector B1">Sector B1 (Civic)</option>
+            <option value="Zone 13 - Velachery">Zone 13 - Velachery</option>
+            <option value="Zone 5 - Royapuram">Zone 5 - Royapuram</option>
+            <option value="Zone 10 - Kodambakkam">Zone 10 - Kodambakkam</option>
+            <option value="Zone 14 - Perungudi">Zone 14 - Perungudi</option>
+            <option value="Zone 9 - Teynampet">Zone 9 - Teynampet</option>
           </select>
         </div>
 

@@ -33,11 +33,11 @@ const HAZARDS: { type: EmergencyHazard; label: string; icon: React.ComponentType
 ];
 
 const SECTOR_OPTIONS = [
-  { id: 'Sector B2', label: 'Sector B2 (River Valley & Elementary School)', verified: true },
-  { id: 'Sector A1', label: 'Sector A1 (Power Depot & Industrial)', verified: true },
-  { id: 'Sector C4', label: 'Sector C4 (Highway Bypass & Mile 14)', verified: true },
-  { id: 'Sector D1', label: 'Sector D1 (Old Market District)', verified: true },
-  { id: 'Sector B1', label: 'Sector B1 (Civic & Medical Center)', verified: true },
+  { id: 'Zone 13 - Velachery', label: 'Zone 13 - Velachery (Ram Nagar & Lake Basin)', verified: true },
+  { id: 'Zone 5 - Royapuram', label: 'Zone 5 - Royapuram (Ennore Expressway & Harbour)', verified: true },
+  { id: 'Zone 10 - Kodambakkam', label: 'Zone 10 - Kodambakkam (Jafferkhanpet & Adyar Banks)', verified: true },
+  { id: 'Zone 14 - Perungudi', label: 'Zone 14 - Perungudi (OMR IT Corridor & Pallikaranai)', verified: true },
+  { id: 'Zone 9 - Teynampet', label: 'Zone 9 - Teynampet (Saidapet & Anna Salai)', verified: true },
 ];
 
 export const CitizenReportWizard: React.FC = () => {
@@ -183,20 +183,20 @@ export const CitizenReportWizard: React.FC = () => {
                     YOUR LOCATION
                   </span>
                   <span className="text-base font-bold text-stone-900">
-                    {citizenDraft.locationSector || 'Sector B2'}
+                    {citizenDraft.locationSector || 'Zone 13 - Velachery'}
                   </span>
                 </div>
               </div>
 
               <div className="absolute bottom-2 right-2 text-[10px] text-stone-600 bg-white/90 border border-beige-300 px-2 py-0.5 rounded font-mono font-semibold">
-                GPS Confidence: 98%
+                GPS Confidence: 98% (Chennai Grid)
               </div>
             </div>
 
             {/* Location selector toggle */}
             <div className="space-y-2 pt-2">
               <span className="text-xs font-bold text-stone-700 uppercase tracking-wider block font-mono">
-                Choose Specific Sector:
+                Choose Chennai Ward / Zone:
               </span>
               <div className="grid grid-cols-1 gap-2">
                 {SECTOR_OPTIONS.map((sec) => (
@@ -322,7 +322,7 @@ export const CitizenReportWizard: React.FC = () => {
               />
 
               <div className="flex flex-wrap gap-2 text-xs">
-                {['Elderly people inside', 'Children present', 'Oxygen tank needed', 'Impassable driveway', 'Power lines down'].map(quickTag => (
+                {['Water entering ground floor', 'Elderly people inside', 'Children present', 'Oxygen cylinder required', 'Power cut / No mobile signal', 'Boat evacuation required'].map(quickTag => (
                   <button
                     key={quickTag}
                     type="button"

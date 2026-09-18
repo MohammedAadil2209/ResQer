@@ -27,7 +27,7 @@ export const LocationAlertsView: React.FC = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
 
   // New alert form state
-  const [newSector, setNewSector] = useState('Sector B2');
+  const [newSector, setNewSector] = useState('Zone 13 - Velachery');
   const [newTitle, setNewTitle] = useState('');
   const [newHazard, setNewHazard] = useState<EmergencyHazard>('Flood');
   const [newUrgency, setNewUrgency] = useState<AlertUrgency>('EVACUATION');
@@ -166,10 +166,11 @@ export const LocationAlertsView: React.FC = () => {
               className="bg-beige-50 border border-beige-300 text-stone-800 rounded-lg px-2.5 py-1.5 text-xs outline-none font-mono focus:border-red-500"
             >
               <option value="all">All Sectors</option>
-              <option value="Sector B2">Sector B2 (River Valley)</option>
-              <option value="Sector A1">Sector A1 (Industrial Depot)</option>
-              <option value="Sector C4">Sector C4 (Transit Corridor)</option>
-              <option value="Sector B1">Sector B1 (Civic & Medical)</option>
+              <option value="Zone 13 - Velachery">Zone 13 - Velachery (Lake Basin)</option>
+              <option value="Zone 5 - Royapuram">Zone 5 - Royapuram (Harbour)</option>
+              <option value="Zone 10 - Kodambakkam">Zone 10 - Kodambakkam (Adyar Basin)</option>
+              <option value="Zone 14 - Perungudi">Zone 14 - Perungudi (OMR Corridor)</option>
+              <option value="Zone 9 - Teynampet">Zone 9 - Teynampet (Saidapet)</option>
             </select>
 
             <button
@@ -324,11 +325,11 @@ export const LocationAlertsView: React.FC = () => {
                     onChange={(e) => setNewSector(e.target.value)}
                     className="w-full bg-beige-50 border border-beige-300 rounded-lg p-2 text-stone-900 outline-none focus:border-red-500 font-mono"
                   >
-                    <option value="Sector B2">Sector B2 (River Valley)</option>
-                    <option value="Sector A1">Sector A1 (Industrial Depot)</option>
-                    <option value="Sector C4">Sector C4 (Transit Highway)</option>
-                    <option value="Sector B1">Sector B1 (Civic Center)</option>
-                    <option value="Sector D1">Sector D1 (Market District)</option>
+                    <option value="Zone 13 - Velachery">Zone 13 - Velachery (Ram Nagar & Lake Basin)</option>
+                    <option value="Zone 5 - Royapuram">Zone 5 - Royapuram (Expressway & Harbour)</option>
+                    <option value="Zone 10 - Kodambakkam">Zone 10 - Kodambakkam (Jafferkhanpet & Adyar)</option>
+                    <option value="Zone 14 - Perungudi">Zone 14 - Perungudi (OMR IT Corridor)</option>
+                    <option value="Zone 9 - Teynampet">Zone 9 - Teynampet (Saidapet & Anna Salai)</option>
                   </select>
                 </div>
 

@@ -21,7 +21,7 @@ export const CitizenAlertsView: React.FC = () => {
     addToast 
   } = useEmergency();
 
-  const currentSector = citizenDraft.locationSector || 'Sector B2';
+  const currentSector = citizenDraft.locationSector || 'Zone 13 - Velachery';
   const sectorAlerts = locationAlerts.filter(a => a.sector === currentSector && a.status === 'ACTIVE');
   const allActiveAlerts = locationAlerts.filter(a => a.status === 'ACTIVE');
 
@@ -44,11 +44,11 @@ export const CitizenAlertsView: React.FC = () => {
             onChange={(e) => setCitizenDraft(prev => ({ ...prev, locationSector: e.target.value }))}
             className="text-xs bg-beige-50 border border-beige-300 text-stone-900 rounded-lg px-2 py-1 font-mono font-bold outline-none focus:border-red-500"
           >
-            <option value="Sector B2">Sector B2</option>
-            <option value="Sector A1">Sector A1</option>
-            <option value="Sector C4">Sector C4</option>
-            <option value="Sector B1">Sector B1</option>
-            <option value="Sector D1">Sector D1</option>
+            <option value="Zone 13 - Velachery">Zone 13 - Velachery</option>
+            <option value="Zone 5 - Royapuram">Zone 5 - Royapuram</option>
+            <option value="Zone 10 - Kodambakkam">Zone 10 - Kodambakkam</option>
+            <option value="Zone 14 - Perungudi">Zone 14 - Perungudi</option>
+            <option value="Zone 9 - Teynampet">Zone 9 - Teynampet</option>
           </select>
         </div>
       </div>
