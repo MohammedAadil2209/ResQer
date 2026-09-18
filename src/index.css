@@ -55,15 +55,20 @@
 }
 
 /* Custom scrollbar matching Red, White & Beige */
+body {
+  background-color: #ffffff;
+  color: #1c1917;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1b0206;
+  background: #fbf9f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #7f1d1d;
+  background: #dfceb8;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {

@@ -78,26 +78,26 @@ export const DigitalTwinView: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full min-h-[520px] bg-wine-950 rounded-2xl border border-wine-800 overflow-hidden select-none flex flex-col justify-between">
+    <div className="relative w-full h-full min-h-[520px] bg-white rounded-2xl border border-beige-300 overflow-hidden select-none flex flex-col justify-between shadow-sm">
       {/* Top Map Control Bar */}
       <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
         {/* Left: Map title & Active Sector Indicator */}
-        <div className="pointer-events-auto flex items-center gap-2 bg-wine-950/90 backdrop-blur-md border border-wine-700 px-3 py-1.5 rounded-xl shadow-lg">
-          <span className="w-2 h-2 rounded-full bg-cream-200 animate-pulse" />
-          <span className="text-xs font-bold text-white font-mono uppercase tracking-wider">
+        <div className="pointer-events-auto flex items-center gap-2 bg-white/95 backdrop-blur-md border border-beige-300 px-3 py-1.5 rounded-xl shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+          <span className="text-xs font-bold text-stone-900 font-mono uppercase tracking-wider">
             DIGITAL TWIN • SECTOR B2 ACTIVE
           </span>
-          <span className="text-[10px] text-cream-100 bg-wine-900 border border-wine-600 px-1.5 py-0.5 rounded font-mono">
+          <span className="text-[10px] text-stone-700 bg-beige-100 border border-beige-300 px-1.5 py-0.5 rounded font-mono">
             {Math.round(zoomLevel * 100)}%
           </span>
         </div>
 
         {/* Right: Map Action Tools */}
-        <div className="pointer-events-auto flex items-center gap-1.5 bg-wine-950/90 backdrop-blur-md border border-wine-700 p-1 rounded-xl shadow-lg">
+        <div className="pointer-events-auto flex items-center gap-1.5 bg-white/95 backdrop-blur-md border border-beige-300 p-1 rounded-xl shadow-sm">
           <button
             id="btn-zoom-in"
             onClick={() => setZoomLevel(prev => Math.min(prev + 0.25, 2.5))}
-            className="p-1.5 rounded-lg text-cream-200 hover:text-white hover:bg-wine-900 transition-colors"
+            className="p-1.5 rounded-lg text-stone-700 hover:text-stone-900 hover:bg-beige-100 transition-colors"
             title="Zoom In"
             aria-label="Zoom in on digital twin"
           >
@@ -106,7 +106,7 @@ export const DigitalTwinView: React.FC = () => {
           <button
             id="btn-zoom-out"
             onClick={() => setZoomLevel(prev => Math.max(prev - 0.25, 0.75))}
-            className="p-1.5 rounded-lg text-cream-200 hover:text-white hover:bg-wine-900 transition-colors"
+            className="p-1.5 rounded-lg text-stone-700 hover:text-stone-900 hover:bg-beige-100 transition-colors"
             title="Zoom Out"
             aria-label="Zoom out on digital twin"
           >
@@ -115,7 +115,7 @@ export const DigitalTwinView: React.FC = () => {
           <button
             id="btn-fit-incidents"
             onClick={handleFitIncidents}
-            className="p-1.5 rounded-lg text-cream-200 hover:text-white hover:bg-wine-900 transition-colors text-xs font-semibold flex items-center gap-1"
+            className="p-1.5 rounded-lg text-stone-700 hover:text-stone-900 hover:bg-beige-100 transition-colors text-xs font-semibold flex items-center gap-1"
             title="Fit to Incident Cluster"
           >
             <Crosshair className="w-4 h-4" />
@@ -123,7 +123,7 @@ export const DigitalTwinView: React.FC = () => {
           <button
             id="btn-reset-map"
             onClick={handleResetView}
-            className="p-1.5 rounded-lg text-cream-200 hover:text-white hover:bg-wine-900 transition-colors"
+            className="p-1.5 rounded-lg text-stone-700 hover:text-stone-900 hover:bg-beige-100 transition-colors"
             title="Reset Map View"
             aria-label="Reset digital twin map view"
           >
@@ -136,7 +136,7 @@ export const DigitalTwinView: React.FC = () => {
               id="btn-toggle-layers"
               onClick={() => setShowLayerMenu(!showLayerMenu)}
               className={`p-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition-colors ${
-                showLayerMenu ? 'bg-cream-100 text-wine-950 font-bold' : 'text-cream-200 hover:bg-wine-900'
+                showLayerMenu ? 'bg-red-600 text-white font-bold' : 'text-stone-700 hover:bg-beige-100'
               }`}
               title="Map Layers"
             >
@@ -145,18 +145,18 @@ export const DigitalTwinView: React.FC = () => {
             </button>
 
             {showLayerMenu && (
-              <div className="absolute right-0 top-10 w-52 bg-wine-950 border border-wine-700 rounded-xl p-3 shadow-2xl space-y-2 z-30 text-xs">
-                <span className="font-bold text-white block pb-1 border-b border-wine-800 font-mono uppercase">
+              <div className="absolute right-0 top-10 w-52 bg-white border border-beige-300 rounded-xl p-3 shadow-xl space-y-2 z-30 text-xs">
+                <span className="font-bold text-stone-900 block pb-1 border-b border-beige-200 font-mono uppercase">
                   Visible Map Layers
                 </span>
                 {Object.entries(layers).map(([key, val]) => (
-                  <label key={key} className="flex items-center justify-between text-cream-200 cursor-pointer hover:text-white py-0.5">
+                  <label key={key} className="flex items-center justify-between text-stone-700 cursor-pointer hover:text-stone-900 py-0.5">
                     <span className="capitalize">{key.replace(/([A-Z])/g, ' $1')}</span>
                     <input
                       type="checkbox"
                       checked={val}
                       onChange={() => setLayers(prev => ({ ...prev, [key]: !val }))}
-                      className="rounded bg-wine-900 border-wine-700 text-cream-100 focus:ring-cream-200/20"
+                      className="rounded bg-beige-50 border-beige-300 text-red-600 focus:ring-red-500/20"
                     />
                   </label>
                 ))}
@@ -190,31 +190,31 @@ export const DigitalTwinView: React.FC = () => {
             <defs>
               {/* Background grid pattern */}
               <pattern id="twinGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4a1525" strokeWidth="0.8" opacity="0.6" />
-                <circle cx="0" cy="0" r="1" fill="#6d1e34" />
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e5ddd0" strokeWidth="0.8" opacity="0.8" />
+                <circle cx="0" cy="0" r="1" fill="#c4b5a2" />
               </pattern>
 
-              {/* Flood water animated radial gradient in rich wine tone */}
+              {/* Flood water animated radial gradient in rich wine/red tone */}
               <radialGradient id="floodGlow" cx="58%" cy="45%" r="35%">
-                <stop offset="0%" stopColor="#801b33" stopOpacity="0.65" />
-                <stop offset="50%" stopColor="#521020" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#2a0810" stopOpacity="0" />
+                <stop offset="0%" stopColor="#dc2626" stopOpacity="0.35" />
+                <stop offset="50%" stopColor="#ef4444" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#fca5a5" stopOpacity="0" />
               </radialGradient>
 
               {/* Fire glow */}
               <radialGradient id="fireGlow" cx="28%" cy="32%" r="20%">
-                <stop offset="0%" stopColor="#991b1b" stopOpacity="0.45" />
-                <stop offset="60%" stopColor="#b91c1c" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#7f1d1d" stopOpacity="0" />
+                <stop offset="0%" stopColor="#dc2626" stopOpacity="0.3" />
+                <stop offset="60%" stopColor="#f87171" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#fca5a5" stopOpacity="0" />
               </radialGradient>
             </defs>
 
             {/* Base Coordinate Grid */}
-            <rect width="1000" height="650" fill="#1c050d" />
+            <rect width="1000" height="650" fill="#faf7f2" />
             <rect width="1000" height="650" fill="url(#twinGrid)" />
 
             {/* Sector Boundary Dividers */}
-            <g opacity="0.45" stroke="#521020" strokeWidth="1" strokeDasharray="4,4">
+            <g opacity="0.6" stroke="#d5cbbf" strokeWidth="1" strokeDasharray="4,4">
               <line x1="333" y1="0" x2="333" y2="650" />
               <line x1="666" y1="0" x2="666" y2="650" />
               <line x1="0" y1="216" x2="1000" y2="216" />
@@ -227,7 +227,7 @@ export const DigitalTwinView: React.FC = () => {
                 key={sec.id}
                 x={sec.x * 10}
                 y={sec.y * 6.5 - 24}
-                fill="#8f3e54"
+                fill="#8c7e6c"
                 fontSize="11"
                 fontWeight="700"
                 fontFamily="monospace"
@@ -481,58 +481,58 @@ export const DigitalTwinView: React.FC = () => {
 
       {/* FLOATING INCIDENT INSPECTION POPUP */}
       {(activeMarkerData || selectedIncident) && (
-        <div className="absolute bottom-3 left-3 right-3 sm:right-auto sm:w-96 z-30 bg-wine-950/95 backdrop-blur-md border border-wine-600 p-4 rounded-2xl shadow-2xl space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-wine-800">
+        <div className="absolute bottom-3 left-3 right-3 sm:right-auto sm:w-96 z-30 bg-white/95 backdrop-blur-md border border-beige-300 p-4 rounded-2xl shadow-xl space-y-3">
+          <div className="flex items-center justify-between pb-2 border-b border-beige-200">
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-cream-100 animate-pulse" />
-                <span className="font-mono font-bold text-xs text-cream-200 uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                <span className="font-mono font-bold text-xs text-red-700 uppercase tracking-wider">
                   {(activeMarkerData || selectedIncident).severity} • {(activeMarkerData || selectedIncident).id}
                 </span>
               </div>
-              <h3 className="text-base font-extrabold text-white tracking-tight">
+              <h3 className="text-base font-extrabold text-stone-900 tracking-tight">
                 {(activeMarkerData || selectedIncident).sector}
               </h3>
             </div>
 
             <button
               onClick={() => setActiveMarkerData(null)}
-              className="text-xs text-cream-300 hover:text-white"
+              className="text-xs text-stone-400 hover:text-stone-700"
             >
               ✕
             </button>
           </div>
 
-          <p className="text-xs text-cream-200 font-medium line-clamp-2">
+          <p className="text-xs text-stone-700 font-medium line-clamp-2">
             {(activeMarkerData || selectedIncident).title}
           </p>
 
           {/* Quick Metrics Strip */}
           <div className="grid grid-cols-3 gap-2 text-xs">
-            <div className="p-2 rounded-lg bg-wine-900 border border-wine-800">
-              <span className="text-[10px] text-cream-400 block uppercase font-mono">People Affected</span>
-              <span className="text-sm font-bold text-white font-mono">
+            <div className="p-2 rounded-lg bg-beige-50 border border-beige-200">
+              <span className="text-[10px] text-stone-500 block uppercase font-mono">People Affected</span>
+              <span className="text-sm font-bold text-stone-900 font-mono">
                 {(activeMarkerData || selectedIncident).peopleAffected}
               </span>
             </div>
-            <div className="p-2 rounded-lg bg-wine-900 border border-wine-800">
-              <span className="text-[10px] text-cream-400 block uppercase font-mono">Reports</span>
-              <span className="text-sm font-bold text-cream-100 font-mono">
+            <div className="p-2 rounded-lg bg-beige-50 border border-beige-200">
+              <span className="text-[10px] text-stone-500 block uppercase font-mono">Reports</span>
+              <span className="text-sm font-bold text-stone-900 font-mono">
                 {(activeMarkerData || selectedIncident).reportsCount}
               </span>
             </div>
-            <div className="p-2 rounded-lg bg-wine-900 border border-wine-800">
-              <span className="text-[10px] text-cream-400 block uppercase font-mono">Road Access</span>
-              <span className="text-xs font-bold text-cream-200 font-mono truncate block">
+            <div className="p-2 rounded-lg bg-beige-50 border border-beige-200">
+              <span className="text-[10px] text-stone-500 block uppercase font-mono">Road Access</span>
+              <span className="text-xs font-bold text-stone-800 font-mono truncate block">
                 {(activeMarkerData || selectedIncident).roadAccess}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[11px] text-cream-200 bg-wine-900/60 p-2 rounded-lg border border-wine-800 font-sans">
-            <span>Shelter Load: <strong className="text-cream-100">{(activeMarkerData || selectedIncident).shelterLoad}%</strong></span>
-            <span>Hospital: <strong className="text-cream-100">{(activeMarkerData || selectedIncident).hospitalLoad}%</strong></span>
-            <span>Responders: <strong className="text-white">6 units</strong></span>
+          <div className="flex items-center justify-between text-[11px] text-stone-600 bg-beige-50 p-2 rounded-lg border border-beige-200 font-sans">
+            <span>Shelter Load: <strong className="text-stone-900">{(activeMarkerData || selectedIncident).shelterLoad}%</strong></span>
+            <span>Hospital: <strong className="text-stone-900">{(activeMarkerData || selectedIncident).hospitalLoad}%</strong></span>
+            <span>Responders: <strong className="text-stone-900">6 units</strong></span>
           </div>
 
           <button
@@ -541,18 +541,18 @@ export const DigitalTwinView: React.FC = () => {
               setSelectedIncidentId((activeMarkerData || selectedIncident).id);
               setCommandView('incidents');
             }}
-            className="w-full py-2.5 rounded-xl font-bold text-xs bg-cream-100 hover:bg-white text-wine-950 flex items-center justify-center gap-1.5 shadow-md shadow-wine-950/80 transition-all active:scale-[0.99]"
+            className="w-full py-2.5 rounded-xl font-bold text-xs bg-red-600 hover:bg-red-700 text-white flex items-center justify-center gap-1.5 shadow-sm transition-all active:scale-[0.99]"
           >
             <span>VIEW INCIDENT WORKSPACE</span>
-            <ArrowUpRight className="w-4 h-4 text-wine-950" />
+            <ArrowUpRight className="w-4 h-4 text-white" />
           </button>
         </div>
       )}
 
       {/* Map Legend on Bottom Right */}
-      <div className="absolute bottom-3 right-3 hidden lg:flex items-center gap-3 bg-wine-950/90 backdrop-blur-sm border border-wine-800 px-3 py-2 rounded-xl text-[11px] text-cream-200 pointer-events-none z-10 font-mono">
+      <div className="absolute bottom-3 right-3 hidden lg:flex items-center gap-3 bg-white/95 backdrop-blur-sm border border-beige-300 px-3 py-2 rounded-xl text-[11px] text-stone-700 pointer-events-none z-10 font-mono shadow-sm">
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+          <span className="w-2.5 h-2.5 rounded-full bg-red-600" />
           <span>Critical</span>
         </div>
         <div className="flex items-center gap-1.5">
@@ -560,11 +560,11 @@ export const DigitalTwinView: React.FC = () => {
           <span>Warning</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-cream-100" />
+          <span className="w-2.5 h-2.5 rounded-full bg-stone-400" />
           <span>Evac Route</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-wine-500" />
+          <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
           <span>Response Unit</span>
         </div>
       </div>

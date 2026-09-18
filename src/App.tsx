@@ -39,7 +39,7 @@ const MainRouter: React.FC = () => {
 
   if (appMode === 'citizen') {
     return (
-      <div className="min-h-screen bg-[#1a0205] text-beige-100 flex flex-col justify-between relative overflow-x-hidden select-none">
+      <div className="min-h-screen bg-white text-stone-900 flex flex-col justify-between relative overflow-x-hidden select-none">
         {/* Subtle 3D background canvas */}
         <ThreeBackground />
 
@@ -62,7 +62,7 @@ const MainRouter: React.FC = () => {
 
   // AppMode === 'command'
   return (
-    <div className="flex h-screen bg-[#1a0205] text-beige-100 overflow-hidden font-sans">
+    <div className="flex h-screen bg-white text-stone-900 overflow-hidden font-sans">
       {/* Left Sidebar */}
       <CommandSidebar />
 
@@ -72,7 +72,7 @@ const MainRouter: React.FC = () => {
         <CommandHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
         {/* Dynamic View Body */}
-        <main className="flex-1 p-4 lg:p-6 bg-[#140104]">
+        <main className="flex-1 p-4 lg:p-6 bg-beige-50/60">
           {commandView === 'overview' && <CommandOverview />}
           {commandView === 'digital-twin' && (
             <div className="h-[calc(100vh-140px)] min-h-[500px]">
@@ -97,7 +97,7 @@ const MainRouter: React.FC = () => {
 export default function App() {
   return (
     <EmergencyProvider>
-      <div className="w-full min-h-screen bg-[#1a0205] text-beige-100 font-sans antialiased">
+      <div className="w-full min-h-screen bg-white text-stone-900 font-sans antialiased">
         <MainRouter />
         <ToastContainer />
       </div>

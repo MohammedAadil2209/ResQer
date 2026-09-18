@@ -19,8 +19,8 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
 
     // Scene setup
     const scene = new THREE.Scene();
-    // Fog for deep atmospheric falloff
-    scene.fog = new THREE.FogExp2(0x1b0206, 0.0018);
+    // Fog for atmospheric falloff on white
+    scene.fog = new THREE.FogExp2(0xffffff, 0.0018);
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(55, width / height, 1, 1000);
@@ -31,7 +31,7 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setClearColor(0x1b0206, 1);
+    renderer.setClearColor(0xffffff, 1);
     container.appendChild(renderer.domElement);
 
     // 1. Topographic Plane / Terrain Grid
@@ -47,10 +47,10 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     planeGeo.computeVertexNormals();
 
     const gridMaterial = new THREE.MeshBasicMaterial({
-      color: intensity === 'minimal' ? 0x4d0a12 : 0x6e0f1a,
+      color: 0xdfceb8,
       wireframe: true,
       transparent: true,
-      opacity: intensity === 'minimal' ? 0.25 : 0.45
+      opacity: intensity === 'minimal' ? 0.35 : 0.55
     });
 
     const terrainMesh = new THREE.Mesh(planeGeo, gridMaterial);
@@ -58,15 +58,15 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     terrainMesh.position.y = -20;
     scene.add(terrainMesh);
 
-    // 2. Floating Atmospheric Signal Nodes / Particles in Red, White, and Beige
+    // 2. Floating Atmospheric Signal Nodes / Particles in Red, Charcoal, and Beige
     const particleCount = intensity === 'minimal' ? 40 : 110;
     const particleGeo = new THREE.BufferGeometry();
     const particlePositions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
 
     const redColor = new THREE.Color(0xdc2626);
-    const beigeColor = new THREE.Color(0xede4d3);
-    const whiteColor = new THREE.Color(0xffffff);
+    const beigeColor = new THREE.Color(0xb89f7f);
+    const darkColor = new THREE.Color(0x292524);
 
     for (let i = 0; i < particleCount; i++) {
       const idx = i * 3;
@@ -74,7 +74,7 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
       particlePositions[idx + 1] = Math.random() * 50 - 5;
       particlePositions[idx + 2] = (Math.random() - 0.5) * 200;
 
-      const col = i % 5 === 0 ? whiteColor : i % 2 === 0 ? redColor : beigeColor;
+      const col = i % 5 === 0 ? darkColor : i % 2 === 0 ? redColor : beigeColor;
       particleColors[idx] = col.r;
       particleColors[idx + 1] = col.g;
       particleColors[idx + 2] = col.b;
@@ -84,11 +84,11 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
     const particleMaterial = new THREE.PointsMaterial({
-      size: 2.2,
+      size: 2.5,
       vertexColors: true,
       transparent: true,
-      opacity: intensity === 'minimal' ? 0.35 : 0.75,
-      blending: THREE.AdditiveBlending
+      opacity: intensity === 'minimal' ? 0.45 : 0.8,
+      blending: THREE.NormalBlending
     });
 
     const particleSystem = new THREE.Points(particleGeo, particleMaterial);
@@ -97,9 +97,9 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     // 3. Subtle Connective Line Segment Web in warm Beige
     const lineCount = intensity === 'minimal' ? 8 : 22;
     const lineMat = new THREE.LineBasicMaterial({
-      color: 0xdfceb8,
+      color: 0xccb598,
       transparent: true,
-      opacity: intensity === 'minimal' ? 0.08 : 0.2
+      opacity: intensity === 'minimal' ? 0.18 : 0.35
     });
     const lineGeo = new THREE.BufferGeometry();
     const linePoints: number[] = [];
@@ -177,7 +177,7 @@ export const ThreeBackground: React.FC<ThreeBackgroundProps> = ({ intensity = 'c
     return (
       <div 
         aria-hidden="true"
-        className="fixed inset-0 pointer-events-none bg-gradient-to-b from-[#1b0206] via-[#33050c] to-[#1b0206] z-0" 
+        className="fixed inset-0 pointer-events-none bg-gradient-to-b from-white via-beige-50 to-white z-0" 
       />
     );
   }
